@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2026 at 07:31 AM
+-- Generation Time: Jan 17, 2026 at 11:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,7 +105,7 @@ CREATE TABLE `wp_options` (
 --
 
 INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
-(1, 'cron', 'a:11:{i:1768632177;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768633977;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768633978;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1768669996;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768673577;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768713178;a:2:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1768713196;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1768713200;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1769231623;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1769232038;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'on'),
+(1, 'cron', 'a:11:{i:1768644778;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1768669996;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768673577;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768675377;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768677177;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1768713178;a:2:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1768713196;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1768713200;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1769231623;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1769232038;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'on'),
 (2, 'siteurl', 'http://localhost/chronevo', 'on'),
 (3, 'home', 'http://localhost/chronevo', 'on'),
 (4, 'blogname', 'CHRONEVO', 'on'),
@@ -133,13 +133,13 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (26, 'links_updated_date_format', 'F j, Y g:i a', 'on'),
 (27, 'comment_moderation', '', 'on'),
 (28, 'moderation_notify', '1', 'on'),
-(29, 'permalink_structure', '/%category%/%postname%/', 'on'),
-(30, 'rewrite_rules', 'a:98:{s:11:\"^wp-json/?$\";s:22:\"index.php?rest_route=/\";s:14:\"^wp-json/(.*)?\";s:33:\"index.php?rest_route=/$matches[1]\";s:21:\"^index.php/wp-json/?$\";s:22:\"index.php?rest_route=/\";s:24:\"^index.php/wp-json/(.*)?\";s:33:\"index.php?rest_route=/$matches[1]\";s:17:\"^wp-sitemap\\.xml$\";s:23:\"index.php?sitemap=index\";s:17:\"^wp-sitemap\\.xsl$\";s:36:\"index.php?sitemap-stylesheet=sitemap\";s:23:\"^wp-sitemap-index\\.xsl$\";s:34:\"index.php?sitemap-stylesheet=index\";s:48:\"^wp-sitemap-([a-z]+?)-([a-z\\d_-]+?)-(\\d+?)\\.xml$\";s:75:\"index.php?sitemap=$matches[1]&sitemap-subtype=$matches[2]&paged=$matches[3]\";s:34:\"^wp-sitemap-([a-z]+?)-(\\d+?)\\.xml$\";s:47:\"index.php?sitemap=$matches[1]&paged=$matches[2]\";s:47:\"category/(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:42:\"category/(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:23:\"category/(.+?)/embed/?$\";s:46:\"index.php?category_name=$matches[1]&embed=true\";s:35:\"category/(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:17:\"category/(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";s:44:\"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:39:\"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:20:\"tag/([^/]+)/embed/?$\";s:36:\"index.php?tag=$matches[1]&embed=true\";s:32:\"tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[1]&paged=$matches[2]\";s:14:\"tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[1]\";s:45:\"type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?post_format=$matches[1]&feed=$matches[2]\";s:40:\"type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?post_format=$matches[1]&feed=$matches[2]\";s:21:\"type/([^/]+)/embed/?$\";s:44:\"index.php?post_format=$matches[1]&embed=true\";s:33:\"type/([^/]+)/page/?([0-9]{1,})/?$\";s:51:\"index.php?post_format=$matches[1]&paged=$matches[2]\";s:15:\"type/([^/]+)/?$\";s:33:\"index.php?post_format=$matches[1]\";s:48:\".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$\";s:18:\"index.php?feed=old\";s:20:\".*wp-app\\.php(/.*)?$\";s:19:\"index.php?error=403\";s:18:\".*wp-register.php$\";s:23:\"index.php?register=true\";s:32:\"feed/(feed|rdf|rss|rss2|atom)/?$\";s:27:\"index.php?&feed=$matches[1]\";s:27:\"(feed|rdf|rss|rss2|atom)/?$\";s:27:\"index.php?&feed=$matches[1]\";s:8:\"embed/?$\";s:21:\"index.php?&embed=true\";s:20:\"page/?([0-9]{1,})/?$\";s:28:\"index.php?&paged=$matches[1]\";s:27:\"comment-page-([0-9]{1,})/?$\";s:38:\"index.php?&page_id=2&cpage=$matches[1]\";s:41:\"comments/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?&feed=$matches[1]&withcomments=1\";s:36:\"comments/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?&feed=$matches[1]&withcomments=1\";s:17:\"comments/embed/?$\";s:21:\"index.php?&embed=true\";s:44:\"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:40:\"index.php?s=$matches[1]&feed=$matches[2]\";s:39:\"search/(.+)/(feed|rdf|rss|rss2|atom)/?$\";s:40:\"index.php?s=$matches[1]&feed=$matches[2]\";s:20:\"search/(.+)/embed/?$\";s:34:\"index.php?s=$matches[1]&embed=true\";s:32:\"search/(.+)/page/?([0-9]{1,})/?$\";s:41:\"index.php?s=$matches[1]&paged=$matches[2]\";s:14:\"search/(.+)/?$\";s:23:\"index.php?s=$matches[1]\";s:47:\"author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?author_name=$matches[1]&feed=$matches[2]\";s:42:\"author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?author_name=$matches[1]&feed=$matches[2]\";s:23:\"author/([^/]+)/embed/?$\";s:44:\"index.php?author_name=$matches[1]&embed=true\";s:35:\"author/([^/]+)/page/?([0-9]{1,})/?$\";s:51:\"index.php?author_name=$matches[1]&paged=$matches[2]\";s:17:\"author/([^/]+)/?$\";s:33:\"index.php?author_name=$matches[1]\";s:69:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:80:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]\";s:64:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:80:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]\";s:45:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/embed/?$\";s:74:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&embed=true\";s:57:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:81:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]\";s:39:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$\";s:63:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]\";s:56:\"([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:64:\"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]\";s:51:\"([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:64:\"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]\";s:32:\"([0-9]{4})/([0-9]{1,2})/embed/?$\";s:58:\"index.php?year=$matches[1]&monthnum=$matches[2]&embed=true\";s:44:\"([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:65:\"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]\";s:26:\"([0-9]{4})/([0-9]{1,2})/?$\";s:47:\"index.php?year=$matches[1]&monthnum=$matches[2]\";s:43:\"([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?year=$matches[1]&feed=$matches[2]\";s:38:\"([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?year=$matches[1]&feed=$matches[2]\";s:19:\"([0-9]{4})/embed/?$\";s:37:\"index.php?year=$matches[1]&embed=true\";s:31:\"([0-9]{4})/page/?([0-9]{1,})/?$\";s:44:\"index.php?year=$matches[1]&paged=$matches[2]\";s:13:\"([0-9]{4})/?$\";s:26:\"index.php?year=$matches[1]\";s:27:\".?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\".?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\".?.+?/attachment/([^/]+)/embed/?$\";s:43:\"index.php?attachment=$matches[1]&embed=true\";s:16:\"(.?.+?)/embed/?$\";s:41:\"index.php?pagename=$matches[1]&embed=true\";s:20:\"(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[1]&tb=1\";s:40:\"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:35:\"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:28:\"(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&paged=$matches[2]\";s:35:\"(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&cpage=$matches[2]\";s:24:\"(.?.+?)(?:/([0-9]+))?/?$\";s:47:\"index.php?pagename=$matches[1]&page=$matches[2]\";s:31:\".+?/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\".+?/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\".+?/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\".+?/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\".+?/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:37:\".+?/[^/]+/attachment/([^/]+)/embed/?$\";s:43:\"index.php?attachment=$matches[1]&embed=true\";s:22:\"(.+?)/([^/]+)/embed/?$\";s:63:\"index.php?category_name=$matches[1]&name=$matches[2]&embed=true\";s:26:\"(.+?)/([^/]+)/trackback/?$\";s:57:\"index.php?category_name=$matches[1]&name=$matches[2]&tb=1\";s:46:\"(.+?)/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:69:\"index.php?category_name=$matches[1]&name=$matches[2]&feed=$matches[3]\";s:41:\"(.+?)/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:69:\"index.php?category_name=$matches[1]&name=$matches[2]&feed=$matches[3]\";s:34:\"(.+?)/([^/]+)/page/?([0-9]{1,})/?$\";s:70:\"index.php?category_name=$matches[1]&name=$matches[2]&paged=$matches[3]\";s:41:\"(.+?)/([^/]+)/comment-page-([0-9]{1,})/?$\";s:70:\"index.php?category_name=$matches[1]&name=$matches[2]&cpage=$matches[3]\";s:30:\"(.+?)/([^/]+)(?:/([0-9]+))?/?$\";s:69:\"index.php?category_name=$matches[1]&name=$matches[2]&page=$matches[3]\";s:20:\".+?/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:30:\".+?/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:50:\".+?/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\".+?/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\".+?/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:26:\".+?/[^/]+/([^/]+)/embed/?$\";s:43:\"index.php?attachment=$matches[1]&embed=true\";s:38:\"(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:33:\"(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:14:\"(.+?)/embed/?$\";s:46:\"index.php?category_name=$matches[1]&embed=true\";s:26:\"(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:33:\"(.+?)/comment-page-([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&cpage=$matches[2]\";s:8:\"(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";}', 'on'),
+(29, 'permalink_structure', '/%category%/%postname%', 'on'),
+(30, 'rewrite_rules', 'a:98:{s:11:\"^wp-json/?$\";s:22:\"index.php?rest_route=/\";s:14:\"^wp-json/(.*)?\";s:33:\"index.php?rest_route=/$matches[1]\";s:21:\"^index.php/wp-json/?$\";s:22:\"index.php?rest_route=/\";s:24:\"^index.php/wp-json/(.*)?\";s:33:\"index.php?rest_route=/$matches[1]\";s:17:\"^wp-sitemap\\.xml$\";s:23:\"index.php?sitemap=index\";s:17:\"^wp-sitemap\\.xsl$\";s:36:\"index.php?sitemap-stylesheet=sitemap\";s:23:\"^wp-sitemap-index\\.xsl$\";s:34:\"index.php?sitemap-stylesheet=index\";s:48:\"^wp-sitemap-([a-z]+?)-([a-z\\d_-]+?)-(\\d+?)\\.xml$\";s:75:\"index.php?sitemap=$matches[1]&sitemap-subtype=$matches[2]&paged=$matches[3]\";s:34:\"^wp-sitemap-([a-z]+?)-(\\d+?)\\.xml$\";s:47:\"index.php?sitemap=$matches[1]&paged=$matches[2]\";s:40:\"./(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:35:\"./(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:16:\"./(.+?)/embed/?$\";s:46:\"index.php?category_name=$matches[1]&embed=true\";s:28:\"./(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:10:\"./(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";s:44:\"tag/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:39:\"tag/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?tag=$matches[1]&feed=$matches[2]\";s:20:\"tag/([^/]+)/embed/?$\";s:36:\"index.php?tag=$matches[1]&embed=true\";s:32:\"tag/([^/]+)/page/?([0-9]{1,})/?$\";s:43:\"index.php?tag=$matches[1]&paged=$matches[2]\";s:14:\"tag/([^/]+)/?$\";s:25:\"index.php?tag=$matches[1]\";s:45:\"type/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?post_format=$matches[1]&feed=$matches[2]\";s:40:\"type/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?post_format=$matches[1]&feed=$matches[2]\";s:21:\"type/([^/]+)/embed/?$\";s:44:\"index.php?post_format=$matches[1]&embed=true\";s:33:\"type/([^/]+)/page/?([0-9]{1,})/?$\";s:51:\"index.php?post_format=$matches[1]&paged=$matches[2]\";s:15:\"type/([^/]+)/?$\";s:33:\"index.php?post_format=$matches[1]\";s:48:\".*wp-(atom|rdf|rss|rss2|feed|commentsrss2)\\.php$\";s:18:\"index.php?feed=old\";s:20:\".*wp-app\\.php(/.*)?$\";s:19:\"index.php?error=403\";s:18:\".*wp-register.php$\";s:23:\"index.php?register=true\";s:32:\"feed/(feed|rdf|rss|rss2|atom)/?$\";s:27:\"index.php?&feed=$matches[1]\";s:27:\"(feed|rdf|rss|rss2|atom)/?$\";s:27:\"index.php?&feed=$matches[1]\";s:8:\"embed/?$\";s:21:\"index.php?&embed=true\";s:20:\"page/?([0-9]{1,})/?$\";s:28:\"index.php?&paged=$matches[1]\";s:27:\"comment-page-([0-9]{1,})/?$\";s:38:\"index.php?&page_id=2&cpage=$matches[1]\";s:41:\"comments/feed/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?&feed=$matches[1]&withcomments=1\";s:36:\"comments/(feed|rdf|rss|rss2|atom)/?$\";s:42:\"index.php?&feed=$matches[1]&withcomments=1\";s:17:\"comments/embed/?$\";s:21:\"index.php?&embed=true\";s:44:\"search/(.+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:40:\"index.php?s=$matches[1]&feed=$matches[2]\";s:39:\"search/(.+)/(feed|rdf|rss|rss2|atom)/?$\";s:40:\"index.php?s=$matches[1]&feed=$matches[2]\";s:20:\"search/(.+)/embed/?$\";s:34:\"index.php?s=$matches[1]&embed=true\";s:32:\"search/(.+)/page/?([0-9]{1,})/?$\";s:41:\"index.php?s=$matches[1]&paged=$matches[2]\";s:14:\"search/(.+)/?$\";s:23:\"index.php?s=$matches[1]\";s:47:\"author/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?author_name=$matches[1]&feed=$matches[2]\";s:42:\"author/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:50:\"index.php?author_name=$matches[1]&feed=$matches[2]\";s:23:\"author/([^/]+)/embed/?$\";s:44:\"index.php?author_name=$matches[1]&embed=true\";s:35:\"author/([^/]+)/page/?([0-9]{1,})/?$\";s:51:\"index.php?author_name=$matches[1]&paged=$matches[2]\";s:17:\"author/([^/]+)/?$\";s:33:\"index.php?author_name=$matches[1]\";s:69:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:80:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]\";s:64:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:80:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&feed=$matches[4]\";s:45:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/embed/?$\";s:74:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&embed=true\";s:57:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:81:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]&paged=$matches[4]\";s:39:\"([0-9]{4})/([0-9]{1,2})/([0-9]{1,2})/?$\";s:63:\"index.php?year=$matches[1]&monthnum=$matches[2]&day=$matches[3]\";s:56:\"([0-9]{4})/([0-9]{1,2})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:64:\"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]\";s:51:\"([0-9]{4})/([0-9]{1,2})/(feed|rdf|rss|rss2|atom)/?$\";s:64:\"index.php?year=$matches[1]&monthnum=$matches[2]&feed=$matches[3]\";s:32:\"([0-9]{4})/([0-9]{1,2})/embed/?$\";s:58:\"index.php?year=$matches[1]&monthnum=$matches[2]&embed=true\";s:44:\"([0-9]{4})/([0-9]{1,2})/page/?([0-9]{1,})/?$\";s:65:\"index.php?year=$matches[1]&monthnum=$matches[2]&paged=$matches[3]\";s:26:\"([0-9]{4})/([0-9]{1,2})/?$\";s:47:\"index.php?year=$matches[1]&monthnum=$matches[2]\";s:43:\"([0-9]{4})/feed/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?year=$matches[1]&feed=$matches[2]\";s:38:\"([0-9]{4})/(feed|rdf|rss|rss2|atom)/?$\";s:43:\"index.php?year=$matches[1]&feed=$matches[2]\";s:19:\"([0-9]{4})/embed/?$\";s:37:\"index.php?year=$matches[1]&embed=true\";s:31:\"([0-9]{4})/page/?([0-9]{1,})/?$\";s:44:\"index.php?year=$matches[1]&paged=$matches[2]\";s:13:\"([0-9]{4})/?$\";s:26:\"index.php?year=$matches[1]\";s:27:\".?.+?/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:37:\".?.+?/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:57:\".?.+?/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:52:\".?.+?/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:33:\".?.+?/attachment/([^/]+)/embed/?$\";s:43:\"index.php?attachment=$matches[1]&embed=true\";s:16:\"(.?.+?)/embed/?$\";s:41:\"index.php?pagename=$matches[1]&embed=true\";s:20:\"(.?.+?)/trackback/?$\";s:35:\"index.php?pagename=$matches[1]&tb=1\";s:40:\"(.?.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:35:\"(.?.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:47:\"index.php?pagename=$matches[1]&feed=$matches[2]\";s:28:\"(.?.+?)/page/?([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&paged=$matches[2]\";s:35:\"(.?.+?)/comment-page-([0-9]{1,})/?$\";s:48:\"index.php?pagename=$matches[1]&cpage=$matches[2]\";s:24:\"(.?.+?)(?:/([0-9]+))?/?$\";s:47:\"index.php?pagename=$matches[1]&page=$matches[2]\";s:31:\".+?/[^/]+/attachment/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:41:\".+?/[^/]+/attachment/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:61:\".+?/[^/]+/attachment/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\".+?/[^/]+/attachment/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:56:\".+?/[^/]+/attachment/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:37:\".+?/[^/]+/attachment/([^/]+)/embed/?$\";s:43:\"index.php?attachment=$matches[1]&embed=true\";s:22:\"(.+?)/([^/]+)/embed/?$\";s:63:\"index.php?category_name=$matches[1]&name=$matches[2]&embed=true\";s:26:\"(.+?)/([^/]+)/trackback/?$\";s:57:\"index.php?category_name=$matches[1]&name=$matches[2]&tb=1\";s:46:\"(.+?)/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:69:\"index.php?category_name=$matches[1]&name=$matches[2]&feed=$matches[3]\";s:41:\"(.+?)/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:69:\"index.php?category_name=$matches[1]&name=$matches[2]&feed=$matches[3]\";s:34:\"(.+?)/([^/]+)/page/?([0-9]{1,})/?$\";s:70:\"index.php?category_name=$matches[1]&name=$matches[2]&paged=$matches[3]\";s:41:\"(.+?)/([^/]+)/comment-page-([0-9]{1,})/?$\";s:70:\"index.php?category_name=$matches[1]&name=$matches[2]&cpage=$matches[3]\";s:30:\"(.+?)/([^/]+)(?:/([0-9]+))?/?$\";s:69:\"index.php?category_name=$matches[1]&name=$matches[2]&page=$matches[3]\";s:20:\".+?/[^/]+/([^/]+)/?$\";s:32:\"index.php?attachment=$matches[1]\";s:30:\".+?/[^/]+/([^/]+)/trackback/?$\";s:37:\"index.php?attachment=$matches[1]&tb=1\";s:50:\".+?/[^/]+/([^/]+)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\".+?/[^/]+/([^/]+)/(feed|rdf|rss|rss2|atom)/?$\";s:49:\"index.php?attachment=$matches[1]&feed=$matches[2]\";s:45:\".+?/[^/]+/([^/]+)/comment-page-([0-9]{1,})/?$\";s:50:\"index.php?attachment=$matches[1]&cpage=$matches[2]\";s:26:\".+?/[^/]+/([^/]+)/embed/?$\";s:43:\"index.php?attachment=$matches[1]&embed=true\";s:38:\"(.+?)/feed/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:33:\"(.+?)/(feed|rdf|rss|rss2|atom)/?$\";s:52:\"index.php?category_name=$matches[1]&feed=$matches[2]\";s:14:\"(.+?)/embed/?$\";s:46:\"index.php?category_name=$matches[1]&embed=true\";s:26:\"(.+?)/page/?([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&paged=$matches[2]\";s:33:\"(.+?)/comment-page-([0-9]{1,})/?$\";s:53:\"index.php?category_name=$matches[1]&cpage=$matches[2]\";s:8:\"(.+?)/?$\";s:35:\"index.php?category_name=$matches[1]\";}', 'on'),
 (31, 'hack_file', '0', 'on'),
 (32, 'blog_charset', 'UTF-8', 'on'),
 (33, 'moderation_keys', '', 'off'),
 (34, 'active_plugins', 'a:2:{i:0;s:30:\"advanced-custom-fields/acf.php\";i:1;s:33:\"classic-editor/classic-editor.php\";}', 'on'),
-(35, 'category_base', '', 'on'),
+(35, 'category_base', '/.', 'on'),
 (36, 'ping_sites', 'https://rpc.pingomatic.com/', 'on'),
 (37, 'comment_max_links', '2', 'on'),
 (38, 'gmt_offset', '4', 'on'),
@@ -272,10 +272,11 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (187, 'current_theme', 'Chronevo', 'auto'),
 (188, 'theme_mods_chronevo', 'a:3:{i:0;b:0;s:18:\"nav_menu_locations\";a:0:{}s:18:\"custom_css_post_id\";i:-1;}', 'on'),
 (189, 'theme_switched', '', 'auto'),
-(192, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1768632557', 'off'),
-(193, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off'),
-(196, '_site_transient_timeout_theme_roots', '1768632558', 'off'),
-(197, '_site_transient_theme_roots', 'a:1:{s:8:\"chronevo\";s:7:\"/themes\";}', 'off');
+(202, '_site_transient_timeout_theme_roots', '1768635819', 'off'),
+(203, '_site_transient_theme_roots', 'a:1:{s:8:\"chronevo\";s:7:\"/themes\";}', 'off'),
+(208, 'nav_menu_options', 'a:2:{i:0;b:0;s:8:\"auto_add\";a:0:{}}', 'off'),
+(219, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1768646073', 'off'),
+(220, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off');
 
 -- --------------------------------------------------------
 
@@ -298,7 +299,144 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (1, 2, '_wp_page_template', 'default'),
 (2, 3, '_wp_page_template', 'default'),
 (3, 2, '_edit_last', '1'),
-(4, 2, '_edit_lock', '1768627013:1');
+(4, 2, '_edit_lock', '1768627013:1'),
+(5, 8, '_edit_last', '1'),
+(6, 8, '_wp_page_template', 'default'),
+(7, 8, '_edit_lock', '1768636461:1'),
+(8, 10, '_edit_last', '1'),
+(9, 10, '_wp_page_template', 'default'),
+(10, 10, '_edit_lock', '1768636489:1'),
+(11, 13, '_edit_last', '1'),
+(12, 13, '_wp_page_template', 'default'),
+(13, 13, '_edit_lock', '1768636528:1'),
+(14, 15, '_menu_item_type', 'post_type'),
+(15, 15, '_menu_item_menu_item_parent', '0'),
+(16, 15, '_menu_item_object_id', '2'),
+(17, 15, '_menu_item_object', 'page'),
+(18, 15, '_menu_item_target', ''),
+(19, 15, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(20, 15, '_menu_item_xfn', ''),
+(21, 15, '_menu_item_url', ''),
+(23, 16, '_menu_item_type', 'post_type'),
+(24, 16, '_menu_item_menu_item_parent', '0'),
+(25, 16, '_menu_item_object_id', '8'),
+(26, 16, '_menu_item_object', 'page'),
+(27, 16, '_menu_item_target', ''),
+(28, 16, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(29, 16, '_menu_item_xfn', ''),
+(30, 16, '_menu_item_url', ''),
+(32, 17, '_menu_item_type', 'post_type'),
+(33, 17, '_menu_item_menu_item_parent', '0'),
+(34, 17, '_menu_item_object_id', '13'),
+(35, 17, '_menu_item_object', 'page'),
+(36, 17, '_menu_item_target', ''),
+(37, 17, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(38, 17, '_menu_item_xfn', ''),
+(39, 17, '_menu_item_url', ''),
+(41, 18, '_menu_item_type', 'post_type'),
+(42, 18, '_menu_item_menu_item_parent', '0'),
+(43, 18, '_menu_item_object_id', '10'),
+(44, 18, '_menu_item_object', 'page'),
+(45, 18, '_menu_item_target', ''),
+(46, 18, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(47, 18, '_menu_item_xfn', ''),
+(48, 18, '_menu_item_url', ''),
+(50, 19, '_menu_item_type', 'taxonomy'),
+(51, 19, '_menu_item_menu_item_parent', '0'),
+(52, 19, '_menu_item_object_id', '1'),
+(53, 19, '_menu_item_object', 'category'),
+(54, 19, '_menu_item_target', ''),
+(55, 19, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(56, 19, '_menu_item_xfn', ''),
+(57, 19, '_menu_item_url', ''),
+(59, 20, '_menu_item_type', 'post_type'),
+(60, 20, '_menu_item_menu_item_parent', '0'),
+(61, 20, '_menu_item_object_id', '2'),
+(62, 20, '_menu_item_object', 'page'),
+(63, 20, '_menu_item_target', ''),
+(64, 20, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(65, 20, '_menu_item_xfn', ''),
+(66, 20, '_menu_item_url', ''),
+(68, 21, '_menu_item_type', 'post_type'),
+(69, 21, '_menu_item_menu_item_parent', '0'),
+(70, 21, '_menu_item_object_id', '8'),
+(71, 21, '_menu_item_object', 'page'),
+(72, 21, '_menu_item_target', ''),
+(73, 21, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(74, 21, '_menu_item_xfn', ''),
+(75, 21, '_menu_item_url', ''),
+(77, 22, '_menu_item_type', 'post_type'),
+(78, 22, '_menu_item_menu_item_parent', '0'),
+(79, 22, '_menu_item_object_id', '10'),
+(80, 22, '_menu_item_object', 'page'),
+(81, 22, '_menu_item_target', ''),
+(82, 22, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(83, 22, '_menu_item_xfn', ''),
+(84, 22, '_menu_item_url', ''),
+(86, 23, '_menu_item_type', 'post_type'),
+(87, 23, '_menu_item_menu_item_parent', '0'),
+(88, 23, '_menu_item_object_id', '13'),
+(89, 23, '_menu_item_object', 'page'),
+(90, 23, '_menu_item_target', ''),
+(91, 23, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(92, 23, '_menu_item_xfn', ''),
+(93, 23, '_menu_item_url', ''),
+(95, 24, '_menu_item_type', 'taxonomy'),
+(96, 24, '_menu_item_menu_item_parent', '0'),
+(97, 24, '_menu_item_object_id', '1'),
+(98, 24, '_menu_item_object', 'category'),
+(99, 24, '_menu_item_target', ''),
+(100, 24, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(101, 24, '_menu_item_xfn', ''),
+(102, 24, '_menu_item_url', ''),
+(104, 25, '_menu_item_type', 'custom'),
+(105, 25, '_menu_item_menu_item_parent', '0'),
+(106, 25, '_menu_item_object_id', '25'),
+(107, 25, '_menu_item_object', 'custom'),
+(108, 25, '_menu_item_target', ''),
+(109, 25, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(110, 25, '_menu_item_xfn', ''),
+(111, 25, '_menu_item_url', 'https://x.com/supercarbaldie'),
+(113, 26, '_menu_item_type', 'custom'),
+(114, 26, '_menu_item_menu_item_parent', '0'),
+(115, 26, '_menu_item_object_id', '26'),
+(116, 26, '_menu_item_object', 'custom'),
+(117, 26, '_menu_item_target', ''),
+(118, 26, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(119, 26, '_menu_item_xfn', ''),
+(120, 26, '_menu_item_url', 'https://www.instagram.com/supercarbaldie_official/'),
+(122, 27, '_menu_item_type', 'custom'),
+(123, 27, '_menu_item_menu_item_parent', '0'),
+(124, 27, '_menu_item_object_id', '27'),
+(125, 27, '_menu_item_object', 'custom'),
+(126, 27, '_menu_item_target', ''),
+(127, 27, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(128, 27, '_menu_item_xfn', ''),
+(129, 27, '_menu_item_url', 'https://www.youtube.com/channel/UCTq_oZyS8rJ__Cs3XyyU5yw'),
+(131, 28, '_menu_item_type', 'custom'),
+(132, 28, '_menu_item_menu_item_parent', '0'),
+(133, 28, '_menu_item_object_id', '28'),
+(134, 28, '_menu_item_object', 'custom'),
+(135, 28, '_menu_item_target', ''),
+(136, 28, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(137, 28, '_menu_item_xfn', ''),
+(138, 28, '_menu_item_url', 'https://www.pinterest.com/ChronEvo/'),
+(140, 29, '_menu_item_type', 'custom'),
+(141, 29, '_menu_item_menu_item_parent', '0'),
+(142, 29, '_menu_item_object_id', '29'),
+(143, 29, '_menu_item_object', 'custom'),
+(144, 29, '_menu_item_target', ''),
+(145, 29, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(146, 29, '_menu_item_xfn', ''),
+(147, 29, '_menu_item_url', 'https://www.linkedin.com/company/chronevomedia/'),
+(149, 30, '_menu_item_type', 'custom'),
+(150, 30, '_menu_item_menu_item_parent', '0'),
+(151, 30, '_menu_item_object_id', '30'),
+(152, 30, '_menu_item_object', 'custom'),
+(153, 30, '_menu_item_target', ''),
+(154, 30, '_menu_item_classes', 'a:1:{i:0;s:0:\"\";}'),
+(155, 30, '_menu_item_xfn', ''),
+(156, 30, '_menu_item_url', 'https://vk.com/connect_explore_design');
 
 -- --------------------------------------------------------
 
@@ -343,7 +481,30 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (4, 0, '2026-01-17 05:12:58', '2026-01-17 05:12:58', '<!-- wp:page-list /-->', 'Navigation', '', 'publish', 'closed', 'closed', '', 'navigation', '', '', '2026-01-17 05:12:58', '2026-01-17 05:12:58', '', 0, 'http://localhost/chronevo/2026/01/17/navigation/', 0, 'wp_navigation', '', 0),
 (5, 1, '2026-01-17 05:13:20', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2026-01-17 05:13:20', '0000-00-00 00:00:00', '', 0, 'http://localhost/chronevo/?p=5', 0, 'post', '', 0),
 (6, 1, '2026-01-17 09:19:09', '2026-01-17 05:19:09', '<!-- wp:paragraph -->\n<p>This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\">\n<!-- wp:paragraph -->\n<p>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like pi&#241;a coladas. (And gettin\' caught in the rain.)</p>\n<!-- /wp:paragraph -->\n</blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>...or something like this:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:quote -->\n<blockquote class=\"wp-block-quote\">\n<!-- wp:paragraph -->\n<p>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</p>\n<!-- /wp:paragraph -->\n</blockquote>\n<!-- /wp:quote -->\n\n<!-- wp:paragraph -->\n<p>As a new WordPress user, you should go to <a href=\"http://localhost/chronevo/wp-admin/\">your dashboard</a> to delete this page and create new pages for your content. Have fun!</p>\n<!-- /wp:paragraph -->', 'Home', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2026-01-17 09:19:09', '2026-01-17 05:19:09', '', 2, 'http://localhost/chronevo/?p=6', 0, 'revision', '', 0),
-(7, 1, '2026-01-17 09:19:14', '2026-01-17 05:19:14', '{\"version\": 3, \"isGlobalStylesUserThemeJSON\": true }', 'Custom Styles', '', 'publish', 'closed', 'closed', '', 'wp-global-styles-twentytwentyfive', '', '', '2026-01-17 09:19:14', '2026-01-17 05:19:14', '', 0, 'http://localhost/chronevo/blog/wp-global-styles-twentytwentyfive/', 0, 'wp_global_styles', '', 0);
+(7, 1, '2026-01-17 09:19:14', '2026-01-17 05:19:14', '{\"version\": 3, \"isGlobalStylesUserThemeJSON\": true }', 'Custom Styles', '', 'publish', 'closed', 'closed', '', 'wp-global-styles-twentytwentyfive', '', '', '2026-01-17 09:19:14', '2026-01-17 05:19:14', '', 0, 'http://localhost/chronevo/blog/wp-global-styles-twentytwentyfive/', 0, 'wp_global_styles', '', 0),
+(8, 1, '2026-01-17 11:56:40', '2026-01-17 07:56:40', '', 'About', '', 'publish', 'closed', 'closed', '', 'about', '', '', '2026-01-17 11:56:40', '2026-01-17 07:56:40', '', 0, 'http://localhost/chronevo/?page_id=8', 0, 'page', '', 0),
+(9, 1, '2026-01-17 11:56:40', '2026-01-17 07:56:40', '', 'About', '', 'inherit', 'closed', 'closed', '', '8-revision-v1', '', '', '2026-01-17 11:56:40', '2026-01-17 07:56:40', '', 8, 'http://localhost/chronevo/?p=9', 0, 'revision', '', 0),
+(10, 1, '2026-01-17 11:57:02', '2026-01-17 07:57:02', '', 'Portfolio', '', 'publish', 'closed', 'closed', '', 'portfolio', '', '', '2026-01-17 11:57:02', '2026-01-17 07:57:02', '', 0, 'http://localhost/chronevo/?page_id=10', 0, 'page', '', 0),
+(11, 1, '2026-01-17 11:56:51', '2026-01-17 07:56:51', '', 'Porfolio', '', 'inherit', 'closed', 'closed', '', '10-revision-v1', '', '', '2026-01-17 11:56:51', '2026-01-17 07:56:51', '', 10, 'http://localhost/chronevo/?p=11', 0, 'revision', '', 0),
+(12, 1, '2026-01-17 11:57:02', '2026-01-17 07:57:02', '', 'Portfolio', '', 'inherit', 'closed', 'closed', '', '10-revision-v1', '', '', '2026-01-17 11:57:02', '2026-01-17 07:57:02', '', 10, 'http://localhost/chronevo/?p=12', 0, 'revision', '', 0),
+(13, 1, '2026-01-17 11:57:18', '2026-01-17 07:57:18', '', 'Contact', '', 'publish', 'closed', 'closed', '', 'contact', '', '', '2026-01-17 11:57:18', '2026-01-17 07:57:18', '', 0, 'http://localhost/chronevo/?page_id=13', 0, 'page', '', 0),
+(14, 1, '2026-01-17 11:57:18', '2026-01-17 07:57:18', '', 'Contact', '', 'inherit', 'closed', 'closed', '', '13-revision-v1', '', '', '2026-01-17 11:57:18', '2026-01-17 07:57:18', '', 13, 'http://localhost/chronevo/?p=14', 0, 'revision', '', 0),
+(15, 1, '2026-01-17 11:59:14', '2026-01-17 07:59:14', ' ', '', '', 'publish', 'closed', 'closed', '', '15', '', '', '2026-01-17 11:59:14', '2026-01-17 07:59:14', '', 0, 'http://localhost/chronevo/?p=15', 1, 'nav_menu_item', '', 0),
+(16, 1, '2026-01-17 11:59:14', '2026-01-17 07:59:14', ' ', '', '', 'publish', 'closed', 'closed', '', '16', '', '', '2026-01-17 11:59:14', '2026-01-17 07:59:14', '', 0, 'http://localhost/chronevo/?p=16', 2, 'nav_menu_item', '', 0),
+(17, 1, '2026-01-17 11:59:14', '2026-01-17 07:59:14', ' ', '', '', 'publish', 'closed', 'closed', '', '17', '', '', '2026-01-17 11:59:14', '2026-01-17 07:59:14', '', 0, 'http://localhost/chronevo/?p=17', 5, 'nav_menu_item', '', 0),
+(18, 1, '2026-01-17 11:59:14', '2026-01-17 07:59:14', ' ', '', '', 'publish', 'closed', 'closed', '', '18', '', '', '2026-01-17 11:59:14', '2026-01-17 07:59:14', '', 0, 'http://localhost/chronevo/?p=18', 3, 'nav_menu_item', '', 0),
+(19, 1, '2026-01-17 11:59:14', '2026-01-17 07:59:14', ' ', '', '', 'publish', 'closed', 'closed', '', '19', '', '', '2026-01-17 11:59:14', '2026-01-17 07:59:14', '', 0, 'http://localhost/chronevo/?p=19', 4, 'nav_menu_item', '', 0),
+(20, 1, '2026-01-17 12:03:18', '2026-01-17 08:03:18', ' ', '', '', 'publish', 'closed', 'closed', '', '20', '', '', '2026-01-17 12:03:18', '2026-01-17 08:03:18', '', 0, 'http://localhost/chronevo/?p=20', 1, 'nav_menu_item', '', 0),
+(21, 1, '2026-01-17 12:03:18', '2026-01-17 08:03:18', ' ', '', '', 'publish', 'closed', 'closed', '', '21', '', '', '2026-01-17 12:03:18', '2026-01-17 08:03:18', '', 0, 'http://localhost/chronevo/?p=21', 2, 'nav_menu_item', '', 0),
+(22, 1, '2026-01-17 12:03:18', '2026-01-17 08:03:18', ' ', '', '', 'publish', 'closed', 'closed', '', '22', '', '', '2026-01-17 12:03:18', '2026-01-17 08:03:18', '', 0, 'http://localhost/chronevo/?p=22', 3, 'nav_menu_item', '', 0),
+(23, 1, '2026-01-17 12:03:18', '2026-01-17 08:03:18', ' ', '', '', 'publish', 'closed', 'closed', '', '23', '', '', '2026-01-17 12:03:18', '2026-01-17 08:03:18', '', 0, 'http://localhost/chronevo/?p=23', 5, 'nav_menu_item', '', 0),
+(24, 1, '2026-01-17 12:03:18', '2026-01-17 08:03:18', ' ', '', '', 'publish', 'closed', 'closed', '', '24', '', '', '2026-01-17 12:03:18', '2026-01-17 08:03:18', '', 0, 'http://localhost/chronevo/?p=24', 4, 'nav_menu_item', '', 0),
+(25, 1, '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 'X', '', 'publish', 'closed', 'closed', '', 'x', '', '', '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 0, 'http://localhost/chronevo/?p=25', 5, 'nav_menu_item', '', 0),
+(26, 1, '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 'Instagram', '', 'publish', 'closed', 'closed', '', 'instagram', '', '', '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 0, 'http://localhost/chronevo/?p=26', 2, 'nav_menu_item', '', 0),
+(27, 1, '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 'Youtube', '', 'publish', 'closed', 'closed', '', 'youtube', '', '', '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 0, 'http://localhost/chronevo/?p=27', 1, 'nav_menu_item', '', 0),
+(28, 1, '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 'Pinterest', '', 'publish', 'closed', 'closed', '', 'pinterest', '', '', '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 0, 'http://localhost/chronevo/?p=28', 3, 'nav_menu_item', '', 0),
+(29, 1, '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 'Linkedin', '', 'publish', 'closed', 'closed', '', 'linkedin', '', '', '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 0, 'http://localhost/chronevo/?p=29', 4, 'nav_menu_item', '', 0),
+(30, 1, '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 'VK', '', 'publish', 'closed', 'closed', '', 'vk', '', '', '2026-01-17 12:08:44', '2026-01-17 08:08:44', '', 0, 'http://localhost/chronevo/?p=30', 6, 'nav_menu_item', '', 0);
 
 -- --------------------------------------------------------
 
@@ -377,7 +538,10 @@ CREATE TABLE `wp_terms` (
 
 INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 (1, 'Blog', 'blog', 0),
-(2, 'twentytwentyfive', 'twentytwentyfive', 0);
+(2, 'twentytwentyfive', 'twentytwentyfive', 0),
+(3, 'Primary', 'primary', 0),
+(4, 'Footer', 'footer', 0),
+(5, 'Social', 'social', 0);
 
 -- --------------------------------------------------------
 
@@ -397,7 +561,23 @@ CREATE TABLE `wp_term_relationships` (
 
 INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_order`) VALUES
 (1, 1, 0),
-(7, 2, 0);
+(7, 2, 0),
+(15, 3, 0),
+(16, 3, 0),
+(17, 3, 0),
+(18, 3, 0),
+(19, 3, 0),
+(20, 4, 0),
+(21, 4, 0),
+(22, 4, 0),
+(23, 4, 0),
+(24, 4, 0),
+(25, 5, 0),
+(26, 5, 0),
+(27, 5, 0),
+(28, 5, 0),
+(29, 5, 0),
+(30, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -420,7 +600,10 @@ CREATE TABLE `wp_term_taxonomy` (
 
 INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `description`, `parent`, `count`) VALUES
 (1, 1, 'category', '', 0, 1),
-(2, 2, 'wp_theme', '', 0, 1);
+(2, 2, 'wp_theme', '', 0, 1),
+(3, 3, 'nav_menu', '', 0, 5),
+(4, 4, 'nav_menu', '', 0, 5),
+(5, 5, 'nav_menu', '', 0, 6);
 
 -- --------------------------------------------------------
 
@@ -459,7 +642,10 @@ INSERT INTO `wp_usermeta` (`umeta_id`, `user_id`, `meta_key`, `meta_value`) VALU
 (17, 1, 'wp_dashboard_quick_press_last_post_id', '5'),
 (18, 1, 'closedpostboxes_dashboard', 'a:0:{}'),
 (19, 1, 'metaboxhidden_dashboard', 'a:3:{i:0;s:18:\"dashboard_activity\";i:1;s:21:\"dashboard_quick_press\";i:2;s:17:\"dashboard_primary\";}'),
-(20, 1, 'meta-box-order_dashboard', 'a:4:{s:6:\"normal\";s:40:\"dashboard_site_health,dashboard_activity\";s:4:\"side\";s:59:\"dashboard_quick_press,dashboard_primary,dashboard_right_now\";s:7:\"column3\";s:0:\"\";s:7:\"column4\";s:0:\"\";}');
+(20, 1, 'meta-box-order_dashboard', 'a:4:{s:6:\"normal\";s:40:\"dashboard_site_health,dashboard_activity\";s:4:\"side\";s:59:\"dashboard_quick_press,dashboard_primary,dashboard_right_now\";s:7:\"column3\";s:0:\"\";s:7:\"column4\";s:0:\"\";}'),
+(21, 1, 'managenav-menuscolumnshidden', 'a:5:{i:0;s:11:\"link-target\";i:1;s:11:\"css-classes\";i:2;s:3:\"xfn\";i:3;s:11:\"description\";i:4;s:15:\"title-attribute\";}'),
+(22, 1, 'metaboxhidden_nav-menus', 'a:1:{i:0;s:12:\"add-post_tag\";}'),
+(23, 1, 'nav_menu_recently_edited', '5');
 
 -- --------------------------------------------------------
 
@@ -618,19 +804,19 @@ ALTER TABLE `wp_links`
 -- AUTO_INCREMENT for table `wp_options`
 --
 ALTER TABLE `wp_options`
-  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- AUTO_INCREMENT for table `wp_postmeta`
 --
 ALTER TABLE `wp_postmeta`
-  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `wp_posts`
 --
 ALTER TABLE `wp_posts`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `wp_termmeta`
@@ -642,19 +828,19 @@ ALTER TABLE `wp_termmeta`
 -- AUTO_INCREMENT for table `wp_terms`
 --
 ALTER TABLE `wp_terms`
-  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `wp_term_taxonomy`
 --
 ALTER TABLE `wp_term_taxonomy`
-  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `wp_usermeta`
 --
 ALTER TABLE `wp_usermeta`
-  MODIFY `umeta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `umeta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `wp_users`

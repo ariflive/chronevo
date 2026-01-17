@@ -438,4 +438,95 @@ document.addEventListener('DOMContentLoaded', function() {
             closeMenu();
         }
     });
+    
+    // About Page Video Section - Interactive Play Button
+    const aboutVideoContainer = document.querySelector('.div-about-video-container');
+    const aboutVideoCover = document.querySelector('.div-about-video-cover');
+    const aboutVideoIframe = document.querySelector('#ref-about-video-iframe');
+    const aboutVideoPlayButton = document.querySelector('.div-about-video-play-button');
+    
+    if (aboutVideoContainer && aboutVideoCover && aboutVideoIframe && aboutVideoPlayButton) {
+        let isMouseInside = false;
+        let mouseX = 0;
+        let mouseY = 0;
+        let playButtonX = 0;
+        let playButtonY = 0;
+        let animationFrame = null;
+        
+        // Initialize play button position (center)
+        function initPlayButtonPosition() {
+            const rect = aboutVideoContainer.getBoundingClientRect();
+            playButtonX = rect.width / 2;
+            playButtonY = rect.height / 2;
+            updatePlayButtonPosition();
+        }
+        
+        // Update play button position
+        function updatePlayButtonPosition() {
+            aboutVideoPlayButton.style.left = playButtonX + 'px';
+            aboutVideoPlayButton.style.top = playButtonY + 'px';
+        }
+        
+        // Smooth follow mouse animation
+        function animatePlayButton() {
+            if (isMouseInside) {
+                // Smooth interpolation (easing)
+                const easing = 0.15;
+                playButtonX += (mouseX - playButtonX) * easing;
+                playButtonY += (mouseY - playButtonY) * easing;
+                updatePlayButtonPosition();
+                animationFrame = requestAnimationFrame(animatePlayButton);
+            }
+        }
+        
+        // Mouse move handler
+        aboutVideoContainer.addEventListener('mousemove', function(e) {
+            const rect = aboutVideoContainer.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+            
+            if (!isMouseInside) {
+                isMouseInside = true;
+                animatePlayButton();
+            }
+        }, { passive: true });
+        
+        // Mouse enter handler
+        aboutVideoContainer.addEventListener('mouseenter', function() {
+            isMouseInside = true;
+            aboutVideoContainer.style.cursor = 'none';
+            initPlayButtonPosition();
+            animatePlayButton();
+        });
+        
+        // Mouse leave handler
+        aboutVideoContainer.addEventListener('mouseleave', function() {
+            isMouseInside = false;
+            aboutVideoContainer.style.cursor = '';
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+        });
+        
+        // Click handler - Play video
+        aboutVideoContainer.addEventListener('click', function() {
+            if (aboutVideoIframe.classList.contains('hidden')) {
+                // Extract video ID from YouTube URL
+                const videoId = 'KfIaXTb45tI';
+                const embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1';
+                
+                // Set iframe source
+                aboutVideoIframe.src = embedUrl;
+                
+                // Show iframe, hide cover and play button
+                aboutVideoIframe.classList.remove('hidden');
+                aboutVideoIframe.classList.add('show');
+                aboutVideoCover.classList.add('hidden');
+                aboutVideoPlayButton.style.display = 'none';
+            }
+        });
+        
+        // Initialize play button position on load
+        initPlayButtonPosition();
+    }
 });
