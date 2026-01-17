@@ -20,22 +20,126 @@ Complete redesign and redevelopment of **Chronevo.com** from scratch. Custom Wor
 
 ## Design System
 
-### Colors
-- `#0f1611`, `#00352f`, `#00594f`, `#92f6f8`, `#6a6e6b`, `#d3b89a`
-- **Standard Border:** `#92f6f8 / 0.3`
+### Brand Colors
+
+**Primary:** `#DCAF47`
+
+**Secondary:** `#BCBDC0`
+
+### Color Usage Rules
+
+#### Primary (#DCAF47)
+- **Use only for:**
+  - Primary CTAs
+  - Active states
+  - Key highlights (icons, dividers, metrics)
+- **Never use for:**
+  - Body text
+  - Large background fills
+- Use darker variants for hover/active states.
+
+#### Secondary (#BCBDC0)
+- **Use for:**
+  - Neutral UI surfaces
+  - Borders and dividers
+  - Disabled states
+  - Secondary text backgrounds
+
+### Derived Color Tokens (Must Be Used)
+
+#### Primary Scale
+- `primary-900`: `#8C7325` — active / pressed
+- `primary-700`: `#B89438` — hover
+- `primary-500`: `#DCAF47` — default
+- `primary-300`: `#E8CD85` — subtle accents
+- `primary-100`: `#F6EFD7` — background accents
+
+#### Secondary Scale
+- `secondary-900`: `#4F5053` — primary text
+- `secondary-700`: `#7A7C80` — secondary text
+- `secondary-500`: `#BCBDC0` — default neutral
+- `secondary-300`: `#E1E2E4` — borders/dividers
+- `secondary-100`: `#F6F7F8` — page background
+
+### Accessibility
+- All text must meet WCAG AA contrast.
+- Do not place white text on primary-500.
+- Use secondary-900 or darker text on light surfaces.
+- Primary color is accent-only, never dominant.
 
 ### Typography
-- **Font:** Inter (Google Fonts) - use `font-body` class
-- **Weights:** 300, 400, 500, 600
+
+#### Font
+- Use a modern sans-serif system font (Inter / SF Pro / Helvetica Neue).
+- Fallback: Arial, sans-serif.
+
+#### Text Hierarchy
+- **Headings (H1–H4):**
+  - Weight: 600–700
+  - Color: secondary-900
+- **Body text:**
+  - Weight: 400–500
+  - Color: secondary-700
+- **Muted / helper text:**
+  - Weight: 400
+  - Color: secondary-500
+- Primary color may be used only for short inline emphasis or numeric highlights.
+
+### Buttons
+
+#### Primary Button
+- Background: primary-500
+- Text: secondary-900
+- Hover: primary-700
+- Active: primary-900
+- Disabled: primary-100 background + secondary-300 text
+
+#### Secondary Button
+- Background: transparent
+- Border: secondary-300
+- Text: secondary-700
+- Hover background: secondary-100
+
+### Forms
+- Input background: white
+- Border: secondary-300
+- Focus ring: primary-500 at 40% opacity, 2px
+- Error states use standard red (not derived from primary)
+
+### Layout & Spacing
+- Use a 4pt spacing system: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64
+- Favor whitespace over color fills.
+- Avoid dense or compact layouts.
+- **Container Max Width:** 1440px (inner content)
+- **Backgrounds:** Full viewport width
+- **Flexible Width:** Some containers may be narrower based on design requirements
+
+### Cards & Surfaces
+- Page background: secondary-100
+- Card background: white
+- Borders: secondary-300
+- Optional accent: 1–2px line in primary-500
 
 ### Icons
 - **Library:** Phosphor Icons (Light weight only) - https://phosphoricons.com/?weight=light
-- **Usage:** `<i class="ph ph-house text-cyan"></i>`
+- Default color: secondary-700
+- Active/selected: primary-500
+- Use stroke-based icons where possible.
+- Avoid multi-color icons.
+- **Usage:** `<i class="ph ph-house"></i>`
 
-### Layout
-- **Backgrounds:** Full viewport width
-- **Container Max Width:** 1440px (inner content)
-- **Flexible Width:** Some containers may be narrower based on design requirements
+### Motion
+- Transition duration: 150–250ms
+- Easing: ease-out
+- No playful or bouncy animations.
+- Motion should feel restrained and premium.
+
+### Visual Tone
+- Elegant
+- Premium
+- Minimal
+- High-contrast, low-saturation
+- Primary color used sparingly as a luxury accent
 
 ---
 
