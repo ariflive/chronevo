@@ -50,26 +50,43 @@ $assets_url = home_url('/assets');
                     <!-- Navigation -->
                     <nav class="ref-nav-floating nav-floating">
                         <div class="ref-nav-container div-nav-container flex gap-8">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-nav-home link-nav-home text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
-                                <span class="ref-nav-text span-nav-text">Home</span>
-                                <div class="ref-nav-underline div-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#92f6f8] transition-all duration-300"></div>
-                            </a>
-                            <a href="#" class="ref-nav-about link-nav-about text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
-                                <span class="ref-nav-text span-nav-text">About</span>
-                                <div class="ref-nav-underline div-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#92f6f8] transition-all duration-300"></div>
-                            </a>
-                            <a href="#" class="ref-nav-portfolio link-nav-portfolio text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
-                                <span class="ref-nav-text span-nav-text">Portfolio</span>
-                                <div class="ref-nav-underline div-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#92f6f8] transition-all duration-300"></div>
-                            </a>
-                            <a href="#" class="ref-nav-blog link-nav-blog text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
-                                <span class="ref-nav-text span-nav-text">Blog</span>
-                                <div class="ref-nav-underline div-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#92f6f8] transition-all duration-300"></div>
-                            </a>
-                            <a href="#" class="ref-nav-contact link-nav-contact text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
-                                <span class="ref-nav-text span-nav-text">Contact</span>
-                                <div class="ref-nav-underline div-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#92f6f8] transition-all duration-300"></div>
-                            </a>
+                            <?php
+                            // Get menu items from menu ID 3
+                            $menu_items = wp_get_nav_menu_items(3);
+                            
+                            if ($menu_items && !is_wp_error($menu_items)) {
+                                foreach ($menu_items as $item) {
+                                    // Skip child items (only show top-level items)
+                                    if ($item->menu_item_parent != 0) {
+                                        continue;
+                                    }
+                                    
+                                    // Generate unique ref class based on menu item title
+                                    $ref_class = 'ref-nav-' . sanitize_html_class(strtolower($item->title));
+                                    $link_class = 'link-nav-' . sanitize_html_class(strtolower($item->title));
+                                    
+                                    // Get the URL
+                                    $url = !empty($item->url) ? $item->url : '#';
+                                    
+                                    // Check if current page matches menu item
+                                    $is_current = ($item->object_id == get_queried_object_id()) ? true : false;
+                                    ?>
+                                    <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr($ref_class . ' ' . $link_class); ?> text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
+                                        <span class="ref-nav-text span-nav-text"><?php echo esc_html($item->title); ?></span>
+                                        <div class="ref-nav-underline div-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#DCAF47] transition-all duration-300"></div>
+                                    </a>
+                                    <?php
+                                }
+                            } else {
+                                // Fallback if menu doesn't exist or has no items
+                                ?>
+                                <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-nav-home link-nav-home text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
+                                    <span class="ref-nav-text span-nav-text">Home</span>
+                                    <div class="ref-nav-underline div-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#DCAF47] transition-all duration-300"></div>
+                                </a>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </nav>
                 </div>
@@ -99,7 +116,7 @@ $assets_url = home_url('/assets');
                     </a>
                 </div>
                 <!-- Close Icon -->
-                <button type="button" class="ref-popup-menu-close button-popup-menu-close text-[#000000] hover:text-[#92f6f8] transition-all duration-300" aria-label="Close menu">
+                <button type="button" class="ref-popup-menu-close button-popup-menu-close text-[#000000] hover:text-[#DCAF47] transition-all duration-300" aria-label="Close menu">
                     <i class="ph ph-x text-2xl"></i>
                 </button>
             </div>
@@ -107,30 +124,93 @@ $assets_url = home_url('/assets');
             <div class="ref-popup-menu-content div-popup-menu-content">
                 <!-- Social Media Links -->
                 <div class="ref-popup-menu-social-media-links div-popup-menu-social-media-links">
-                    <a href="https://twitter.com/supercarbaldie" target="_blank" rel="noopener noreferrer" class="ref-popup-menu-social-twitter link-popup-menu-social-twitter text-[#000000] hover:text-[#92f6f8] transition-all duration-300 group">
-                        <i class="ph ph-twitter-logo text-2xl"></i>
-                        <span class="ref-popup-menu-social-label span-popup-menu-social-label">Twitter</span>
-                    </a>
-                    <a href="https://www.instagram.com/supercarbaldie_official/" target="_blank" rel="noopener noreferrer" class="ref-popup-menu-social-instagram link-popup-menu-social-instagram text-[#000000] hover:text-[#92f6f8] transition-all duration-300 group">
-                        <i class="ph ph-instagram-logo text-2xl"></i>
-                        <span class="ref-popup-menu-social-label span-popup-menu-social-label">Instagram</span>
-                    </a>
-                    <a href="https://www.youtube.com/channel/UCTq_oZyS8rJ__Cs3XyyU5yw" target="_blank" rel="noopener noreferrer" class="ref-popup-menu-social-youtube link-popup-menu-social-youtube text-[#000000] hover:text-[#92f6f8] transition-all duration-300 group">
-                        <i class="ph ph-youtube-logo text-2xl"></i>
-                        <span class="ref-popup-menu-social-label span-popup-menu-social-label">YouTube</span>
-                    </a>
-                    <a href="https://www.pinterest.com/ChronEvo/" target="_blank" rel="noopener noreferrer" class="ref-popup-menu-social-pinterest link-popup-menu-social-pinterest text-[#000000] hover:text-[#92f6f8] transition-all duration-300 group">
-                        <i class="ph ph-pinterest-logo text-2xl"></i>
-                        <span class="ref-popup-menu-social-label span-popup-menu-social-label">Pinterest</span>
-                    </a>
-                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:6972423859396325377" target="_blank" rel="noopener noreferrer" class="ref-popup-menu-social-linkedin link-popup-menu-social-linkedin text-[#000000] hover:text-[#92f6f8] transition-all duration-300 group">
-                        <i class="ph ph-linkedin-logo text-2xl"></i>
-                        <span class="ref-popup-menu-social-label span-popup-menu-social-label">LinkedIn</span>
-                    </a>
-                    <a href="https://vk.com/connect_explore_design" target="_blank" rel="noopener noreferrer" class="ref-popup-menu-social-vk link-popup-menu-social-vk text-[#000000] hover:text-[#92f6f8] transition-all duration-300 group">
-                        <i class="ph ph-globe text-2xl"></i>
-                        <span class="ref-popup-menu-social-label span-popup-menu-social-label">VK</span>
-                    </a>
+                    <?php
+                    // Get menu items from menu ID 5
+                    $social_menu_items = wp_get_nav_menu_items(5);
+                    
+                    if ($social_menu_items && !is_wp_error($social_menu_items)) {
+                        foreach ($social_menu_items as $item) {
+                            // Skip child items (only show top-level items)
+                            if ($item->menu_item_parent != 0) {
+                                continue;
+                            }
+                            
+                            // Get the URL
+                            $url = !empty($item->url) ? $item->url : '#';
+                            
+                            // Get target attribute (default to _blank for external links)
+                            $target = !empty($item->target) ? $item->target : '_blank';
+                            
+                            // Generate unique ref class based on menu item title
+                            $sanitized_title = sanitize_html_class(strtolower($item->title));
+                            $ref_class = 'ref-popup-menu-social-' . $sanitized_title;
+                            $link_class = 'link-popup-menu-social-' . $sanitized_title;
+                            
+                            // Map social media names to Phosphor icon classes
+                            $icon_map = array(
+                                'twitter' => 'ph-twitter-logo',
+                                'instagram' => 'ph-instagram-logo',
+                                'youtube' => 'ph-youtube-logo',
+                                'pinterest' => 'ph-pinterest-logo',
+                                'linkedin' => 'ph-linkedin-logo',
+                                'facebook' => 'ph-facebook-logo',
+                                'tiktok' => 'ph-tiktok-logo',
+                                'snapchat' => 'ph-snapchat-logo',
+                                'discord' => 'ph-discord-logo',
+                                'github' => 'ph-github-logo',
+                                'dribbble' => 'ph-dribbble-logo',
+                                'behance' => 'ph-behance-logo',
+                                'vk' => 'ph-globe',
+                                'vkontakte' => 'ph-globe',
+                            );
+                            
+                            // Get icon class, default to globe if not found
+                            $title_lower = strtolower($item->title);
+                            $icon_class = 'ph-globe'; // Default icon
+                            
+                            foreach ($icon_map as $key => $icon) {
+                                if (strpos($title_lower, $key) !== false) {
+                                    $icon_class = $icon;
+                                    break;
+                                }
+                            }
+                            
+                            // Check if URL contains social media domain for better icon detection
+                            if ($icon_class === 'ph-globe') {
+                                $url_lower = strtolower($url);
+                                if (strpos($url_lower, 'twitter.com') !== false || strpos($url_lower, 'x.com') !== false) {
+                                    $icon_class = 'ph-twitter-logo';
+                                } elseif (strpos($url_lower, 'instagram.com') !== false) {
+                                    $icon_class = 'ph-instagram-logo';
+                                } elseif (strpos($url_lower, 'youtube.com') !== false) {
+                                    $icon_class = 'ph-youtube-logo';
+                                } elseif (strpos($url_lower, 'pinterest.com') !== false) {
+                                    $icon_class = 'ph-pinterest-logo';
+                                } elseif (strpos($url_lower, 'linkedin.com') !== false) {
+                                    $icon_class = 'ph-linkedin-logo';
+                                } elseif (strpos($url_lower, 'facebook.com') !== false) {
+                                    $icon_class = 'ph-facebook-logo';
+                                } elseif (strpos($url_lower, 'tiktok.com') !== false) {
+                                    $icon_class = 'ph-tiktok-logo';
+                                } elseif (strpos($url_lower, 'github.com') !== false) {
+                                    $icon_class = 'ph-github-logo';
+                                } elseif (strpos($url_lower, 'dribbble.com') !== false) {
+                                    $icon_class = 'ph-dribbble-logo';
+                                } elseif (strpos($url_lower, 'behance.net') !== false) {
+                                    $icon_class = 'ph-behance-logo';
+                                } elseif (strpos($url_lower, 'vk.com') !== false || strpos($url_lower, 'vkontakte') !== false) {
+                                    $icon_class = 'ph-globe';
+                                }
+                            }
+                            ?>
+                            <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" rel="noopener noreferrer" class="<?php echo esc_attr($ref_class . ' ' . $link_class); ?> text-[#000000] hover:text-[#DCAF47] transition-all duration-300 group">
+                                <i class="ph <?php echo esc_attr($icon_class); ?> text-2xl"></i>
+                                <span class="ref-popup-menu-social-label span-popup-menu-social-label"><?php echo esc_html($item->title); ?></span>
+                            </a>
+                            <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>

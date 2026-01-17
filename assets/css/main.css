@@ -81,9 +81,18 @@
     --primary-dark: #000000;
     --secondary-dark: #1a1a1a;
     --accent-dark: #2a2a2a;
-    --cyan-primary: #92f6f8;
-    --gray-neutral: #6a6e6b;
-    --warm-accent: #d3b89a;
+    /* Primary Color Scale */
+    --primary-900: #8C7325;
+    --primary-700: #B89438;
+    --primary-500: #DCAF47;
+    --primary-300: #E8CD85;
+    --primary-100: #F6EFD7;
+    /* Secondary Color Scale */
+    --secondary-900: #4F5053;
+    --secondary-700: #7A7C80;
+    --secondary-500: #BCBDC0;
+    --secondary-300: #E1E2E4;
+    --secondary-100: #F6F7F8;
     --white: #ffffff;
     --light-gray: #f5f5f5;
     --medium-gray: #808080;
@@ -326,8 +335,8 @@ img {
 }
 
 .cta-primary:hover {
-    box-shadow: 0 12px 40px rgba(146, 246, 248, 0.4);
-    border-color: rgba(146, 246, 248, 0.5);
+    box-shadow: 0 12px 40px rgba(220, 175, 71, 0.4);
+    border-color: rgba(220, 175, 71, 0.5);
     transform: translateY(-2px);
 }
 
@@ -338,7 +347,7 @@ img {
 
 .cta-secondary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(146, 246, 248, 0.2);
+    box-shadow: 0 8px 32px rgba(220, 175, 71, 0.2);
 }
 
 /* Floating Navigation */
@@ -350,7 +359,7 @@ img {
 
 .floating-nav .nav-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(146, 246, 248, 0.3);
+    box-shadow: 0 8px 24px rgba(220, 175, 71, 0.3);
 }
 
 /* Scroll Indicator */
@@ -450,7 +459,7 @@ button:focus-visible {
 }
 
 button:focus-visible:hover {
-    outline-color: #92f6f8;
+    outline-color: #DCAF47;
 }
 
 /* Logo Link - Remove outline and scale down 15% */
@@ -710,7 +719,7 @@ button:focus-visible:hover {
     line-height: 1.25rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6a6e6b;
+    color: #4F5053;
     font-weight: 600;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -751,7 +760,7 @@ button:focus-visible:hover {
 .span-portfolio-description-text {
     font-size: 1rem;
     line-height: 1.6;
-    color: #6a6e6b;
+    color: #7A7C80;
     font-weight: 300;
 }
 
@@ -759,7 +768,7 @@ button:focus-visible:hover {
 .section-blog {
     background-color: #ffffff;
     width: 100%;
-    border-top: 1px solid rgba(106, 110, 107, 0.2);
+    border-top: 1px solid rgba(225, 226, 228, 0.5);
 }
 
 /* Footer Section - Similar to header styling */
@@ -854,7 +863,7 @@ button:focus-visible:hover {
 .link-footer-nav-portfolio:hover .div-footer-nav-underline,
 .link-footer-nav-blog:hover .div-footer-nav-underline,
 .link-footer-nav-contact:hover .div-footer-nav-underline {
-    background-color: #92f6f8;
+    background-color: #DCAF47;
 }
 
 
@@ -876,7 +885,15 @@ button:focus-visible:hover {
 .link-footer-social-youtube,
 .link-footer-social-pinterest,
 .link-footer-social-linkedin,
-.link-footer-social-vk {
+.link-footer-social-vk,
+.link-footer-social-facebook,
+.link-footer-social-tiktok,
+.link-footer-social-github,
+.link-footer-social-dribbble,
+.link-footer-social-behance,
+.link-footer-social-snapchat,
+.link-footer-social-discord,
+[class*="link-footer-social-"] {
     display: inline-block;
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
@@ -886,7 +903,15 @@ button:focus-visible:hover {
 .link-footer-social-youtube:hover,
 .link-footer-social-pinterest:hover,
 .link-footer-social-linkedin:hover,
-.link-footer-social-vk:hover {
+.link-footer-social-vk:hover,
+.link-footer-social-facebook:hover,
+.link-footer-social-tiktok:hover,
+.link-footer-social-github:hover,
+.link-footer-social-dribbble:hover,
+.link-footer-social-behance:hover,
+.link-footer-social-snapchat:hover,
+.link-footer-social-discord:hover,
+[class*="link-footer-social-"]:hover {
     transform: translateY(-2px);
 }
 
@@ -941,7 +966,7 @@ button:focus-visible:hover {
     line-height: 1.25rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6a6e6b;
+    color: #4F5053;
     font-weight: 600;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -990,7 +1015,7 @@ button:focus-visible:hover {
 .span-blog-description-text {
     font-size: 1rem;
     line-height: 1.6;
-    color: #6a6e6b;
+    color: #7A7C80;
     font-weight: 300;
 }
 
@@ -1150,7 +1175,7 @@ button:focus-visible:hover {
 
 .button-portfolio-cta:hover {
     background-color: #1a1a1a;
-    border-color: #92f6f8;
+    border-color: #DCAF47;
 }
 
 .span-portfolio-cta-text {
@@ -1228,7 +1253,7 @@ button:focus-visible:hover {
 .button-portfolio-carousel-next:hover {
     background-color: #000000;
     color: #ffffff;
-    border-color: #92f6f8;
+    border-color: #DCAF47;
 }
 
 .button-portfolio-carousel-prev:disabled,
@@ -1685,8 +1710,9 @@ button:focus-visible:hover {
 .div-popup-menu-social-media-links {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    align-items: flex-start;
+    gap: 1.5rem;
+    align-items: stretch;
+    width: 100%;
 }
 
 .link-popup-menu-social-twitter,
@@ -1694,13 +1720,22 @@ button:focus-visible:hover {
 .link-popup-menu-social-youtube,
 .link-popup-menu-social-pinterest,
 .link-popup-menu-social-linkedin,
-.link-popup-menu-social-vk {
+.link-popup-menu-social-vk,
+.link-popup-menu-social-facebook,
+.link-popup-menu-social-tiktok,
+.link-popup-menu-social-github,
+.link-popup-menu-social-dribbble,
+.link-popup-menu-social-behance,
+.link-popup-menu-social-snapchat,
+.link-popup-menu-social-discord,
+[class*="link-popup-menu-social-"] {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 1rem;
-    padding: 0.75rem;
+    padding: 0.75rem 0;
     transition: transform 0.3s ease-out;
+    width: 100%;
 }
 
 .span-popup-menu-social-label {
@@ -1709,6 +1744,7 @@ button:focus-visible:hover {
     font-weight: 500;
     color: inherit;
     transition: color 0.3s ease-out;
+    flex: 1;
 }
 
 .link-popup-menu-social-twitter:hover,
@@ -1716,13 +1752,21 @@ button:focus-visible:hover {
 .link-popup-menu-social-youtube:hover,
 .link-popup-menu-social-pinterest:hover,
 .link-popup-menu-social-linkedin:hover,
-.link-popup-menu-social-vk:hover {
+.link-popup-menu-social-vk:hover,
+.link-popup-menu-social-facebook:hover,
+.link-popup-menu-social-tiktok:hover,
+.link-popup-menu-social-github:hover,
+.link-popup-menu-social-dribbble:hover,
+.link-popup-menu-social-behance:hover,
+.link-popup-menu-social-snapchat:hover,
+.link-popup-menu-social-discord:hover,
+[class*="link-popup-menu-social-"]:hover {
     transform: translateX(4px);
-    color: #92f6f8;
+    color: #DCAF47;
 }
 
 .button-popup-menu-close:hover {
-    color: #92f6f8;
+    color: #DCAF47;
 }
 
 /* Menu Toggle Button */

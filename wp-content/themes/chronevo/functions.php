@@ -43,6 +43,35 @@ function chronevo_add_tailwind_cdn() {
 add_action('wp_head', 'chronevo_add_tailwind_cdn', 1);
 
 /**
+ * Check if running on localhost
+ */
+function chronevo_is_localhost() {
+    $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
+    $is_localhost = (
+        strpos($host, 'localhost') !== false ||
+        strpos($host, '127.0.0.1') !== false ||
+        strpos($host, '::1') !== false ||
+        strpos($host, '.local') !== false ||
+        strpos($host, '.test') !== false ||
+        (defined('WP_DEBUG') && WP_DEBUG)
+    );
+    return $is_localhost;
+}
+
+/**
+ * Get cache buster version for localhost
+ */
+function chronevo_get_cache_buster($file_path) {
+    if (chronevo_is_localhost()) {
+        $full_path = ABSPATH . ltrim($file_path, '/');
+        if (file_exists($full_path)) {
+            return filemtime($full_path);
+        }
+    }
+    return '1.0.0';
+}
+
+/**
  * Enqueue Scripts and Styles
  */
 function chronevo_scripts() {
@@ -53,10 +82,14 @@ function chronevo_scripts() {
     wp_enqueue_script('phosphor-icons', 'https://unpkg.com/@phosphor-icons/web', array(), null, true);
     
     // Custom CSS (only if Tailwind fails) - from root ./assets/
-    wp_enqueue_style('chronevo-main-css', home_url('/assets/css/main.css'), array(), '1.0.0');
+    // Cache buster for localhost: use file modification time
+    $css_version = chronevo_get_cache_buster('assets/css/main.css');
+    wp_enqueue_style('chronevo-main-css', home_url('/assets/css/main.css'), array(), $css_version);
     
     // Custom JavaScript - from root ./assets/
-    wp_enqueue_script('chronevo-main-js', home_url('/assets/js/main.js'), array(), '1.0.0', true);
+    // Cache buster for localhost: use file modification time
+    $js_version = chronevo_get_cache_buster('assets/js/main.js');
+    wp_enqueue_script('chronevo-main-js', home_url('/assets/js/main.js'), array(), $js_version, true);
     
     // Localize script for AJAX
     wp_localize_script('chronevo-main-js', 'chronevoAjax', array(
