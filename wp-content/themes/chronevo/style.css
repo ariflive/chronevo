@@ -1,0 +1,15 @@
+/*
+Theme Name: Chronevo
+Theme URI: http://localhost/chronevo/
+Description: Custom WordPress theme for Chronevo - A creative agency bridging professional services with automotive enthusiast platform. Clean, minimal aesthetic with high-contrast design.
+Author: Chronevo Team
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: chronevo
+*/
+
+/* Theme styles are handled via Tailwind CSS CDN and custom CSS in assets/css/main.css */
