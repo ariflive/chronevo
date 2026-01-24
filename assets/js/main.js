@@ -444,14 +444,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const aboutVideoCover = document.querySelector('.div-about-video-cover');
     const aboutVideoIframe = document.querySelector('#ref-about-video-iframe');
     const aboutVideoPlayButton = document.querySelector('.div-about-video-play-button');
+    const aboutVideoLoader = document.querySelector('.div-about-video-loader');
     
-    if (aboutVideoContainer && aboutVideoCover && aboutVideoIframe && aboutVideoPlayButton) {
+    if (aboutVideoContainer && aboutVideoCover && aboutVideoIframe && aboutVideoPlayButton && aboutVideoLoader) {
         let isMouseInside = false;
         let mouseX = 0;
         let mouseY = 0;
         let playButtonX = 0;
         let playButtonY = 0;
         let animationFrame = null;
+        let youtubePlayer = null;
+        let isVideoPlaying = false;
+        let isVideoLoading = false;
         
         // Initialize play button position (center)
         function initPlayButtonPosition() {
@@ -508,22 +512,167 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Click handler - Play video
-        aboutVideoContainer.addEventListener('click', function() {
-            if (aboutVideoIframe.classList.contains('hidden')) {
-                // Extract video ID from YouTube URL
-                const videoId = 'KfIaXTb45tI';
-                const embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1';
-                
-                // Set iframe source
-                aboutVideoIframe.src = embedUrl;
-                
-                // Show iframe, hide cover and play button
-                aboutVideoIframe.classList.remove('hidden');
-                aboutVideoIframe.classList.add('show');
-                aboutVideoCover.classList.add('hidden');
-                aboutVideoPlayButton.style.display = 'none';
+        // Load YouTube IFrame API
+        function loadYouTubeAPI(callback) {
+            if (window.YT && window.YT.Player) {
+                if (window.YT.loaded) {
+                    callback();
+                } else {
+                    window.YT.ready(callback);
+                }
+            } else {
+                if (!window.onYouTubeIframeAPIReady) {
+                    window.onYouTubeIframeAPIReady = function() {
+                        callback();
+                    };
+                    
+                    const tag = document.createElement('script');
+                    tag.src = 'https://www.youtube.com/iframe_api';
+                    tag.onerror = function() {
+                        // If API fails to load, use direct iframe approach
+                        callback();
+                    };
+                    const firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                } else {
+                    const originalCallback = window.onYouTubeIframeAPIReady;
+                    window.onYouTubeIframeAPIReady = function() {
+                        if (originalCallback) originalCallback();
+                        callback();
+                    };
+                }
             }
+        }
+        
+        // Function to play video
+        function playVideo() {
+            // Prevent multiple simultaneous loads
+            if (isVideoLoading) return;
+            
+            // If video is already playing and player exists, don't restart
+            if (isVideoPlaying && youtubePlayer) return;
+            
+            isVideoLoading = true;
+            
+            // Extract video ID
+            const videoId = 'KfIaXTb45tI';
+            
+            // Hide cover and play button first
+            aboutVideoCover.classList.add('hidden');
+            aboutVideoCover.style.display = 'none';
+            aboutVideoCover.style.pointerEvents = 'none';
+            aboutVideoCover.style.zIndex = '0';
+            
+            aboutVideoPlayButton.style.display = 'none';
+            aboutVideoPlayButton.style.pointerEvents = 'none';
+            
+            // Show iframe
+            aboutVideoIframe.classList.remove('hidden');
+            aboutVideoIframe.classList.add('show');
+            aboutVideoIframe.style.display = 'block';
+            aboutVideoIframe.style.zIndex = '15';
+            aboutVideoIframe.style.pointerEvents = 'auto';
+            
+            // Show loader
+            aboutVideoLoader.classList.remove('hidden');
+            aboutVideoLoader.style.display = 'flex';
+            
+            // Use direct iframe approach (most reliable for user-initiated playback)
+            // This works because user interaction allows autoplay
+            useDirectIframe(videoId);
+            
+            // Optionally try to load YouTube API for better control (but don't wait for it)
+            loadYouTubeAPI(function() {
+                // If API loads successfully, we can use it for future interactions
+                if (window.YT && window.YT.Player && !youtubePlayer) {
+                    try {
+                        youtubePlayer = new YT.Player('ref-about-video-iframe', {
+                            videoId: videoId,
+                            playerVars: {
+                                'autoplay': 1,
+                                'mute': 0,
+                                'controls': 1,
+                                'modestbranding': 1,
+                                'rel': 0,
+                                'showinfo': 0,
+                                'iv_load_policy': 3,
+                                'playsinline': 1,
+                                'enablejsapi': 1
+                            },
+                            events: {
+                                'onStateChange': function(event) {
+                                    if (event.data === YT.PlayerState.PLAYING) {
+                                        isVideoLoading = false;
+                                        isVideoPlaying = true;
+                                        aboutVideoLoader.classList.add('hidden');
+                                        aboutVideoLoader.style.display = 'none';
+                                        try {
+                                            if (youtubePlayer.isMuted()) {
+                                                youtubePlayer.unMute();
+                                            }
+                                        } catch(e) {}
+                                    }
+                                }
+                            }
+                        });
+                    } catch(e) {
+                        // API player creation failed, direct iframe already set
+                    }
+                }
+            });
+        }
+        
+        // Fallback function to use direct iframe src
+        function useDirectIframe(videoId) {
+            const embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1&enablejsapi=1';
+            
+            // Set src
+            aboutVideoIframe.src = embedUrl;
+            isVideoPlaying = true;
+            isVideoLoading = false;
+            
+            // Try to detect when video starts playing using postMessage
+            let loaderHidden = false;
+            function hideLoader() {
+                if (!loaderHidden) {
+                    loaderHidden = true;
+                    aboutVideoLoader.classList.add('hidden');
+                    aboutVideoLoader.style.display = 'none';
+                }
+            }
+            
+            // Listen for YouTube postMessage events
+            window.addEventListener('message', function(event) {
+                if (event.origin !== 'https://www.youtube.com') return;
+                try {
+                    const data = JSON.parse(event.data);
+                    if (data && data.event === 'onStateChange' && data.info === 1) {
+                        // State 1 = PLAYING
+                        hideLoader();
+                    }
+                } catch(e) {
+                    // Not JSON, ignore
+                }
+            });
+            
+            // Hide loader after iframe loads
+            aboutVideoIframe.addEventListener('load', function() {
+                setTimeout(hideLoader, 1000);
+            }, { once: true });
+            
+            // Fallback timeout to hide loader (in case events don't fire)
+            setTimeout(hideLoader, 3000);
+        }
+        
+        // Click handler on container
+        aboutVideoContainer.addEventListener('click', function(e) {
+            playVideo();
+        });
+        
+        // Click handler on cover (in case container click doesn't fire)
+        aboutVideoCover.addEventListener('click', function(e) {
+            e.stopPropagation();
+            playVideo();
         });
         
         // Initialize play button position on load

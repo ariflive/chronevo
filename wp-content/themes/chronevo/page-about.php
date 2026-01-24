@@ -189,6 +189,11 @@ get_header();
                     <span class="ref-about-video-play-text span-about-video-play-text text-[#4F5053] font-semibold text-sm uppercase">Play</span>
                 </div>
             </div>
+            
+            <!-- Video Loader (shown while video is loading) -->
+            <div class="ref-about-video-loader div-about-video-loader absolute inset-0 flex items-center justify-center z-30 pointer-events-none hidden">
+                <div class="ref-about-video-loader-spinner div-about-video-loader-spinner w-8 h-8 border-2 border-[#BCBDC0] border-t-[#DCAF47] rounded-full animate-spin"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -206,7 +211,7 @@ get_header();
                     </div>
                     
                     <!-- Main Title -->
-                    <h2 class="ref-about-awards-title h2-about-awards-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
+                    <h2 class="ref-about-awards-title h2-about-awards-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 uppercase">
                         Prestigious awards for design
                     </h2>
                     
