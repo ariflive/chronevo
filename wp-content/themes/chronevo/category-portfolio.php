@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Portfolio Page
+ * Template Name: Portfolio 2 Page
  * 
  * @package Chronevo
  */
