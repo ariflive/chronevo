@@ -44,13 +44,16 @@ get_header();
                     
                     <!-- Main Title -->
                     <h1 class="ref-about-main-title h1-about-main-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 uppercase">
-                        Design driven by passion
+                        About Us
                     </h1>
                     
                     <!-- Description -->
                     <div class="ref-about-description div-about-description mb-8">
                         <p class="ref-about-description-text p-about-description-text text-[#7A7C80] text-lg leading-relaxed">
-                            CHRONEVO is an independent brand design studio and automotive online magazine based in the UAE and is a small team of humans with a passion for creative design and motoring. For us, design isn't only a process of creation, but also an entity that creates another company's symphony. Our people provide a wide range of creative design services for businesses and individuals around the world, ensuring we make the journey more enjoyable.
+                            Chronevo is built on restraint, intention, and time. We believe true influence is never forced, it is composed. We work quietly, shaping culture with precision and care. Every decision is measured. Every detail has a purpose. We do not follow trends. We create work that endures.
+                        </p>
+                        <p class="ref-about-description-text p-about-description-text text-[#7A7C80] text-lg leading-relaxed mt-4">
+                            Chronevo exists for brands that value permanence over excess, clarity over noise, and presence over performance. It's not what is seen first, it is what remains.
                         </p>
                     </div>
                     

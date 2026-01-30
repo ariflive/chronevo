@@ -61,7 +61,7 @@ get_header();
             foreach ($projects as $index => $project) :
             ?>
             <!-- Project Card -->
-            <a href="#" class="ref-portfolio-card-<?php echo esc_attr($index + 1); ?> div-portfolio-card group relative aspect-square overflow-hidden cursor-pointer block">
+            <a href="<?php echo esc_url(home_url('/portfolio/design-trends')); ?>" class="ref-portfolio-card-<?php echo esc_attr($index + 1); ?> div-portfolio-card group relative aspect-square overflow-hidden cursor-pointer block">
                 <!-- Project Image -->
                 <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper w-full h-full relative">
                     <img 
