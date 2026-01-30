@@ -236,6 +236,32 @@ body {
     opacity: 1;
 }
 
+/* Subtle texture overlay for dark grey sections (hero, taglines) - within same color, not prominent */
+.section-hero::before,
+.section-taglines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
+        );
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+}
+
 .span-tagline-item {
     opacity: 0.2;
     filter: blur(0.5px);
@@ -661,7 +687,7 @@ button:focus-visible:hover {
     position: relative;
 }
 
-/* Add subtle animated pattern overlay for modern effect */
+/* Add subtle texture overlay for dark grey - within same color, not prominent */
 .section-services::before {
     content: '';
     position: absolute;
@@ -674,20 +700,19 @@ button:focus-visible:hover {
             0deg,
             transparent,
             transparent 2px,
-            rgba(255, 255, 255, 0.02) 2px,
-            rgba(255, 255, 255, 0.02) 4px
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
         ),
         repeating-linear-gradient(
             90deg,
             transparent,
             transparent 2px,
-            rgba(255, 255, 255, 0.02) 2px,
-            rgba(255, 255, 255, 0.02) 4px
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
         );
-    background-size: 46.2px 46.2px;
+    background-size: 48px 48px;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.5;
 }
 
 /* Services Container - Ensure it's above background */
