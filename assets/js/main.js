@@ -68,75 +68,67 @@ document.addEventListener('DOMContentLoaded', function() {
     const serviceImageWrappers = document.querySelectorAll('.div-service-image-wrapper');
     
     if (servicesSection && serviceImageWrappers.length > 0) {
-        function updateServicesParallax() {
+        function getParallaxTransform(wrapper, index) {
             const rect = servicesSection.getBoundingClientRect();
             const windowHeight = window.innerHeight;
-            const sectionTop = rect.top;
-            const sectionHeight = rect.height;
-            
-            // Calculate scroll progress based on section visibility
-            const sectionCenter = sectionTop + sectionHeight / 2;
+            const sectionCenter = rect.top + rect.height / 2;
             const viewportCenter = windowHeight / 2;
             const distanceFromCenter = Math.abs(sectionCenter - viewportCenter);
-            const maxDistance = windowHeight + sectionHeight / 2;
+            const maxDistance = windowHeight + rect.height / 2;
             const scrollProgress = Math.max(0, Math.min(1, 1 - (distanceFromCenter / maxDistance)));
-            
-            // Apply smooth parallax movement to each image wrapper
+            const offsetMultiplier = (index % 2 === 0 ? 1 : -1) * (index + 1) * 0.1;
+            const scrollOffsetY = Math.sin(scrollProgress * Math.PI) * 25 * offsetMultiplier;
+            const scrollOffsetX = Math.cos(scrollProgress * Math.PI) * 18 * offsetMultiplier;
+            if (wrapper.classList.contains('div-service-image-1')) {
+                return `translateX(calc(-50% + ${scrollOffsetX}px)) translateY(${scrollOffsetY}px)`;
+            }
+            if (wrapper.classList.contains('div-service-image-3')) {
+                return `translateY(calc(-50% + ${scrollOffsetY}px)) translateX(${scrollOffsetX}px)`;
+            }
+            if (wrapper.classList.contains('div-service-image-5')) {
+                return `translateX(calc(-50% + ${scrollOffsetX}px)) translateY(${scrollOffsetY}px)`;
+            }
+            if (wrapper.classList.contains('div-service-image-7')) {
+                return `translateY(calc(-50% + ${scrollOffsetY}px)) translateX(${scrollOffsetX}px)`;
+            }
+            return `translate(${scrollOffsetX}px, ${scrollOffsetY}px)`;
+        }
+
+        function updateServicesParallax() {
             serviceImageWrappers.forEach(function(wrapper, index) {
-                // Skip if wrapper is being hovered - don't override hover transform
-                if (wrapper.dataset.isHovered === 'true') {
-                    return;
-                }
-                
+                if (wrapper.dataset.isHovered === 'true') return;
                 const childImage = wrapper.querySelector('img');
-                if (childImage && childImage.dataset.isHovered === 'true') {
-                    return;
-                }
-                
-                const offsetMultiplier = (index % 2 === 0 ? 1 : -1) * (index + 1) * 0.1;
-                const scrollOffsetY = Math.sin(scrollProgress * Math.PI) * 25 * offsetMultiplier;
-                const scrollOffsetX = Math.cos(scrollProgress * Math.PI) * 18 * offsetMultiplier;
-                
-                // Get base transform from CSS positioning
-                let baseTransform = '';
-                if (wrapper.classList.contains('div-service-image-1')) {
-                    baseTransform = `translateX(calc(-50% + ${scrollOffsetX}px)) translateY(${scrollOffsetY}px)`;
-                } else if (wrapper.classList.contains('div-service-image-3')) {
-                    baseTransform = `translateY(calc(-50% + ${scrollOffsetY}px)) translateX(${scrollOffsetX}px)`;
-                } else if (wrapper.classList.contains('div-service-image-5')) {
-                    baseTransform = `translateX(calc(-50% + ${scrollOffsetX}px)) translateY(${scrollOffsetY}px)`;
-                } else if (wrapper.classList.contains('div-service-image-7')) {
-                    baseTransform = `translateY(calc(-50% + ${scrollOffsetY}px)) translateX(${scrollOffsetX}px)`;
-                } else {
-                    baseTransform = `translate(${scrollOffsetX}px, ${scrollOffsetY}px)`;
-                }
-                
-                wrapper.style.transform = baseTransform;
+                if (childImage && childImage.dataset.isHovered === 'true') return;
+                wrapper.style.transform = getParallaxTransform(wrapper, index);
             });
         }
-        
-        // Track hover state for each wrapper and image to prevent JS from overriding CSS hover
-        serviceImageWrappers.forEach(function(wrapper) {
+
+        function applyHoverScale(wrapper, index) {
+            wrapper.style.transform = getParallaxTransform(wrapper, index) + ' scale(1.20)';
+        }
+
+        serviceImageWrappers.forEach(function(wrapper, index) {
             const childImage = wrapper.querySelector('img');
-            
             if (childImage) {
                 childImage.addEventListener('mouseenter', function() {
                     childImage.dataset.isHovered = 'true';
+                    wrapper.dataset.isHovered = 'true';
+                    applyHoverScale(wrapper, index);
                 });
-                
                 childImage.addEventListener('mouseleave', function() {
                     childImage.dataset.isHovered = 'false';
-                    updateServicesParallax(); // Reapply parallax when not hovering
+                    wrapper.dataset.isHovered = 'false';
+                    updateServicesParallax();
                 });
             }
-            
             wrapper.addEventListener('mouseenter', function() {
                 wrapper.dataset.isHovered = 'true';
+                applyHoverScale(wrapper, index);
             });
-            
             wrapper.addEventListener('mouseleave', function() {
                 wrapper.dataset.isHovered = 'false';
-                updateServicesParallax(); // Reapply parallax when not hovering
+                if (childImage) childImage.dataset.isHovered = 'false';
+                updateServicesParallax();
             });
         });
         
@@ -678,4 +670,78 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize play button position on load
         initPlayButtonPosition();
     }
+});
+
+// Single article featured image: hover to show video slideshow (continues after mouse out)
+document.addEventListener('DOMContentLoaded', function() {
+    const wrapper = document.querySelector('.ref-single-article-featured-image-wrapper');
+    if (!wrapper) return;
+    const dataVideos = wrapper.getAttribute('data-videos');
+    if (!dataVideos) return;
+    let videos = [];
+    try {
+        videos = JSON.parse(dataVideos);
+    } catch (e) {
+        return;
+    }
+    if (videos.length === 0) return;
+    const overlay = wrapper.querySelector('.ref-single-article-featured-video-overlay');
+    const videoEl = wrapper.querySelector('.ref-single-article-featured-video');
+    const dotsContainer = wrapper.querySelector('.ref-single-article-featured-dots');
+    if (!overlay || !videoEl) return;
+
+    let currentIndex = 0;
+    let dots = [];
+
+    function updateDotsActive() {
+        dots.forEach(function(dot, i) {
+            dot.classList.toggle('is-active', i === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        videoEl.classList.remove('is-playing');
+        videoEl.src = videos[currentIndex];
+        videoEl.load();
+        videoEl.play().catch(function() {});
+        updateDotsActive();
+    }
+
+    function playNext() {
+        goToSlide((currentIndex + 1) % videos.length);
+    }
+
+    function startSlideshow() {
+        if (wrapper.classList.contains('is-hover-video')) return;
+        wrapper.classList.add('is-hover-video');
+        goToSlide(0);
+    }
+
+    videoEl.addEventListener('playing', function() {
+        videoEl.classList.add('is-playing');
+    });
+
+    videoEl.addEventListener('ended', function() {
+        playNext();
+    });
+
+    if (dotsContainer) {
+        videos.forEach(function(_, i) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'ref-single-article-featured-dot div-single-post-featured-dot';
+            dot.setAttribute('aria-label', 'Go to video ' + (i + 1));
+            dot.dataset.index = String(i);
+            dot.addEventListener('click', function() {
+                goToSlide(i);
+            });
+            dotsContainer.appendChild(dot);
+            dots.push(dot);
+        });
+    }
+
+    wrapper.addEventListener('mouseenter', function() {
+        startSlideshow();
+    });
 });

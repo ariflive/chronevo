@@ -53,9 +53,6 @@ get_header();
                 array('title' => 'Print Campaign', 'subtitle' => 'Advertising', 'image' => 'about.jpg'),
                 array('title' => 'Product Photography', 'subtitle' => 'Photography', 'image' => 'about-2.jpg'),
                 array('title' => 'Brand Strategy', 'subtitle' => 'Consulting', 'image' => 'work.jpg'),
-                array('title' => 'Editorial Layout', 'subtitle' => 'Editorial', 'image' => 'post.jpg'),
-                array('title' => 'Packaging Design', 'subtitle' => 'Product Design', 'image' => 'hero-1.jpg'),
-                array('title' => 'Motion Graphics', 'subtitle' => 'Digital Media', 'image' => 'hero-2.jpg'),
             );
             
             foreach ($projects as $index => $project) :

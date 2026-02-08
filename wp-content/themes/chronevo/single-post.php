@@ -59,12 +59,23 @@ $next_post = get_next_post();
         
         <!-- Single Centered Layout -->
         <div class="ref-single-article-content-wrapper div-single-article-content-wrapper w-full max-w-3xl mx-auto">
-            <div class="ref-single-article-featured-image-wrapper div-single-post-featured-image-wrapper mb-8">
+            <?php
+            $featured_videos = array(
+                $assets_url . '/videos/1.mp4',
+                $assets_url . '/videos/2.mp4',
+                $assets_url . '/videos/3.mp4',
+            );
+            ?>
+            <div class="ref-single-article-featured-image-wrapper div-single-post-featured-image-wrapper mb-8 relative overflow-hidden" data-videos="<?php echo esc_attr(wp_json_encode($featured_videos)); ?>">
                 <img 
                     src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" 
                     alt="<?php echo esc_attr(get_the_title()); ?>" 
                     class="ref-single-article-featured-image img-single-post-featured w-full h-auto object-cover"
                 >
+                <div class="ref-single-article-featured-video-overlay div-single-post-featured-video-overlay absolute inset-0 w-full h-full opacity-0 pointer-events-none" aria-hidden="true">
+                    <video class="ref-single-article-featured-video img-single-post-featured-video w-full h-full object-cover" muted playsinline></video>
+                    <div class="ref-single-article-featured-dots div-single-post-featured-dots absolute bottom-0 left-0 right-0 flex justify-center gap-2 pb-4" aria-label="Slideshow navigation"></div>
+                </div>
             </div>
             
             <!-- Main Article Content Container -->

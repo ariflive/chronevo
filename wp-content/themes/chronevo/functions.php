@@ -59,14 +59,13 @@ function chronevo_is_localhost() {
 }
 
 /**
- * Get cache buster version for localhost
+ * Get cache buster version for assets (all environments)
+ * Uses file modification time so each deploy/change loads fresh CSS/JS
  */
 function chronevo_get_cache_buster($file_path) {
-    if (chronevo_is_localhost()) {
-        $full_path = ABSPATH . ltrim($file_path, '/');
-        if (file_exists($full_path)) {
-            return filemtime($full_path);
-        }
+    $full_path = ABSPATH . ltrim($file_path, '/');
+    if (file_exists($full_path)) {
+        return (string) filemtime($full_path);
     }
     return '1.0.0';
 }
@@ -82,12 +81,10 @@ function chronevo_scripts() {
     wp_enqueue_script('phosphor-icons', 'https://unpkg.com/@phosphor-icons/web', array(), null, true);
     
     // Custom CSS (only if Tailwind fails) - from root ./assets/
-    // Cache buster for localhost: use file modification time
     $css_version = chronevo_get_cache_buster('assets/css/main.css');
     wp_enqueue_style('chronevo-main-css', home_url('/assets/css/main.css'), array(), $css_version);
     
     // Custom JavaScript - from root ./assets/
-    // Cache buster for localhost: use file modification time
     $js_version = chronevo_get_cache_buster('assets/js/main.js');
     wp_enqueue_script('chronevo-main-js', home_url('/assets/js/main.js'), array(), $js_version, true);
     

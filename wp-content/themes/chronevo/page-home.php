@@ -13,7 +13,7 @@ $assets_url = home_url('/assets');
 get_header();
 ?>
     <!-- Hero Section -->
-    <section class="ref-hero-section section-hero w-full relative pt-48">
+    <section class="ref-hero-section section-hero w-full relative pt-12">
         <div class="ref-hero-container div-hero-container w-[90%] mx-auto px-6 relative">
             <div class="ref-hero-images div-hero-images w-full flex items-end justify-center gap-32 relative z-0 pt-[40vh]">
                 <!-- Hero Image 2 - Medium Size -->
@@ -99,8 +99,8 @@ get_header();
     <section class="ref-services-section section-services w-full relative min-h-screen flex items-center justify-center">
         <div class="ref-services-container div-services-container relative w-full max-w-[1440px] mx-auto px-6">
             <!-- Services Title -->
-            <div class="ref-services-title-wrapper div-services-title-wrapper relative z-10 text-center">
-                <h2 class="ref-services-title h2-services-title text-white font-normal text-3xl md:text-4xl lg:text-5xl xl:text-6xl uppercase tracking-tight">Services</h2>
+            <div class="ref-services-title-wrapper div-services-title-wrapper relative text-center">
+                <h2 class="ref-services-title h2-services-title text-white font-normal uppercase tracking-tight">Services</h2>
             </div>
             
             <!-- Floating Images in Oval Shape -->

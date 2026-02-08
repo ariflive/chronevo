@@ -721,9 +721,13 @@ button:focus-visible:hover {
     z-index: 1;
 }
 
-/* Services Title */
-.h2-services-title {
-    font-size: 4.75rem;
+/* Services Title - Bigger font, overlaps images (z above images wrapper) */
+.div-services-title-wrapper {
+    z-index: 20;
+}
+/* Services title: 3x base (5.75rem * 3 = 17.25rem). Scoped + wrapper selector so Tailwind cannot override. */
+.ref-services-section .div-services-title-wrapper .h2-services-title {
+    font-size: 12.075rem;
 }
 
 /* Portfolio Section - White background, full width */
@@ -1315,177 +1319,141 @@ button:focus-visible:hover {
     font-size: 1.75rem;
 }
 
-/* Services Images Wrapper - Higher z-index to appear above title */
+/* Services Images Wrapper - On top of title so mouse hover on images works */
 .div-services-images-wrapper {
-    z-index: 20;
+    z-index: 30;
 }
 
 /* Service Image Wrapper Base Styles */
-/* Base dimensions match image size: w-52 h-52 = 208px (52 * 4px in Tailwind) */
-/* Increased by 15% total (5% + 10%): 208px * 1.15 = 240.24px */
+/* Base dimensions +10%: 240.24px * 1.1 = 264.264px */
 .div-service-image-wrapper {
     transform-origin: center;
     will-change: transform, width, height, margin;
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    width: 240.24px;
-    height: 240.24px;
+    width: 264.264px;
+    height: 264.264px;
     margin: 0;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), width 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), height 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), margin-left 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), margin-top 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Position images in oval shape around SERVICES text */
-/* Spread images more horizontally and vertically */
-/* Random size variations for depth - some images are larger than base 240.24px */
+/* Position images in oval shape close to center */
 .div-service-image-1 {
-    top: 180%;
-    left: 40%;
+    top: 95%;
+    left: 50%;
     transform: translateX(-50%);
-    width: calc(240.24px * 1.14);
-    height: calc(240.24px * 1.14);
-    margin-left: calc((240.24px * 1.14 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.14 - 240.24px) / -2);
+    width: calc(264.264px * 1.26);
+    height: calc(264.264px * 1.26);
+    margin-left: calc((264.264px * 1.26 - 264.264px) / -2);
+    margin-top: calc((264.264px * 1.26 - 264.264px) / -2);
 }
 
 .div-service-image-2 {
-    top: 230%;
-    right: 21%;
-    /* Base size: 240.24px */
+    top: 18%;
+    right: -1%;
 }
 
 .div-service-image-3 {
-    top: -370%;
-    right: 15%;
-    width: calc(240.24px * 1.18);
-    height: calc(240.24px * 1.18);
-    margin-left: calc((240.24px * 1.18 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.18 - 240.24px) / -2);
+    top: 123%;
+    right: 18%;
+    transform: translateY(-50%);
 }
 
 .div-service-image-4 {
-    bottom: -390%;
-    right: 5%;
-    width: calc(240.24px * 1.11);
-    height: calc(240.24px * 1.11);
-    margin-left: calc((240.24px * 1.11 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.11 - 240.24px) / -2);
+    bottom: 82%;
+    right: 18%;
+    width: 220px;
+    height: 220px;
 }
 
 .div-service-image-5 {
-    bottom: 250%;
-    left: 45%;
-    /* Base size: 240.24px */
+    bottom: 100%;
+    left: 55%;
+    transform: translateX(-50%);
+    width: calc(264.264px * 1.22);
+    height: calc(264.264px * 1.22);
+    margin-left: calc((264.264px * 1.22 - 264.264px) / -2);
+    margin-top: calc((264.264px * 1.22 - 264.264px) / -2);
 }
 
 .div-service-image-6 {
-    bottom: 180%;
-    left: 20%;
-    width: calc(240.24px * 1.16);
-    height: calc(240.24px * 1.16);
-    margin-left: calc((240.24px * 1.16 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.16 - 240.24px) / -2);
+    bottom: 90%;
+    left: 24%;
 }
 
 .div-service-image-7 {
-    top: -130%;
-    left: 5%;
+    top: 50%;
+    left: -3%;
     transform: translateY(-50%);
-    width: calc(240.24px * 1.09);
-    height: calc(240.24px * 1.09);
-    margin-left: calc((240.24px * 1.09 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.09 - 240.24px) / -2);
+    width: calc(264.264px * 1.28);
+    height: calc(264.264px * 1.28);
+    margin-left: calc((264.264px * 1.28 - 264.264px) / -2);
+    margin-top: calc((264.264px * 1.28 - 264.264px) / -2);
 }
 
 .div-service-image-8 {
-    top: 250%;
-    left: 15%;
-    width: calc(240.24px * 1.13);
-    height: calc(240.24px * 1.13);
-    margin-left: calc((240.24px * 1.13 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.13 - 240.24px) / -2);
+    top: 108%;
+    left: 17%;
+    width: 242px;
+    height: 242px;
 }
 
-/* CSS-only hover: pause animation and scale width/height to 115% (15% larger) */
-/* Using calc() for precise 15% increase: 240.24px * 1.15 = 276.276px */
-/* Growth amount: 36.036px, half growth for centering: 18.018px */
-/* When hovering, the animation is paused and dimensions are scaled from center */
+/* CSS-only hover: scale up 20% from center; animation: none so our transform wins over keyframes */
 .div-service-image-wrapper:hover {
-    animation-play-state: paused;
+    animation: none;
     z-index: 10;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
+    overflow: visible;
+    transform: scale(1.20);
 }
 
-/* Preserve base positioning transforms on hover */
-/* For image-1, it already uses translateX(-50%) so we only need vertical centering */
+/* Preserve positioning translate so zoom stays centered */
 .div-service-image-1:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    transform: translateX(-50%);
-    margin-left: 0;
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
+    animation: none;
+    overflow: visible;
+    transform: translateX(-50%) scale(1.20);
 }
 
 .div-service-image-2:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
+    animation: none;
+    overflow: visible;
+    transform: scale(1.20);
 }
 
 .div-service-image-3:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
+    animation: none;
+    overflow: visible;
+    transform: translateY(-50%) scale(1.20);
 }
 
 .div-service-image-4:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
+    animation: none;
+    overflow: visible;
+    transform: scale(1.20);
 }
 
 .div-service-image-5:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
+    animation: none;
+    overflow: visible;
+    transform: translateX(-50%) scale(1.20);
 }
 
 .div-service-image-6:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
+    animation: none;
+    overflow: visible;
+    transform: scale(1.20);
+}
+
+.div-service-image-7:hover {
+    animation: none;
+    overflow: visible;
+    transform: translateY(-50%) scale(1.20);
 }
 
 .div-service-image-8:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: calc((240.24px * 1.15 - 240.24px) / -2);
-}
-
-/* For image-7, it already uses translateY(-50%) so we only need horizontal centering */
-.div-service-image-7:hover {
-    animation-play-state: paused;
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
-    transform: translateY(-50%);
-    margin-left: calc((240.24px * 1.15 - 240.24px) / -2);
-    margin-top: 0;
+    animation: none;
+    overflow: visible;
+    transform: scale(1.20);
 }
 
 /* Scale images inside wrapper on hover to match wrapper scaling */
@@ -1501,6 +1469,7 @@ button:focus-visible:hover {
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Inner img: no size change on hover; wrapper scale(1.20) handles zoom from center (20% scale up) */
 .div-service-image-wrapper:hover .img-service-image-1,
 .div-service-image-wrapper:hover .img-service-image-2,
 .div-service-image-wrapper:hover .img-service-image-3,
@@ -1509,23 +1478,7 @@ button:focus-visible:hover {
 .div-service-image-wrapper:hover .img-service-image-6,
 .div-service-image-wrapper:hover .img-service-image-7,
 .div-service-image-wrapper:hover .img-service-image-8 {
-    width: calc(240.24px * 1.15);
-    height: calc(240.24px * 1.15);
     filter: grayscale(0%);
-}
-
-/* Dark to transparent gradient overlay - full width, bottom to top */
-.div-service-image-wrapper::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0) 100%);
-    pointer-events: none;
-    z-index: 1;
 }
 
 /* Apply same floating animations to wrappers so labels move with images */
@@ -1560,6 +1513,18 @@ button:focus-visible:hover {
 
 .div-service-image-8 {
     animation: float-service-8 14.8s ease-in-out infinite;
+}
+
+/* Disable float animation so JS parallax is the single transform source; zoom in/out then starts and ends at same position */
+.div-service-image-1,
+.div-service-image-2,
+.div-service-image-3,
+.div-service-image-4,
+.div-service-image-5,
+.div-service-image-6,
+.div-service-image-7,
+.div-service-image-8 {
+    animation: none;
 }
 
 /* Service Image Labels - Positioned at bottom center */
@@ -3014,6 +2979,52 @@ button:focus-visible:hover {
 
 .div-single-post-featured-image-wrapper:hover .img-single-post-featured {
     filter: grayscale(0%);
+}
+
+.div-single-post-featured-video-overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: opacity 0.4s ease-out;
+}
+
+.div-single-post-featured-image-wrapper.is-hover-video .div-single-post-featured-video-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.img-single-post-featured-video {
+    opacity: 0;
+    transition: opacity 0.35s ease-out;
+}
+
+.div-single-post-featured-image-wrapper.is-hover-video .img-single-post-featured-video.is-playing {
+    opacity: 1;
+}
+
+.div-single-post-featured-dots {
+    padding-bottom: 1rem;
+    pointer-events: auto;
+}
+
+.div-single-post-featured-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background-color: #BCBDC0;
+    transition: background-color 0.2s ease-out;
+}
+
+.div-single-post-featured-dot:hover {
+    background-color: #7A7C80;
+}
+
+.div-single-post-featured-dot.is-active {
+    background-color: #DCAF47;
 }
 
 .div-single-post-hero-image-wrapper {
