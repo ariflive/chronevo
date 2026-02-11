@@ -62,8 +62,6 @@ $next_post = get_next_post();
             <?php
             $featured_videos = array(
                 $assets_url . '/videos/1.mp4',
-                $assets_url . '/videos/2.mp4',
-                $assets_url . '/videos/3.mp4',
             );
             ?>
             <div class="ref-single-article-featured-image-wrapper div-single-post-featured-image-wrapper mb-8 relative overflow-hidden" data-videos="<?php echo esc_attr(wp_json_encode($featured_videos)); ?>">

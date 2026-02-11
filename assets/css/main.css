@@ -549,61 +549,62 @@ button:focus-visible:hover {
     animation-delay: 0.6s;
 }
 
-/* Service Images Floating Animations */
+/* Service Images Floating Animations - very slow, ~50px square from center, return to center each round */
+/* ref-service-image-* wrappers: transform-origin center; each path random; max displacement ~±25px */
 @keyframes float-service-1 {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(6px, -8px); }
-    50% { transform: translate(-5px, -6px); }
-    75% { transform: translate(8px, 5px); }
+    0%, 100% { transform: translate(-50%, 0); }
+    25% { transform: translate(calc(-50% + 18px), -22px); }
+    50% { transform: translate(calc(-50% - 20px), 12px); }
+    75% { transform: translate(calc(-50% + 10px), 24px); }
 }
 
 @keyframes float-service-2 {
     0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-8px, 6px); }
-    50% { transform: translate(5px, 8px); }
-    75% { transform: translate(-6px, -5px); }
+    25% { transform: translate(-24px, 14px); }
+    50% { transform: translate(20px, -18px); }
+    75% { transform: translate(-12px, -22px); }
 }
 
 @keyframes float-service-3 {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-6px, -8px); }
-    50% { transform: translate(8px, -6px); }
-    75% { transform: translate(-8px, 6px); }
+    0%, 100% { transform: translate(0, -50%); }
+    25% { transform: translate(22px, calc(-50% - 16px)); }
+    50% { transform: translate(-18px, calc(-50% + 20px)); }
+    75% { transform: translate(-20px, calc(-50% - 10px)); }
 }
 
 @keyframes float-service-4 {
     0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-5px, 8px); }
-    50% { transform: translate(8px, -6px); }
-    75% { transform: translate(-8px, -8px); }
+    25% { transform: translate(16px, 24px); }
+    50% { transform: translate(-22px, -14px); }
+    75% { transform: translate(20px, -20px); }
 }
 
 @keyframes float-service-5 {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-8px, -6px); }
-    50% { transform: translate(6px, 8px); }
-    75% { transform: translate(-6px, 6px); }
+    0%, 100% { transform: translate(-50%, 0); }
+    25% { transform: translate(calc(-50% - 14px), 20px); }
+    50% { transform: translate(calc(-50% + 22px), -16px); }
+    75% { transform: translate(calc(-50% - 8px), -24px); }
 }
 
 @keyframes float-service-6 {
     0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(8px, -6px); }
-    50% { transform: translate(-6px, 8px); }
-    75% { transform: translate(6px, -8px); }
+    25% { transform: translate(-20px, -18px); }
+    50% { transform: translate(14px, 22px); }
+    75% { transform: translate(22px, 10px); }
 }
 
 @keyframes float-service-7 {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(6px, 8px); }
-    50% { transform: translate(-8px, -6px); }
-    75% { transform: translate(8px, 6px); }
+    0%, 100% { transform: translate(0, -50%); }
+    25% { transform: translate(-16px, calc(-50% + 22px)); }
+    50% { transform: translate(20px, calc(-50% - 12px)); }
+    75% { transform: translate(14px, calc(-50% + 18px)); }
 }
 
 @keyframes float-service-8 {
     0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(-6px, -8px); }
-    50% { transform: translate(8px, -6px); }
-    75% { transform: translate(-8px, 6px); }
+    25% { transform: translate(12px, -20px); }
+    50% { transform: translate(-24px, 16px); }
+    75% { transform: translate(-18px, -14px); }
 }
 
 .img-service-image-1 {
@@ -725,9 +726,10 @@ button:focus-visible:hover {
 .div-services-title-wrapper {
     z-index: 20;
 }
-/* Services title: 3x base (5.75rem * 3 = 17.25rem). Scoped + wrapper selector so Tailwind cannot override. */
-.ref-services-section .div-services-title-wrapper .h2-services-title {
-    font-size: 12.075rem;
+/* Services title: 3x base, reduced by 15% (12.075rem * 0.85 = 10.26375rem). Scoped + wrapper selector so Tailwind cannot override. */
+.ref-services-section .div-services-title-wrapper .h2-services-title,
+.ref-services-section .ref-services-title {
+    font-size: 10.26375rem;
 }
 
 /* Portfolio Section - White background, full width */
@@ -1325,135 +1327,144 @@ button:focus-visible:hover {
 }
 
 /* Service Image Wrapper Base Styles */
-/* Base dimensions +10%: 240.24px * 1.1 = 264.264px */
+/* 1:1 dimensions randomly between 260x260 and 320x320px per image; base 320px */
+/* Transform transition for very smooth scale in/out on hover (JS drives hover; this is fallback) */
 .div-service-image-wrapper {
     transform-origin: center;
     will-change: transform, width, height, margin;
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    width: 264.264px;
-    height: 264.264px;
+    width: 320px;
+    height: 320px;
     margin: 0;
-    transition: transform 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), width 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), height 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), margin-left 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), margin-top 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: transform 0.95s cubic-bezier(0.33, 1, 0.68, 1), width 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), height 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), margin-left 0.55s cubic-bezier(0.25, 0.1, 0.25, 1), margin-top 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Position images in oval shape close to center */
+/* Position images in oval shape; each 1:1 with random size between 260px and 320px */
 .div-service-image-1 {
     top: 95%;
     left: 50%;
     transform: translateX(-50%);
-    width: calc(264.264px * 1.26);
-    height: calc(264.264px * 1.26);
-    margin-left: calc((264.264px * 1.26 - 264.264px) / -2);
-    margin-top: calc((264.264px * 1.26 - 264.264px) / -2);
+    width: 268px;
+    height: 268px;
+    margin-left: -26px;
+    margin-top: -26px;
 }
 
 .div-service-image-2 {
     top: 18%;
     right: -1%;
+    width: 284px;
+    height: 284px;
 }
 
 .div-service-image-3 {
-    top: 123%;
+    top: 133%;
     right: 18%;
     transform: translateY(-50%);
+    width: 272px;
+    height: 272px;
+    margin-left: -24px;
+    margin-top: -24px;
 }
 
 .div-service-image-4 {
     bottom: 82%;
-    right: 18%;
-    width: 220px;
-    height: 220px;
+    right: 13%;
+    width: 308px;
+    height: 308px;
 }
 
 .div-service-image-5 {
     bottom: 100%;
-    left: 55%;
+    left: 52%;
     transform: translateX(-50%);
-    width: calc(264.264px * 1.22);
-    height: calc(264.264px * 1.22);
-    margin-left: calc((264.264px * 1.22 - 264.264px) / -2);
-    margin-top: calc((264.264px * 1.22 - 264.264px) / -2);
+    width: 296px;
+    height: 296px;
+    margin-left: -12px;
+    margin-top: -12px;
 }
 
 .div-service-image-6 {
-    bottom: 90%;
-    left: 24%;
+    bottom: 91%;
+    left: 18%;
+    width: 276px;
+    height: 276px;
 }
 
 .div-service-image-7 {
     top: 50%;
     left: -3%;
     transform: translateY(-50%);
-    width: calc(264.264px * 1.28);
-    height: calc(264.264px * 1.28);
-    margin-left: calc((264.264px * 1.28 - 264.264px) / -2);
-    margin-top: calc((264.264px * 1.28 - 264.264px) / -2);
+    width: 312px;
+    height: 312px;
+    margin-left: -4px;
+    margin-top: -4px;
 }
 
 .div-service-image-8 {
-    top: 108%;
+    top: 78%;
     left: 17%;
-    width: 242px;
-    height: 242px;
+    width: 320px;
+    height: 320px;
 }
 
-/* CSS-only hover: scale up 20% from center; animation: none so our transform wins over keyframes */
+/* CSS-only hover: scale up ~20px from center; animation: none so our transform wins over keyframes */
 .div-service-image-wrapper:hover {
     animation: none;
     z-index: 10;
     overflow: visible;
-    transform: scale(1.20);
+    transform: scale(1.0625);
 }
 
 /* Preserve positioning translate so zoom stays centered */
 .div-service-image-1:hover {
     animation: none;
     overflow: visible;
-    transform: translateX(-50%) scale(1.20);
+    transform: translateX(-50%) scale(1.0625);
 }
 
 .div-service-image-2:hover {
     animation: none;
     overflow: visible;
-    transform: scale(1.20);
+    transform: scale(1.0625);
 }
 
 .div-service-image-3:hover {
     animation: none;
     overflow: visible;
-    transform: translateY(-50%) scale(1.20);
+    transform: translateY(-50%) scale(1.0625);
 }
 
 .div-service-image-4:hover {
     animation: none;
     overflow: visible;
-    transform: scale(1.20);
+    transform: scale(1.0625);
 }
 
 .div-service-image-5:hover {
     animation: none;
     overflow: visible;
-    transform: translateX(-50%) scale(1.20);
+    transform: translateX(-50%) scale(1.0625);
 }
 
 .div-service-image-6:hover {
     animation: none;
     overflow: visible;
-    transform: scale(1.20);
+    transform: scale(1.0625);
 }
 
 .div-service-image-7:hover {
     animation: none;
     overflow: visible;
-    transform: translateY(-50%) scale(1.20);
+    transform: translateY(-50%) scale(1.0625);
 }
 
 .div-service-image-8:hover {
     animation: none;
     overflow: visible;
-    transform: scale(1.20);
+    transform: scale(1.0625);
 }
 
 /* Scale images inside wrapper on hover to match wrapper scaling */
@@ -1469,7 +1480,7 @@ button:focus-visible:hover {
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Inner img: no size change on hover; wrapper scale(1.20) handles zoom from center (20% scale up) */
+/* Inner img: no size change on hover; wrapper scale(1.0625) ~20px larger from center (320 base) */
 .div-service-image-wrapper:hover .img-service-image-1,
 .div-service-image-wrapper:hover .img-service-image-2,
 .div-service-image-wrapper:hover .img-service-image-3,
@@ -1481,50 +1492,37 @@ button:focus-visible:hover {
     filter: grayscale(0%);
 }
 
-/* Apply same floating animations to wrappers so labels move with images */
-/* These animations use transform, which will be paused and replaced on hover */
+/* Apply same floating animations to wrappers so labels move with images - very slow, random durations */
 .div-service-image-1 {
-    animation: float-service-1 14s ease-in-out infinite;
+    animation: float-service-1 28s ease-in-out infinite;
 }
 
 .div-service-image-2 {
-    animation: float-service-2 16s ease-in-out infinite;
+    animation: float-service-2 32s ease-in-out infinite;
 }
 
 .div-service-image-3 {
-    animation: float-service-3 15s ease-in-out infinite;
+    animation: float-service-3 26s ease-in-out infinite;
 }
 
 .div-service-image-4 {
-    animation: float-service-4 17s ease-in-out infinite;
+    animation: float-service-4 30s ease-in-out infinite;
 }
 
 .div-service-image-5 {
-    animation: float-service-5 14.5s ease-in-out infinite;
+    animation: float-service-5 24s ease-in-out infinite;
 }
 
 .div-service-image-6 {
-    animation: float-service-6 15.5s ease-in-out infinite;
+    animation: float-service-6 31s ease-in-out infinite;
 }
 
 .div-service-image-7 {
-    animation: float-service-7 16.5s ease-in-out infinite;
+    animation: float-service-7 27s ease-in-out infinite;
 }
 
 .div-service-image-8 {
-    animation: float-service-8 14.8s ease-in-out infinite;
-}
-
-/* Disable float animation so JS parallax is the single transform source; zoom in/out then starts and ends at same position */
-.div-service-image-1,
-.div-service-image-2,
-.div-service-image-3,
-.div-service-image-4,
-.div-service-image-5,
-.div-service-image-6,
-.div-service-image-7,
-.div-service-image-8 {
-    animation: none;
+    animation: float-service-8 29s ease-in-out infinite;
 }
 
 /* Service Image Labels - Positioned at bottom center */

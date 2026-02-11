@@ -62,91 +62,65 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Services Section Scroll Parallax
+// Services Section - float in CSS; very smooth scale in/out via JS (~20px bigger on hover, then back)
 document.addEventListener('DOMContentLoaded', function() {
-    const servicesSection = document.querySelector('.section-services');
     const serviceImageWrappers = document.querySelectorAll('.div-service-image-wrapper');
-    
-    if (servicesSection && serviceImageWrappers.length > 0) {
-        function getParallaxTransform(wrapper, index) {
-            const rect = servicesSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const sectionCenter = rect.top + rect.height / 2;
-            const viewportCenter = windowHeight / 2;
-            const distanceFromCenter = Math.abs(sectionCenter - viewportCenter);
-            const maxDistance = windowHeight + rect.height / 2;
-            const scrollProgress = Math.max(0, Math.min(1, 1 - (distanceFromCenter / maxDistance)));
-            const offsetMultiplier = (index % 2 === 0 ? 1 : -1) * (index + 1) * 0.1;
-            const scrollOffsetY = Math.sin(scrollProgress * Math.PI) * 25 * offsetMultiplier;
-            const scrollOffsetX = Math.cos(scrollProgress * Math.PI) * 18 * offsetMultiplier;
-            if (wrapper.classList.contains('div-service-image-1')) {
-                return `translateX(calc(-50% + ${scrollOffsetX}px)) translateY(${scrollOffsetY}px)`;
-            }
-            if (wrapper.classList.contains('div-service-image-3')) {
-                return `translateY(calc(-50% + ${scrollOffsetY}px)) translateX(${scrollOffsetX}px)`;
-            }
-            if (wrapper.classList.contains('div-service-image-5')) {
-                return `translateX(calc(-50% + ${scrollOffsetX}px)) translateY(${scrollOffsetY}px)`;
-            }
-            if (wrapper.classList.contains('div-service-image-7')) {
-                return `translateY(calc(-50% + ${scrollOffsetY}px)) translateX(${scrollOffsetX}px)`;
-            }
-            return `translate(${scrollOffsetX}px, ${scrollOffsetY}px)`;
+    const scaleDuration = 950;
+    const scaleEasing = 'cubic-bezier(0.33, 1, 0.68, 1)';
+    const scaleUp = 1.0625;
+
+    serviceImageWrappers.forEach(function(wrapper) {
+        const childImage = wrapper.querySelector('img');
+
+        function getBaseTransform() {
+            return wrapper.dataset.serviceBaseTransform || '';
         }
 
-        function updateServicesParallax() {
-            serviceImageWrappers.forEach(function(wrapper, index) {
-                if (wrapper.dataset.isHovered === 'true') return;
-                const childImage = wrapper.querySelector('img');
-                if (childImage && childImage.dataset.isHovered === 'true') return;
-                wrapper.style.transform = getParallaxTransform(wrapper, index);
-            });
+        function setBaseTransform(value) {
+            wrapper.dataset.serviceBaseTransform = value;
         }
 
-        function applyHoverScale(wrapper, index) {
-            wrapper.style.transform = getParallaxTransform(wrapper, index) + ' scale(1.20)';
-        }
-
-        serviceImageWrappers.forEach(function(wrapper, index) {
-            const childImage = wrapper.querySelector('img');
-            if (childImage) {
-                childImage.addEventListener('mouseenter', function() {
-                    childImage.dataset.isHovered = 'true';
-                    wrapper.dataset.isHovered = 'true';
-                    applyHoverScale(wrapper, index);
-                });
-                childImage.addEventListener('mouseleave', function() {
-                    childImage.dataset.isHovered = 'false';
-                    wrapper.dataset.isHovered = 'false';
-                    updateServicesParallax();
-                });
-            }
-            wrapper.addEventListener('mouseenter', function() {
-                wrapper.dataset.isHovered = 'true';
-                applyHoverScale(wrapper, index);
-            });
-            wrapper.addEventListener('mouseleave', function() {
-                wrapper.dataset.isHovered = 'false';
-                if (childImage) childImage.dataset.isHovered = 'false';
-                updateServicesParallax();
-            });
-        });
-        
-        let ticking = false;
-        function onScroll() {
-            if (!ticking) {
+        function applyHoverScale() {
+            const base = getComputedStyle(wrapper).transform;
+            setBaseTransform(base);
+            wrapper.style.transition = 'transform ' + (scaleDuration / 1000) + 's ' + scaleEasing;
+            wrapper.style.transform = base;
+            requestAnimationFrame(function() {
                 requestAnimationFrame(function() {
-                    updateServicesParallax();
-                    ticking = false;
+                    wrapper.style.transform = base + ' scale(' + scaleUp + ')';
                 });
-                ticking = true;
-            }
+            });
         }
-        
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', updateServicesParallax);
-        updateServicesParallax();
-    }
+
+        function removeHoverScale() {
+            const base = getBaseTransform();
+            if (!base) return;
+            wrapper.style.transition = 'transform ' + (scaleDuration / 1000) + 's ' + scaleEasing;
+            wrapper.style.transform = base;
+            wrapper.addEventListener('transitionend', function onEnd(e) {
+                if (e.propertyName !== 'transform') return;
+                wrapper.removeEventListener('transitionend', onEnd);
+                wrapper.style.removeProperty('transform');
+                wrapper.style.removeProperty('transition');
+                wrapper.removeAttribute('data-service-base-transform');
+            });
+        }
+
+        function onEnter() {
+            applyHoverScale();
+        }
+
+        function onLeave() {
+            removeHoverScale();
+        }
+
+        if (childImage) {
+            childImage.addEventListener('mouseenter', onEnter);
+            childImage.addEventListener('mouseleave', onLeave);
+        }
+        wrapper.addEventListener('mouseenter', onEnter);
+        wrapper.addEventListener('mouseleave', onLeave);
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -726,7 +700,7 @@ document.addEventListener('DOMContentLoaded', function() {
         playNext();
     });
 
-    if (dotsContainer) {
+    if (dotsContainer && videos.length > 1) {
         videos.forEach(function(_, i) {
             const dot = document.createElement('button');
             dot.type = 'button';
