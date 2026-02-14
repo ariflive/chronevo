@@ -104,44 +104,54 @@ get_header();
     </div>
 </section>
 
-<!-- Trusted By / Where We've Worked - Logo carousel (below ref-portfolio-grid) -->
+<!-- Trusted By / Clients - Logo carousel from category 8 posts (below ref-portfolio-grid) -->
 <?php
-$company_dir = ABSPATH . 'assets/company/';
-$company_images = array();
-if (is_dir($company_dir)) {
-    $extensions = array('jpg', 'jpeg', 'png', 'gif', 'webp');
-    $files = array_diff(scandir($company_dir), array('.', '..'));
-    foreach ($files as $file) {
-        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-        if (in_array($ext, $extensions, true)) {
-            $company_images[] = $file;
+$clients_category = get_term(8, 'category');
+$clients_title = (!is_wp_error($clients_category) && isset($clients_category->name)) ? $clients_category->name : 'Trusted By';
+$clients_subtitle = (!is_wp_error($clients_category) && isset($clients_category->description)) ? strip_tags($clients_category->description) : "Where we've worked";
+
+$clients_query = new WP_Query(array(
+    'cat'                 => 8,
+    'posts_per_page'      => -1,
+    'orderby'             => 'modified',
+    'order'               => 'DESC',
+    'post_status'         => 'publish',
+    'no_found_rows'       => true,
+));
+$clients_items = array();
+if ($clients_query->have_posts()) {
+    while ($clients_query->have_posts()) {
+        $clients_query->the_post();
+        $pid = get_the_ID();
+        $thumb = get_the_post_thumbnail_url($pid, 'large');
+        if (empty($thumb)) {
+            $thumb = $assets_url . '/images/hero-1.jpg';
         }
+        $clients_items[] = array(
+            'url' => $thumb,
+            'alt' => get_the_title(),
+        );
     }
-    shuffle($company_images);
+    wp_reset_postdata();
 }
-$company_base_url = home_url('/assets/company/');
-if (!empty($company_images)) :
+if (!empty($clients_items)) :
 ?>
 <section class="ref-clients-section section-clients w-full py-16 md:py-24 bg-[#F6F7F8] border-t border-[#E1E2E4]">
     <div class="ref-clients-container div-clients-container w-full max-w-[1440px] mx-auto px-6">
         <div class="ref-clients-title-wrapper div-clients-title-wrapper text-center mb-12">
-            <h2 class="ref-clients-title h2-clients-title text-[#4F5053] font-semibold text-2xl md:text-3xl lg:text-4xl uppercase tracking-tight">Trusted By</h2>
-            <p class="ref-clients-subtitle p-clients-subtitle text-[#7A7C80] text-base md:text-lg mt-2">Where we've worked</p>
+            <h2 class="ref-clients-title h2-clients-title text-[#4F5053] font-semibold text-2xl md:text-3xl lg:text-4xl uppercase tracking-tight"><?php echo esc_html($clients_title); ?></h2>
+            <p class="ref-clients-subtitle p-clients-subtitle text-[#7A7C80] text-base md:text-lg mt-2"><?php echo esc_html($clients_subtitle); ?></p>
         </div>
         <div class="ref-clients-carousel div-clients-carousel w-full overflow-hidden">
             <div class="ref-clients-track div-clients-track flex items-center gap-12 md:gap-16 animate-clients-logo-scroll">
                 <?php
-                if (!empty($company_images)) {
-                    foreach (array($company_images, $company_images) as $round) {
-                        foreach ($round as $idx => $file) {
-                            $src = $company_base_url . $file;
-                            $alt = pathinfo($file, PATHINFO_FILENAME);
-                            ?>
-                <div class="ref-clients-logo-item div-clients-logo-item flex-shrink-0 w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 aspect-square flex items-center justify-center p-3">
-                    <img src="<?php echo esc_url($src); ?>" alt="<?php echo esc_attr($alt); ?>" class="ref-clients-logo-img img-clients-logo w-full h-full object-contain object-center grayscale hover:grayscale-0 transition-all duration-300">
+                foreach (array($clients_items, $clients_items) as $round) {
+                    foreach ($round as $item) {
+                        ?>
+                <div class="ref-clients-logo-item div-clients-logo-item group flex-shrink-0 w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 aspect-square flex items-center justify-center p-3 overflow-hidden">
+                    <img src="<?php echo esc_url($item['url']); ?>" alt="<?php echo esc_attr($item['alt']); ?>" class="ref-clients-logo-img img-clients-logo w-full h-full object-contain object-center grayscale group-hover:grayscale-0 transition-all duration-300 ease-out group-hover:scale-110">
                 </div>
-                            <?php
-                        }
+                        <?php
                     }
                 }
                 ?>

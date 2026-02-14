@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2026 at 11:57 AM
+-- Generation Time: Feb 14, 2026 at 12:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,7 +105,7 @@ CREATE TABLE `wp_options` (
 --
 
 INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
-(1, 'cron', 'a:11:{i:1771067578;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1771089196;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771092777;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771094577;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771096377;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771132378;a:2:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1771132396;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1771132400;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1771650823;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1771651238;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'on'),
+(1, 'cron', 'a:11:{i:1771071178;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1771089196;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771092777;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771094577;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771096377;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1771132378;a:2:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1771132396;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1771132400;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1771650823;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1771651238;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'on'),
 (2, 'siteurl', 'http://localhost/chronevo', 'on'),
 (3, 'home', 'http://localhost/chronevo', 'on'),
 (4, 'blogname', 'CHRONEVO', 'on'),
@@ -255,9 +255,9 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (357, '_site_transient_timeout_browser_8e253f85246590342756399a57054cb8', '1771662087', 'off'),
 (358, '_site_transient_browser_8e253f85246590342756399a57054cb8', 'a:10:{s:4:\"name\";s:6:\"Chrome\";s:7:\"version\";s:9:\"144.0.0.0\";s:8:\"platform\";s:7:\"Windows\";s:10:\"update_url\";s:29:\"https://www.google.com/chrome\";s:7:\"img_src\";s:43:\"http://s.w.org/images/browsers/chrome.png?1\";s:11:\"img_src_ssl\";s:44:\"https://s.w.org/images/browsers/chrome.png?1\";s:15:\"current_version\";s:2:\"18\";s:7:\"upgrade\";b:0;s:8:\"insecure\";b:0;s:6:\"mobile\";b:0;}', 'off'),
 (361, '_site_transient_update_core', 'O:8:\"stdClass\":4:{s:7:\"updates\";a:1:{i:0;O:8:\"stdClass\":10:{s:8:\"response\";s:6:\"latest\";s:8:\"download\";s:59:\"https://downloads.wordpress.org/release/wordpress-6.9.1.zip\";s:6:\"locale\";s:5:\"en_US\";s:8:\"packages\";O:8:\"stdClass\":5:{s:4:\"full\";s:59:\"https://downloads.wordpress.org/release/wordpress-6.9.1.zip\";s:10:\"no_content\";s:70:\"https://downloads.wordpress.org/release/wordpress-6.9.1-no-content.zip\";s:11:\"new_bundled\";s:71:\"https://downloads.wordpress.org/release/wordpress-6.9.1-new-bundled.zip\";s:7:\"partial\";s:0:\"\";s:8:\"rollback\";s:0:\"\";}s:7:\"current\";s:5:\"6.9.1\";s:7:\"version\";s:5:\"6.9.1\";s:11:\"php_version\";s:6:\"7.2.24\";s:13:\"mysql_version\";s:5:\"5.5.5\";s:11:\"new_bundled\";s:3:\"6.7\";s:15:\"partial_version\";s:0:\"\";}}s:12:\"last_checked\";i:1771057851;s:15:\"version_checked\";s:5:\"6.9.1\";s:12:\"translations\";a:0:{}}', 'off'),
-(384, 'category_children', 'a:0:{}', 'auto'),
-(392, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1771068271', 'off'),
-(393, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off');
+(395, 'category_children', 'a:0:{}', 'auto'),
+(404, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1771070075', 'off'),
+(405, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off');
 
 -- --------------------------------------------------------
 
@@ -814,7 +814,31 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (597, 104, '_thumbnail_id', '51'),
 (599, 104, 'portfolio_tagline', 'Brand Strategy'),
 (600, 104, '_portfolio_tagline', 'field_69905129bd3f8'),
-(601, 104, '_edit_lock', '1771066138:1');
+(601, 104, '_edit_lock', '1771066138:1'),
+(602, 105, '_edit_last', '1'),
+(603, 105, '_edit_lock', '1771066978:1'),
+(604, 106, '_wp_attached_file', 'lcGi9UV4EX546C04.jpg'),
+(605, 106, '_wp_attachment_metadata', 'a:6:{s:5:\"width\";i:800;s:6:\"height\";i:637;s:4:\"file\";s:20:\"lcGi9UV4EX546C04.jpg\";s:8:\"filesize\";i:97145;s:5:\"sizes\";a:1:{s:12:\"medium_large\";a:5:{s:4:\"file\";s:28:\"lcGi9UV4EX546C04-768x612.jpg\";s:5:\"width\";i:768;s:6:\"height\";i:612;s:9:\"mime-type\";s:10:\"image/jpeg\";s:8:\"filesize\";i:33236;}}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(606, 105, '_thumbnail_id', '106'),
+(608, 107, '_edit_last', '1'),
+(609, 107, '_edit_lock', '1771066955:1'),
+(610, 108, '_wp_attached_file', 'BlvtzamcMqxevrNe.png'),
+(611, 108, '_wp_attachment_metadata', 'a:6:{s:5:\"width\";i:300;s:6:\"height\";i:225;s:4:\"file\";s:20:\"BlvtzamcMqxevrNe.png\";s:8:\"filesize\";i:11735;s:5:\"sizes\";a:0:{}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(612, 107, '_thumbnail_id', '108'),
+(615, 109, '_edit_last', '1'),
+(616, 109, '_edit_lock', '1771067016:1'),
+(617, 110, '_wp_attached_file', 'pNGKeiWZ8D3GOvhW.png'),
+(618, 110, '_wp_attachment_metadata', 'a:6:{s:5:\"width\";i:768;s:6:\"height\";i:591;s:4:\"file\";s:20:\"pNGKeiWZ8D3GOvhW.png\";s:8:\"filesize\";i:7476;s:5:\"sizes\";a:0:{}s:10:\"image_meta\";a:12:{s:8:\"aperture\";s:1:\"0\";s:6:\"credit\";s:0:\"\";s:6:\"camera\";s:0:\"\";s:7:\"caption\";s:0:\"\";s:17:\"created_timestamp\";s:1:\"0\";s:9:\"copyright\";s:0:\"\";s:12:\"focal_length\";s:1:\"0\";s:3:\"iso\";s:1:\"0\";s:13:\"shutter_speed\";s:1:\"0\";s:5:\"title\";s:0:\"\";s:11:\"orientation\";s:1:\"0\";s:8:\"keywords\";a:0:{}}}'),
+(619, 109, '_thumbnail_id', '110'),
+(621, 111, '_edit_last', '1'),
+(622, 111, '_edit_lock', '1771067050:1'),
+(623, 111, '_thumbnail_id', '106'),
+(625, 112, '_edit_last', '1'),
+(626, 112, '_edit_lock', '1771067133:1'),
+(627, 112, '_thumbnail_id', '108'),
+(629, 113, '_edit_last', '1'),
+(630, 113, '_thumbnail_id', '110'),
+(632, 113, '_edit_lock', '1771067172:1');
 
 -- --------------------------------------------------------
 
@@ -950,7 +974,16 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
 (102, 1, '2026-02-14 14:50:13', '2026-02-14 10:50:13', '', 'Advertising', '', 'publish', 'closed', 'closed', '', 'advertising', '', '', '2026-02-14 14:50:13', '2026-02-14 10:50:13', '', 0, 'http://localhost/chronevo/?p=102', 0, 'post', '', 0),
 (103, 1, '2026-02-14 14:50:45', '2026-02-14 10:50:45', '', 'Photography', '', 'publish', 'closed', 'closed', '', 'photography', '', '', '2026-02-14 14:50:45', '2026-02-14 10:50:45', '', 0, 'http://localhost/chronevo/?p=103', 0, 'post', '', 0),
-(104, 1, '2026-02-14 14:51:16', '2026-02-14 10:51:16', '', 'Consulting', '', 'publish', 'closed', 'closed', '', 'consulting', '', '', '2026-02-14 14:51:16', '2026-02-14 10:51:16', '', 0, 'http://localhost/chronevo/?p=104', 0, 'post', '', 0);
+(104, 1, '2026-02-14 14:51:16', '2026-02-14 10:51:16', '', 'Consulting', '', 'publish', 'closed', 'closed', '', 'consulting', '', '', '2026-02-14 14:51:16', '2026-02-14 10:51:16', '', 0, 'http://localhost/chronevo/?p=104', 0, 'post', '', 0),
+(105, 1, '2026-02-14 15:04:05', '2026-02-14 11:04:05', '', 'Audi', '', 'publish', 'closed', 'closed', '', 'audi', '', '', '2026-02-14 15:05:18', '2026-02-14 11:05:18', '', 0, 'http://localhost/chronevo/?p=105', 0, 'post', '', 0),
+(106, 1, '2026-02-14 15:04:01', '2026-02-14 11:04:01', '', 'lcGi9UV4EX546C04', '', 'inherit', 'closed', 'closed', '', 'lcgi9uv4ex546c04', '', '', '2026-02-14 15:04:01', '2026-02-14 11:04:01', '', 105, 'http://localhost/chronevo/media/lcGi9UV4EX546C04.jpg', 0, 'attachment', 'image/jpeg', 0),
+(107, 1, '2026-02-14 15:04:46', '2026-02-14 11:04:46', '', 'Jaguar', '', 'publish', 'closed', 'closed', '', 'jaguar', '', '', '2026-02-14 15:04:46', '2026-02-14 11:04:46', '', 0, 'http://localhost/chronevo/?p=107', 0, 'post', '', 0),
+(108, 1, '2026-02-14 15:04:41', '2026-02-14 11:04:41', '', 'BlvtzamcMqxevrNe', '', 'inherit', 'closed', 'closed', '', 'blvtzamcmqxevrne', '', '', '2026-02-14 15:04:41', '2026-02-14 11:04:41', '', 107, 'http://localhost/chronevo/media/BlvtzamcMqxevrNe.png', 0, 'attachment', 'image/png', 0),
+(109, 1, '2026-02-14 15:05:55', '2026-02-14 11:05:55', '', 'Maserati', '', 'publish', 'closed', 'closed', '', 'maserati', '', '', '2026-02-14 15:05:55', '2026-02-14 11:05:55', '', 0, 'http://localhost/chronevo/?p=109', 0, 'post', '', 0),
+(110, 1, '2026-02-14 15:05:52', '2026-02-14 11:05:52', '', 'pNGKeiWZ8D3GOvhW', '', 'inherit', 'closed', 'closed', '', 'pngkeiwz8d3govhw', '', '', '2026-02-14 15:05:52', '2026-02-14 11:05:52', '', 109, 'http://localhost/chronevo/media/pNGKeiWZ8D3GOvhW.png', 0, 'attachment', 'image/png', 0),
+(111, 1, '2026-02-14 15:06:29', '2026-02-14 11:06:29', '', 'Automobile Workshop', '', 'publish', 'closed', 'closed', '', 'automobile-workshop', '', '', '2026-02-14 15:06:29', '2026-02-14 11:06:29', '', 0, 'http://localhost/chronevo/?p=111', 0, 'post', '', 0),
+(112, 1, '2026-02-14 15:07:35', '2026-02-14 11:07:35', '', 'Sandstorm Motors', '', 'publish', 'closed', 'closed', '', 'sandstorm-motors', '', '', '2026-02-14 15:07:35', '2026-02-14 11:07:35', '', 0, 'http://localhost/chronevo/?p=112', 0, 'post', '', 0),
+(113, 1, '2026-02-14 15:08:07', '2026-02-14 11:08:07', '', 'Automotive Manufacturers', '', 'publish', 'closed', 'closed', '', 'automotive-manufacturers', '', '', '2026-02-14 15:08:07', '2026-02-14 11:08:07', '', 0, 'http://localhost/chronevo/?p=113', 0, 'post', '', 0);
 
 -- --------------------------------------------------------
 
@@ -989,7 +1022,8 @@ INSERT INTO `wp_terms` (`term_id`, `name`, `slug`, `term_group`) VALUES
 (4, 'Footer', 'footer', 0),
 (5, 'Social', 'social', 0),
 (6, 'Portfolio', 'portfolio', 0),
-(7, 'Taglines', 'taglines', 0);
+(7, 'Taglines', 'taglines', 0),
+(8, 'Brands', 'brands', 0);
 
 -- --------------------------------------------------------
 
@@ -1036,7 +1070,13 @@ INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_orde
 (100, 6, 0),
 (102, 6, 0),
 (103, 6, 0),
-(104, 6, 0);
+(104, 6, 0),
+(105, 8, 0),
+(107, 8, 0),
+(109, 8, 0),
+(111, 8, 0),
+(112, 8, 0),
+(113, 8, 0);
 
 -- --------------------------------------------------------
 
@@ -1064,7 +1104,8 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 (4, 4, 'nav_menu', '', 0, 5),
 (5, 5, 'nav_menu', '', 0, 6),
 (6, 6, 'category', '', 0, 6),
-(7, 7, 'category', '', 0, 5);
+(7, 7, 'category', '', 0, 5),
+(8, 8, 'category', 'Where I\'ve worked', 0, 6);
 
 -- --------------------------------------------------------
 
@@ -1271,19 +1312,19 @@ ALTER TABLE `wp_links`
 -- AUTO_INCREMENT for table `wp_options`
 --
 ALTER TABLE `wp_options`
-  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=394;
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=406;
 
 --
 -- AUTO_INCREMENT for table `wp_postmeta`
 --
 ALTER TABLE `wp_postmeta`
-  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=602;
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=633;
 
 --
 -- AUTO_INCREMENT for table `wp_posts`
 --
 ALTER TABLE `wp_posts`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT for table `wp_termmeta`
@@ -1295,13 +1336,13 @@ ALTER TABLE `wp_termmeta`
 -- AUTO_INCREMENT for table `wp_terms`
 --
 ALTER TABLE `wp_terms`
-  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `term_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `wp_term_taxonomy`
 --
 ALTER TABLE `wp_term_taxonomy`
-  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `term_taxonomy_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `wp_usermeta`

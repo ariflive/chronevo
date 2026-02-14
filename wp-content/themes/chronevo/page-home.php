@@ -149,55 +149,41 @@ get_header();
                 <h2 class="ref-services-title h2-services-title text-white font-normal uppercase tracking-tight">Services</h2>
             </div>
             
-            <!-- Floating Images in Oval Shape -->
+            <!-- Floating Images (from category 6, ordered by recently updated) -->
+            <?php
+            $services_query = new WP_Query(array(
+                'cat'                 => 6,
+                'posts_per_page'      => -1,
+                'orderby'             => 'modified',
+                'order'               => 'DESC',
+                'post_status'         => 'publish',
+                'no_found_rows'       => true,
+            ));
+            ?>
             <div class="ref-services-images-wrapper div-services-images-wrapper absolute inset-0 w-full h-full flex items-center justify-center">
-                <!-- Image 1 - Top Center -->
-                <div class="ref-service-image-wrapper ref-service-image-1 div-service-image-wrapper div-service-image-1 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Service Image 1" class="ref-service-image-1 img-service-image-1 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-1 span-service-label span-service-label-1">PR</span>
-                </div>
-                
-                <!-- Image 2 - Top Right -->
-                <div class="ref-service-image-wrapper ref-service-image-2 div-service-image-wrapper div-service-image-2 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/post.jpg'); ?>" alt="Service Image 2" class="ref-service-image-2 img-service-image-2 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-2 span-service-label span-service-label-2">Product</span>
-                </div>
-                
-                <!-- Image 3 - Right Middle -->
-                <div class="ref-service-image-wrapper ref-service-image-3 div-service-image-wrapper div-service-image-3 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-3.jpg'); ?>" alt="Service Image 3" class="ref-service-image-3 img-service-image-3 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-3 span-service-label span-service-label-3">Media</span>
-                </div>
-                
-                <!-- Image 4 - Bottom Right -->
-                <div class="ref-service-image-wrapper ref-service-image-4 div-service-image-wrapper div-service-image-4 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/work.jpg'); ?>" alt="Service Image 4" class="ref-service-image-4 img-service-image-4 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-4 span-service-label span-service-label-4">Digital Design</span>
-                </div>
-                
-                <!-- Image 5 - Bottom Center -->
-                <div class="ref-service-image-wrapper ref-service-image-5 div-service-image-wrapper div-service-image-5 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" alt="Service Image 5" class="ref-service-image-5 img-service-image-5 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-5 span-service-label span-service-label-5">Brand Identity</span>
-                </div>
-                
-                <!-- Image 6 - Bottom Left -->
-                <div class="ref-service-image-wrapper ref-service-image-6 div-service-image-wrapper div-service-image-6 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Service Image 6" class="ref-service-image-6 img-service-image-6 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-6 span-service-label span-service-label-6">Corporate</span>
-                </div>
-                
-                <!-- Image 7 - Left Middle -->
-                <div class="ref-service-image-wrapper ref-service-image-7 div-service-image-wrapper div-service-image-7 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/post.jpg'); ?>" alt="Service Image 7" class="ref-service-image-7 img-service-image-7 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-7 span-service-label span-service-label-7">Contact</span>
-                </div>
-                
-                <!-- Image 8 - Top Left -->
-                <div class="ref-service-image-wrapper ref-service-image-8 div-service-image-wrapper div-service-image-8 absolute">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-3.jpg'); ?>" alt="Service Image 8" class="ref-service-image-8 img-service-image-8 object-cover aspect-square">
-                    <span class="ref-service-label ref-service-label-8 span-service-label span-service-label-8">Supercarbaldie</span>
-                </div>
+                <?php
+                if ($services_query->have_posts()) :
+                    $si = 0;
+                    while ($services_query->have_posts()) :
+                        $services_query->the_post();
+                        $si++;
+                        $pid = get_the_ID();
+                        $thumb = get_the_post_thumbnail_url($pid, 'large');
+                        if (empty($thumb)) {
+                            $thumb = $assets_url . '/images/hero-1.jpg';
+                        }
+                        $service_title = get_the_title();
+                        ?>
+                <a href="<?php echo esc_url(get_permalink()); ?>" class="ref-service-image-wrapper ref-service-image-<?php echo esc_attr((string) $si); ?> div-service-image-wrapper div-service-image-<?php echo esc_attr((string) $si); ?> absolute block">
+                    <img src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($service_title); ?>" class="ref-service-image-<?php echo esc_attr((string) $si); ?> img-service-image-<?php echo esc_attr((string) $si); ?> object-cover aspect-square">
+                    <div class="ref-service-image-overlay div-service-image-overlay absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" aria-hidden="true"></div>
+                    <span class="ref-service-label ref-service-label-<?php echo esc_attr((string) $si); ?> span-service-label span-service-label-<?php echo esc_attr((string) $si); ?>"><?php echo esc_html($service_title); ?></span>
+                </a>
+                        <?php
+                    endwhile;
+                    wp_reset_postdata();
+                endif;
+                ?>
             </div>
         </div>
     </section>
