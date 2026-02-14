@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', function() {
             isVideoLoading = true;
             
             // Extract video ID
-            const videoId = 'KfIaXTb45tI';
+            const videoId = aboutVideoContainer.getAttribute('data-youtube-id') || 'KfIaXTb45tI';
             
             // Hide cover and play button first
             aboutVideoCover.classList.add('hidden');

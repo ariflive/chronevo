@@ -16,19 +16,34 @@ get_header();
     <section class="ref-hero-section section-hero w-full relative pt-12">
         <div class="ref-hero-container div-hero-container w-[90%] mx-auto px-6 relative">
             <div class="ref-hero-images div-hero-images w-full flex items-end justify-center gap-32 relative z-0 pt-[40vh]">
-                <!-- Hero Image 2 - Medium Size -->
-                <div class="ref-hero-image-wrapper-2 div-hero-image-wrapper-2 mb-12">
-                            <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Hero Image 2" class="ref-hero-img-2 img-hero-2 img-hero-animated-fade img-hero-animated-slide w-auto h-[500px] object-cover">
+                <!-- Hero Image 2 - Medium Size (aspect 3/4, image fills) - from ACF photo_left -->
+                <?php
+                $photo_left = get_field('photo_left', get_queried_object_id());
+                $photo_left_url = is_string($photo_left) ? $photo_left : (is_array($photo_left) && !empty($photo_left['url']) ? $photo_left['url'] : '');
+                $hero_img_2_src = $photo_left_url !== '' ? $photo_left_url : $assets_url . '/images/hero-2.jpg';
+                ?>
+                <div class="ref-hero-image-wrapper-2 div-hero-image-wrapper-2 mb-12 aspect-[3/4] overflow-hidden w-[min(375px,90vw)]">
+                    <img src="<?php echo esc_url($hero_img_2_src); ?>" alt="Hero Image 2" class="ref-hero-img-2 img-hero-2 img-hero-animated-fade img-hero-animated-slide w-full h-full object-cover">
                 </div>
                 
-                <!-- Hero Image 1 - Bigger Size -->
-                <div class="ref-hero-image-wrapper-1 div-hero-image-wrapper-1 relative flex-1 min-h-[600px]">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" alt="Hero Image 1" class="ref-hero-img-1 img-hero-1 img-hero-animated-fade img-hero-animated-slide w-full h-full object-cover">
+                <!-- Hero Image 1 - Bigger Size (aspect 1/1, image fills) - from ACF photo_center -->
+                <?php
+                $photo_center = get_field('photo_center', get_queried_object_id());
+                $photo_center_url = is_string($photo_center) ? $photo_center : (is_array($photo_center) && !empty($photo_center['url']) ? $photo_center['url'] : '');
+                $hero_img_1_src = $photo_center_url !== '' ? $photo_center_url : $assets_url . '/images/hero-1.jpg';
+                ?>
+                <div class="ref-hero-image-wrapper-1 div-hero-image-wrapper-1 relative flex-1 min-h-[600px] aspect-square overflow-hidden">
+                    <img src="<?php echo esc_url($hero_img_1_src); ?>" alt="Hero Image 1" class="ref-hero-img-1 img-hero-1 img-hero-animated-fade img-hero-animated-slide w-full h-full object-cover">
                 </div>
                 
-                <!-- Hero Image 3 - Smaller Size -->
-                <div class="ref-hero-image-wrapper-3 div-hero-image-wrapper-3 mb-12">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-3.jpg'); ?>" alt="Hero Image 3" class="ref-hero-img-3 img-hero-3 img-hero-animated-fade img-hero-animated-slide w-auto h-[360px] object-cover">
+                <!-- Hero Image 3 - Smaller Size (aspect 9/16, image fills) - from ACF photo_right -->
+                <?php
+                $photo_right = get_field('photo_right', get_queried_object_id());
+                $photo_right_url = is_string($photo_right) ? $photo_right : (is_array($photo_right) && !empty($photo_right['url']) ? $photo_right['url'] : '');
+                $hero_img_3_src = $photo_right_url !== '' ? $photo_right_url : $assets_url . '/images/hero-3.jpg';
+                ?>
+                <div class="ref-hero-image-wrapper-3 div-hero-image-wrapper-3 mb-12 aspect-[9/16] overflow-hidden w-[min(280px,90vw)]">
+                    <img src="<?php echo esc_url($hero_img_3_src); ?>" alt="Hero Image 3" class="ref-hero-img-3 img-hero-3 img-hero-animated-fade img-hero-animated-slide w-full h-full object-cover">
                 </div>
             </div>
             
@@ -36,61 +51,92 @@ get_header();
             <section class="ref-hero-slogan section-hero-slogan absolute top-0 left-0 right-0 z-10">
                 <h1 class="ref-hero-slogan-title h1-hero-slogan text-[97.2px] md:text-[129.6px] lg:text-[172.8px] font-bold uppercase leading-none">
                     <span class="ref-slogan-connect span-slogan-connect block text-left">
-                        <span class="ref-char-item ref-char-item-1 span-char-item span-char-item-1">C</span>
-                        <span class="ref-char-item ref-char-item-2 span-char-item span-char-item-2">O</span>
-                        <span class="ref-char-item ref-char-item-3 span-char-item span-char-item-3">N</span>
-                        <span class="ref-char-item ref-char-item-4 span-char-item span-char-item-4">N</span>
-                        <span class="ref-char-item ref-char-item-5 span-char-item span-char-item-5">E</span>
-                        <span class="ref-char-item ref-char-item-6 span-char-item span-char-item-6">C</span>
-                        <span class="ref-char-item ref-char-item-7 span-char-item span-char-item-7">T</span>
+                        <?php
+                        $tagline_1 = get_field('tagline_1', get_queried_object_id());
+                        $tagline_1 = is_string($tagline_1) ? mb_strtoupper($tagline_1) : '';
+                        $chars = $tagline_1 !== '' ? mb_str_split($tagline_1) : array('C', 'O', 'N', 'N', 'E', 'C', 'T');
+                        foreach ($chars as $i => $char) {
+                            $idx = $i + 1;
+                            $ref_class = 'ref-char-item-' . $idx;
+                            $span_class = 'span-char-item span-char-item-' . $idx;
+                            ?>
+                        <span class="<?php echo esc_attr($ref_class . ' ' . $span_class); ?>"><?php echo esc_html($char); ?></span>
+                        <?php
+                        }
+                        ?>
                     </span>
                     <span class="ref-slogan-explore span-slogan-explore block text-center">
-                        <span class="ref-explore-char ref-explore-char-1 span-explore-char span-explore-char-1">E</span>
-                        <span class="ref-explore-char ref-explore-char-2 span-explore-char span-explore-char-2">X</span>
-                        <span class="ref-explore-char ref-explore-char-3 span-explore-char span-explore-char-3">P</span>
-                        <span class="ref-explore-char ref-explore-char-4 span-explore-char span-explore-char-4">L</span>
-                        <span class="ref-explore-char ref-explore-char-5 span-explore-char span-explore-char-5">O</span>
-                        <span class="ref-explore-char ref-explore-char-6 span-explore-char span-explore-char-6">R</span>
-                        <span class="ref-explore-char ref-explore-char-7 span-explore-char span-explore-char-7">E</span>
+                        <?php
+                        $tagline_2 = get_field('tagline_2', get_queried_object_id());
+                        $tagline_2 = is_string($tagline_2) ? mb_strtoupper($tagline_2) : '';
+                        $explore_chars = $tagline_2 !== '' ? mb_str_split($tagline_2) : array('E', 'X', 'P', 'L', 'O', 'R', 'E');
+                        foreach ($explore_chars as $j => $explore_char) {
+                            $idx = $j + 1;
+                            $ref_class = 'ref-explore-char--' . $idx;
+                            $span_class = 'span-explore-char span-explore-char-' . $idx;
+                            ?>
+                        <span class="<?php echo esc_attr($ref_class . ' ' . $span_class); ?>"><?php echo esc_html($explore_char); ?></span>
+                        <?php
+                        }
+                        ?>
                     </span>
                     <span class="ref-slogan-design span-slogan-design block text-right">
-                        <span class="ref-design-char ref-design-char-1 span-design-char span-design-char-1">D</span>
-                        <span class="ref-design-char ref-design-char-2 span-design-char span-design-char-2">E</span>
-                        <span class="ref-design-char ref-design-char-3 span-design-char span-design-char-3">S</span>
-                        <span class="ref-design-char ref-design-char-4 span-design-char span-design-char-4">I</span>
-                        <span class="ref-design-char ref-design-char-5 span-design-char span-design-char-5">G</span>
-                        <span class="ref-design-char ref-design-char-6 span-design-char span-design-char-6">N</span>
+                        <?php
+                        $tagline_3 = get_field('tagline_3', get_queried_object_id());
+                        $tagline_3 = is_string($tagline_3) ? mb_strtoupper($tagline_3) : '';
+                        $design_chars = $tagline_3 !== '' ? mb_str_split($tagline_3) : array('D', 'E', 'S', 'I', 'G', 'N');
+                        foreach ($design_chars as $k => $design_char) {
+                            $idx = $k + 1;
+                            $ref_class = 'ref-design-char-' . $idx;
+                            $span_class = 'span-design-char span-design-char-' . $idx;
+                            ?>
+                        <span class="<?php echo esc_attr($ref_class . ' ' . $span_class); ?>"><?php echo esc_html($design_char); ?></span>
+                        <?php
+                        }
+                        ?>
                     </span>
                 </h1>
             </section>
         </div>
     </section>
     
-    <!-- Taglines Section -->
+    <!-- Taglines Section (populated from category taglines, ordered by last updated) -->
+    <?php
+    $taglines_query = new WP_Query(array(
+        'category_name' => 'taglines',
+        'posts_per_page' => -1,
+        'orderby'        => 'modified',
+        'order'          => 'DESC',
+        'post_status'    => 'publish',
+        'no_found_rows'  => true,
+    ));
+    $tagline_posts = $taglines_query->have_posts() ? $taglines_query->posts : array();
+    wp_reset_postdata();
+    $tagline_fallback = array('Visuals & Storytelling', 'Art & Expression', 'Imagery & Meaning', 'Design & Dialogue', 'Picture & Prose');
+    ?>
     <section class="ref-taglines-section section-taglines w-full py-12 relative">
         <div class="ref-taglines-wrapper div-taglines-wrapper flex">
             <div class="ref-taglines-content div-taglines-content flex items-center gap-8 whitespace-nowrap animate-taglines-scroll">
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Visuals & Storytelling</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Art & Expression</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Imagery & Meaning</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Design & Dialogue</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Picture & Prose</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <!-- Duplicate for seamless loop -->
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Visuals & Storytelling</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Art & Expression</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Imagery & Meaning</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Design & Dialogue</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
-                <span class="ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Picture & Prose</span>
-                <span class="ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl">•</span>
+                <?php
+                $tagline_items = array();
+                if (!empty($tagline_posts)) {
+                    foreach ($tagline_posts as $p) {
+                        $tagline_items[] = get_the_title($p);
+                    }
+                } else {
+                    $tagline_items = $tagline_fallback;
+                }
+                $tagline_item_class = 'ref-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight';
+                $separator_class = 'ref-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl';
+                foreach (array($tagline_items, $tagline_items) as $round) {
+                    foreach ($round as $idx => $text) {
+                        ?>
+                <span class="<?php echo esc_attr($tagline_item_class); ?>"><?php echo esc_html($text); ?></span>
+                <span class="<?php echo esc_attr($separator_class); ?>">•</span>
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </section>

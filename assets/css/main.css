@@ -231,6 +231,24 @@ body {
     animation-play-state: running;
 }
 
+/* Clients logo carousel - very slow auto scroll, pause on hover */
+@keyframes clients-logo-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-clients-logo-scroll {
+    animation: clients-logo-scroll 120s linear infinite;
+}
+
+.div-clients-carousel:hover .animate-clients-logo-scroll {
+    animation-play-state: paused;
+}
+
 /* Taglines - Make more diffuse */
 .section-taglines {
     opacity: 1;

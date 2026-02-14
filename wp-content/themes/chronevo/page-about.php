@@ -19,17 +19,27 @@ get_header();
         <div class="ref-about-hero-content div-about-hero-content flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
             <!-- Left Column - Images -->
             <div class="ref-about-hero-image-wrapper div-about-hero-image-wrapper flex-1 w-full lg:w-1/2 relative">
-                <!-- First Image - Portrait, Middle of Container -->
+                <!-- First Image - Portrait, Middle of Container (ACF image_back, aspect 3/4) -->
+                <?php
+                $image_back = get_field('image_back', get_queried_object_id());
+                $image_back_url = is_string($image_back) ? $image_back : (is_array($image_back) && !empty($image_back['url']) ? $image_back['url'] : '');
+                $about_hero_img_1_src = $image_back_url !== '' ? $image_back_url : $assets_url . '/images/about.jpg';
+                ?>
                 <div class="ref-about-hero-image-1-wrapper div-about-hero-image-1-wrapper relative flex items-center justify-center">
-                    <div class="ref-about-hero-image-1 div-about-hero-image-1 relative w-full max-w-md">
-                        <img src="<?php echo esc_url($assets_url . '/images/about.jpg'); ?>" alt="About Chronevo" class="ref-about-hero-img-1 img-about-hero-1 w-full h-auto object-cover">
+                    <div class="ref-about-hero-image-1 div-about-hero-image-1 relative w-full max-w-md aspect-[3/4] overflow-hidden">
+                        <img src="<?php echo esc_url($about_hero_img_1_src); ?>" alt="About Chronevo" class="ref-about-hero-img-1 img-about-hero-1 w-full h-full object-cover">
                     </div>
                 </div>
                 
-                <!-- Second Image - Small, Top Right Overlay -->
+                <!-- Second Image - Small, Top Right Overlay (ACF image_front, aspect 3/4) -->
+                <?php
+                $image_front = get_field('image_front', get_queried_object_id());
+                $image_front_url = is_string($image_front) ? $image_front : (is_array($image_front) && !empty($image_front['url']) ? $image_front['url'] : '');
+                $about_hero_img_2_src = $image_front_url !== '' ? $image_front_url : $assets_url . '/images/about-2.jpg';
+                ?>
                 <div class="ref-about-hero-image-2-wrapper div-about-hero-image-2-wrapper absolute top-1/2 right-0 transform -translate-y-1/2 z-10">
-                    <div class="ref-about-hero-image-2 div-about-hero-image-2 relative w-48 md:w-56 lg:w-64">
-                        <img src="<?php echo esc_url($assets_url . '/images/about-2.jpg'); ?>" alt="About Chronevo" class="ref-about-hero-img-2 img-about-hero-2 w-full h-auto object-cover">
+                    <div class="ref-about-hero-image-2 div-about-hero-image-2 relative w-48 md:w-56 lg:w-64 aspect-[3/4] overflow-hidden">
+                        <img src="<?php echo esc_url($about_hero_img_2_src); ?>" alt="About Chronevo" class="ref-about-hero-img-2 img-about-hero-2 w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -39,22 +49,20 @@ get_header();
                 <div class="ref-about-hero-text-content div-about-hero-text-content">
                     <!-- Short Title -->
                     <div class="ref-about-short-title-wrapper div-about-short-title-wrapper mb-4">
-                        <span class="ref-about-short-title span-about-short-title text-[#4F5053] font-semibold text-sm uppercase tracking-wider">Who Are We</span>
+                        <span class="ref-about-short-title span-about-short-title text-[#4F5053] font-semibold text-sm uppercase tracking-wider"><?php echo esc_html(mb_strtoupper((string) get_field('tagline', get_queried_object_id()))); ?></span>
                     </div>
                     
                     <!-- Main Title -->
                     <h1 class="ref-about-main-title h1-about-main-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 uppercase">
-                        About Us
+                        <?php echo esc_html(mb_strtoupper(get_the_title(get_queried_object_id()))); ?>
                     </h1>
                     
-                    <!-- Description -->
-                    <div class="ref-about-description div-about-description mb-8">
-                        <p class="ref-about-description-text p-about-description-text text-[#7A7C80] text-lg leading-relaxed">
-                            Chronevo is built on restraint, intention, and time. We believe true influence is never forced, it is composed. We work quietly, shaping culture with precision and care. Every decision is measured. Every detail has a purpose. We do not follow trends. We create work that endures.
-                        </p>
-                        <p class="ref-about-description-text p-about-description-text text-[#7A7C80] text-lg leading-relaxed mt-4">
-                            Chronevo exists for brands that value permanence over excess, clarity over noise, and presence over performance. It's not what is seen first, it is what remains.
-                        </p>
+                    <!-- Description (page content) -->
+                    <div class="ref-about-description div-about-description mb-8 text-[#7A7C80] text-lg leading-relaxed [&_p]:mb-4 [&_p:last-child]:mb-0">
+                        <?php
+                        $about_page_content = get_post_field('post_content', get_queried_object_id());
+                        echo apply_filters('the_content', $about_page_content);
+                        ?>
                     </div>
                     
                     <!-- Social Media Links -->
@@ -141,25 +149,47 @@ get_header();
     </div>
 </section>
 
-<!-- Scrolling Text Section -->
+<!-- Scrolling Text Section (items from ACF tagline_1, tagline_2, tagline_3) -->
+<?php
+$about_tagline_1 = get_field('tagline_1', get_queried_object_id());
+$about_tagline_2 = get_field('tagline_2', get_queried_object_id());
+$about_tagline_3 = get_field('tagline_3', get_queried_object_id());
+$about_scrolling_items = array(
+    is_string($about_tagline_1) ? $about_tagline_1 : "Let's Work Together",
+    is_string($about_tagline_2) ? $about_tagline_2 : "Let's Work Together",
+    is_string($about_tagline_3) ? $about_tagline_3 : "Let's Work Together",
+);
+$about_scrolling_item_class = 'ref-scrolling-text-item span-scrolling-text-item text-[#4F5053]/35 font-normal text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight';
+$about_scrolling_sep_class = 'ref-scrolling-text-separator span-scrolling-text-separator text-[#4F5053]/20 text-4xl md:text-5xl lg:text-6xl';
+?>
 <section class="ref-about-scrolling-text section-about-scrolling-text w-full py-12 relative overflow-hidden bg-[#F6F7F8]">
     <div class="ref-about-scrolling-wrapper div-about-scrolling-wrapper flex">
         <div class="ref-about-scrolling-content div-about-scrolling-content flex items-center gap-8 whitespace-nowrap animate-taglines-scroll">
-            <span class="ref-scrolling-text-item span-scrolling-text-item text-[#4F5053]/35 font-normal text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Let's Work Together</span>
-            <span class="ref-scrolling-text-separator span-scrolling-text-separator text-[#4F5053]/20 text-4xl md:text-5xl lg:text-6xl">•</span>
-            <span class="ref-scrolling-text-item span-scrolling-text-item text-[#4F5053]/35 font-normal text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Let's Work Together</span>
-            <span class="ref-scrolling-text-separator span-scrolling-text-separator text-[#4F5053]/20 text-4xl md:text-5xl lg:text-6xl">•</span>
-            <span class="ref-scrolling-text-item span-scrolling-text-item text-[#4F5053]/35 font-normal text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight">Let's Work Together</span>
-            <span class="ref-scrolling-text-separator span-scrolling-text-separator text-[#4F5053]/20 text-4xl md:text-5xl lg:text-6xl">•</span>
+            <?php
+            foreach (array($about_scrolling_items, $about_scrolling_items) as $round) {
+                foreach ($round as $about_text) {
+                    ?>
+            <span class="<?php echo esc_attr($about_scrolling_item_class); ?>"><?php echo esc_html($about_text); ?></span>
+            <span class="<?php echo esc_attr($about_scrolling_sep_class); ?>">•</span>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </div>
 </section>
 
-<!-- Video Section -->
+<!-- Video Section (YouTube ID from ACF "youtube"; section hidden when field is empty) -->
+<?php
+$youtube_video_id = get_field('youtube', get_queried_object_id());
+$youtube_video_id = is_string($youtube_video_id) ? trim($youtube_video_id) : '';
+if ($youtube_video_id !== '') {
+    $youtube_thumbnail_url = 'https://img.youtube.com/vi/' . $youtube_video_id . '/hqdefault.jpg';
+    ?>
 <section class="ref-about-video section-about-video w-full relative overflow-hidden">
     <div class="ref-about-video-wrapper div-about-video-wrapper w-full relative">
         <!-- YouTube Video Container -->
-        <div class="ref-about-video-container div-about-video-container w-full relative bg-black">
+        <div class="ref-about-video-container div-about-video-container w-full relative bg-black" data-youtube-id="<?php echo esc_attr($youtube_video_id); ?>">
             <!-- YouTube iframe (hidden initially, shown after click) -->
             <iframe 
                 id="ref-about-video-iframe" 
@@ -173,14 +203,8 @@ get_header();
             
             <!-- Video Cover/Thumbnail -->
             <div class="ref-about-video-cover div-about-video-cover w-full h-full absolute inset-0 bg-black flex items-center justify-center cursor-none overflow-hidden">
-                <?php
-                // YouTube video ID
-                $youtube_video_id = 'KfIaXTb45tI';
-                // Use hqdefault.jpg as specified
-                $thumbnail_url = 'https://img.youtube.com/vi/' . $youtube_video_id . '/hqdefault.jpg';
-                ?>
                 <img 
-                    src="<?php echo esc_url($thumbnail_url); ?>" 
+                    src="<?php echo esc_url($youtube_thumbnail_url); ?>" 
                     alt="Video Thumbnail" 
                     class="ref-about-video-thumbnail img-about-video-thumbnail w-full h-full object-cover"
                 >
@@ -200,8 +224,12 @@ get_header();
         </div>
     </div>
 </section>
+<?php
+}
+?>
 
-<!-- Awards Section -->
+<!-- Awards Section (display only when ACF "show" is checked) -->
+<?php if (get_field('show', get_queried_object_id())) : ?>
 <section class="ref-about-awards section-about-awards w-full py-24 bg-[#F6F7F8]">
     <div class="ref-about-awards-container div-about-awards-container w-full max-w-[1440px] mx-auto px-6">
         <div class="ref-about-awards-content div-about-awards-content flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
@@ -210,36 +238,38 @@ get_header();
                 <div class="ref-about-awards-text-content div-about-awards-text-content">
                     <!-- Short Title -->
                     <div class="ref-about-awards-short-title-wrapper div-about-awards-short-title-wrapper mb-4">
-                        <span class="ref-about-awards-short-title span-about-awards-short-title text-[#4F5053] font-semibold text-sm uppercase tracking-wider">Huge Honor</span>
+                        <span class="ref-about-awards-short-title span-about-awards-short-title text-[#4F5053] font-semibold text-sm uppercase tracking-wider"><?php echo esc_html(mb_strtoupper((string) get_field('award_tagline', get_queried_object_id()))); ?></span>
                     </div>
                     
                     <!-- Main Title -->
                     <h2 class="ref-about-awards-title h2-about-awards-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 uppercase">
-                        Prestigious awards for design
+                        <?php echo esc_html(mb_strtoupper((string) get_field('title', get_queried_object_id()))); ?>
                     </h2>
                     
                     <!-- Description -->
-                    <div class="ref-about-awards-description div-about-awards-description mb-8">
-                        <p class="ref-about-awards-description-text p-about-awards-description-text text-[#7A7C80] text-lg leading-relaxed">
-                            Dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur. Dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.
-                        </p>
+                    <div class="ref-about-awards-description div-about-awards-description mb-8 text-[#7A7C80] text-lg leading-relaxed [&_p]:mb-4 [&_p:last-child]:mb-0">
+                        <?php
+                        $awards_description = get_field('description', get_queried_object_id());
+                        echo apply_filters('the_content', (string) $awards_description);
+                        ?>
                     </div>
-                    
-                    <!-- CTA Button -->
-                    <a href="<?php echo esc_url(home_url('/faqs')); ?>" class="ref-about-awards-cta link-about-awards-cta inline-flex items-center gap-2 text-[#4F5053] font-semibold uppercase tracking-tight hover:text-[#DCAF47] transition-colors duration-200 group">
-                        <span class="ref-about-awards-cta-text span-about-awards-cta-text">Learn More</span>
-                    </a>
                 </div>
             </div>
             
-            <!-- Right Column - Image or Video -->
+            <!-- Right Column - Image (ACF image, aspect 1/1) -->
+            <?php
+            $awards_image = get_field('image', get_queried_object_id());
+            $awards_image_url = is_string($awards_image) ? $awards_image : (is_array($awards_image) && !empty($awards_image['url']) ? $awards_image['url'] : '');
+            $awards_img_src = $awards_image_url !== '' ? $awards_image_url : $assets_url . '/images/hero-2.jpg';
+            ?>
             <div class="ref-about-awards-media-wrapper div-about-awards-media-wrapper flex-1 w-full lg:w-1/2">
-                <div class="ref-about-awards-media div-about-awards-media relative aspect-[4/3] bg-[#E1E2E4] flex items-center justify-center overflow-hidden group cursor-pointer">
-                    <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Awards" class="ref-about-awards-img img-about-awards w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="ref-about-awards-media div-about-awards-media relative aspect-square overflow-hidden bg-[#E1E2E4] flex items-center justify-center group cursor-pointer">
+                    <img src="<?php echo esc_url($awards_img_src); ?>" alt="Awards" class="ref-about-awards-img img-about-awards w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
             </div>
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <?php get_footer(); ?>

@@ -89,7 +89,8 @@ define( 'WP_DEBUG', false );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
-
+/** Media uploads directory (relative to ABSPATH). */
+define( 'UPLOADS', 'media' );
 
 /* That's all, stop editing! Happy publishing. */
 
