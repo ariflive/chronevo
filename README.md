@@ -69,9 +69,12 @@ Custom WordPress theme for **Chronevo.com** - creative agency bridging professio
 wp-content/themes/chronevo/  [Theme files only]
 ./assets/                    [CSS, JS, images - NEVER in theme/assets/]
 ./_db/                       [Database schema]
+./media/                     [WordPress uploads when UPLOADS is set to 'media']
 ```
 
 **⚠️ CRITICAL:** All assets MUST be in `./assets/*` - NEVER in `wp-content/themes/chronevo/assets/*`
+
+**Tracked in Git (add, commit, push):** `wp-content/themes/chronevo/`, `./assets/`, `./_db/`, `./media/`, and `wp-config.php` when changed. Do **not** commit `wp-admin/` or `wp-includes/` (core).
 
 ---
 
@@ -113,7 +116,7 @@ Build from scratch (no reused elements) | Optimize performance (lazy loading, co
 ## Git Workflow
 
 1. Review repo
-2. Add all changes
+2. Add **tracked** paths only: `wp-content/themes/chronevo/`, `./assets/`, `./_db/`, `./media/`, `README.md`, and `wp-config.php` if modified
 3. Commit with message
 4. **Pre-Push:** Remove all `console.log()` and `error.log()` testing codes
 5. Push to origin/master
