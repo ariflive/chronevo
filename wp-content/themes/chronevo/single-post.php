@@ -60,15 +60,22 @@ $next_post = get_next_post();
         <!-- Single Centered Layout -->
         <div class="ref-single-article-content-wrapper div-single-article-content-wrapper w-full max-w-3xl mx-auto">
             <?php
-            $featured_videos = array(
-                $assets_url . '/videos/1.mp4',
-            );
+            $single_post_id = get_the_ID();
+            $featured_img_url = get_the_post_thumbnail_url($single_post_id, 'large');
+            if (empty($featured_img_url)) {
+                $featured_img_url = $assets_url . '/images/hero-1.jpg';
+            }
+            $portfolio_video_url = get_field('portfolio_video', $single_post_id);
+            $featured_videos = array();
+            if (!empty($portfolio_video_url) && is_string($portfolio_video_url)) {
+                $featured_videos[] = esc_url($portfolio_video_url);
+            }
             ?>
-            <div class="ref-single-article-featured-image-wrapper div-single-post-featured-image-wrapper mb-8 relative overflow-hidden" data-videos="<?php echo esc_attr(wp_json_encode($featured_videos)); ?>">
-                <img 
-                    src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" 
-                    alt="<?php echo esc_attr(get_the_title()); ?>" 
-                    class="ref-single-article-featured-image img-single-post-featured w-full h-auto object-cover"
+            <div class="ref-single-article-featured-image-wrapper div-single-post-featured-image-wrapper mb-8 relative overflow-hidden aspect-[1/1]" data-videos="<?php echo esc_attr(wp_json_encode($featured_videos)); ?>">
+                <img
+                    src="<?php echo esc_url($featured_img_url); ?>"
+                    alt="<?php echo esc_attr(get_the_title()); ?>"
+                    class="ref-single-article-featured-image img-single-post-featured w-full h-full object-cover"
                 >
                 <div class="ref-single-article-featured-video-overlay div-single-post-featured-video-overlay absolute inset-0 w-full h-full opacity-0 pointer-events-none" aria-hidden="true">
                     <video class="ref-single-article-featured-video img-single-post-featured-video w-full h-full object-cover" muted playsinline></video>

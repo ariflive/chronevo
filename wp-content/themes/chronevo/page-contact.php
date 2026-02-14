@@ -78,8 +78,8 @@ get_header();
                     <textarea id="contact-message" name="contact_message" rows="5" class="ref-contact-textarea textarea-contact-message w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base resize-y" placeholder="Your message" required></textarea>
                 </div>
                 
-                <div class="ref-contact-submit-wrapper div-contact-submit-wrapper text-center">
-                    <button type="submit" class="ref-contact-submit button-contact-submit px-8 py-3 bg-[#DCAF47] text-[#4F5053] font-semibold text-sm uppercase tracking-wide transition-colors duration-200">
+                <div class="ref-contact-submit-wrapper div-contact-submit-wrapper flex flex-col sm:flex-row sm:justify-center sm:items-center pt-2 mt-6 border-t border-[#E1E2E4]">
+                    <button type="submit" class="ref-contact-submit button-contact-submit w-full sm:w-auto min-w-[200px] px-8 py-3.5 bg-[#DCAF47] text-[#4F5053] font-semibold text-sm uppercase tracking-wide rounded-sm hover:bg-[#B89438] active:bg-[#8C7325] focus:outline-none focus:ring-2 focus:ring-[#DCAF47] focus:ring-opacity-40 transition-colors duration-200 ease-out">
                         Send Message
                     </button>
                 </div>

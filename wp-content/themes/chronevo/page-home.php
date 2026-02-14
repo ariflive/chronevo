@@ -188,20 +188,25 @@ get_header();
         </div>
     </section>
     
-    <!-- Portfolio Section -->
+    <!-- Portfolio Section (category 6: title + description) -->
+    <?php
+    $portfolio_cat_6 = get_term(6, 'category');
+    $portfolio_short_title = (!is_wp_error($portfolio_cat_6) && isset($portfolio_cat_6->name)) ? $portfolio_cat_6->name : 'My Work';
+    $portfolio_desc_text = (!is_wp_error($portfolio_cat_6) && !empty($portfolio_cat_6->description)) ? strip_tags($portfolio_cat_6->description) : "A look at some of the clients and companies I've been fortunate to work with.";
+    ?>
     <section class="ref-portfolio-section section-portfolio w-full relative">
         <div class="ref-portfolio-container div-portfolio-container w-full max-w-[1440px] mx-auto px-6 py-24">
             <div class="ref-portfolio-content-wrapper div-portfolio-content-wrapper flex gap-12">
                 <!-- Left Column -->
                 <div class="ref-portfolio-left-column div-portfolio-left-column flex flex-col">
-                    <a href="#" class="ref-portfolio-short-title link-portfolio-short-title">
-                        <span class="ref-portfolio-short-title-text span-portfolio-short-title-text">My Work</span>
+                    <a href="<?php echo esc_url(home_url('/portfolio')); ?>" class="ref-portfolio-short-title link-portfolio-short-title">
+                        <span class="ref-portfolio-short-title-text span-portfolio-short-title-text"><?php echo esc_html($portfolio_short_title); ?></span>
                     </a>
                     <h2 class="ref-portfolio-main-title h2-portfolio-main-title">
                         <span class="ref-portfolio-main-title-text span-portfolio-main-title-text">Brands I'm Proud to Work With</span>
                     </h2>
                     <p class="ref-portfolio-description p-portfolio-description">
-                        <span class="ref-portfolio-description-text span-portfolio-description-text">A look at some of the clients and companies I've been fortunate to work with.</span>
+                        <span class="ref-portfolio-description-text span-portfolio-description-text"><?php echo esc_html($portfolio_desc_text); ?></span>
                     </p>
                     
                     <!-- Carousel Navigation -->
@@ -215,7 +220,7 @@ get_header();
                     </div>
                     
                     <!-- Portfolio CTA Button -->
-                    <a href="#" class="ref-portfolio-cta link-portfolio-cta button-portfolio-cta">
+                    <a href="<?php echo esc_url(home_url('/portfolio')); ?>" class="ref-portfolio-cta link-portfolio-cta button-portfolio-cta">
                         <span class="ref-portfolio-cta-text span-portfolio-cta-text">Portfolio</span>
                     </a>
                 </div>
@@ -225,95 +230,39 @@ get_header();
                     <div class="ref-portfolio-carousel-wrapper div-portfolio-carousel-wrapper">
                         <div class="ref-portfolio-carousel-container div-portfolio-carousel-container">
                             <div class="ref-portfolio-carousel-track div-portfolio-carousel-track">
-                                <!-- Card 1 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" alt="Brand Project 1" class="ref-portfolio-card-image img-portfolio-card-image">
+                                <?php
+                                $home_carousel_query = new WP_Query(array(
+                                    'cat'                 => 6,
+                                    'posts_per_page'      => -1,
+                                    'orderby'             => 'date',
+                                    'order'               => 'DESC',
+                                    'post_status'         => 'publish',
+                                    'no_found_rows'       => true,
+                                ));
+                                if ($home_carousel_query->have_posts()) :
+                                    while ($home_carousel_query->have_posts()) :
+                                        $home_carousel_query->the_post();
+                                        $cpid = get_the_ID();
+                                        $cthumb = get_the_post_thumbnail_url($cpid, 'large');
+                                        if (empty($cthumb)) {
+                                            $cthumb = $assets_url . '/images/hero-1.jpg';
+                                        }
+                                        $ctitle = get_the_title();
+                                        ?>
+                                <div class="ref-portfolio-card div-portfolio-card group relative">
+                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper aspect-square overflow-hidden relative">
+                                        <img src="<?php echo esc_url($cthumb); ?>" alt="<?php echo esc_attr($ctitle); ?>" class="ref-portfolio-card-image img-portfolio-card-image w-full h-full object-cover">
+                                        <div class="ref-portfolio-card-overlay div-portfolio-card-overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
                                     </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">BRAND NAME ONE</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Card 2 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Brand Project 2" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">PROJECT TITLE TWO</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Card 3 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-3.jpg'); ?>" alt="Brand Project 3" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">CLIENT BRAND THREE</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Card 4 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" alt="Brand Project 4" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">BRAND FOUR</span>
+                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper absolute bottom-4 left-0 right-0 text-center z-10 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span class="ref-portfolio-card-title span-portfolio-card-title text-white font-semibold drop-shadow-md text-xl md:text-2xl"><?php echo esc_html($ctitle); ?></span>
                                     </div>
                                 </div>
-                                
-                                <!-- Card 5 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Brand Project 5" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">PROJECT FIVE</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Card 6 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-3.jpg'); ?>" alt="Brand Project 6" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">BRAND SIX</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Card 7 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" alt="Brand Project 7" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">CLIENT SEVEN</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Card 8 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Brand Project 8" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">PROJECT EIGHT</span>
-                                    </div>
-                                </div>
-                                
-                                <!-- Card 9 -->
-                                <div class="ref-portfolio-card div-portfolio-card">
-                                    <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper">
-                                        <img src="<?php echo esc_url($assets_url . '/images/hero-3.jpg'); ?>" alt="Brand Project 9" class="ref-portfolio-card-image img-portfolio-card-image">
-                                    </div>
-                                    <div class="ref-portfolio-card-title-wrapper div-portfolio-card-title-wrapper">
-                                        <span class="ref-portfolio-card-title span-portfolio-card-title">BRAND NINE</span>
-                                    </div>
-                                </div>
+                                        <?php
+                                    endwhile;
+                                    wp_reset_postdata();
+                                endif;
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -338,45 +287,66 @@ get_header();
                 
                 <!-- Right Column -->
                 <div class="ref-blog-right-column div-blog-right-column flex flex-col">
+                    <?php
+                    $blog_cat_1 = get_term(1, 'category');
+                    $blog_desc_text = (!is_wp_error($blog_cat_1) && !empty($blog_cat_1->description)) ? strip_tags($blog_cat_1->description) : "Discover insights, trends, and stories from our creative journey. Explore our latest thoughts and updates on design, innovation, and the creative industry. From behind-the-scenes looks at our projects to expert perspectives on emerging trends, our blog offers a window into the world of creative excellence.";
+                    ?>
                     <p class="ref-blog-description p-blog-description">
-                        <span class="ref-blog-description-text span-blog-description-text">Discover insights, trends, and stories from our creative journey. Explore our latest thoughts and updates on design, innovation, and the creative industry. From behind-the-scenes looks at our projects to expert perspectives on emerging trends, our blog offers a window into the world of creative excellence.</span>
+                        <span class="ref-blog-description-text span-blog-description-text"><?php echo esc_html($blog_desc_text); ?></span>
                     </p>
                 </div>
             </div>
             
-            <!-- Blog Posts Row -->
+            <!-- Blog Posts Row (cat=1, ordered by recently updated) -->
+            <?php
+            $blog_posts_query = new WP_Query(array(
+                'cat'                 => 1,
+                'posts_per_page'      => 2,
+                'orderby'             => 'modified',
+                'order'               => 'DESC',
+                'post_status'         => 'publish',
+                'no_found_rows'       => true,
+            ));
+            $blog_posts = $blog_posts_query->have_posts() ? array_map('get_post', $blog_posts_query->posts) : array();
+            wp_reset_postdata();
+            ?>
             <div class="ref-blog-posts-wrapper div-blog-posts-wrapper flex gap-12 px-6 pt-0 pb-24">
-                <!-- Left Column - Post 1 -->
+                <?php
+                $blog_fallback_img = $assets_url . '/images/hero-1.jpg';
+                foreach (array(0, 1) as $col_index) {
+                    $post_one = isset($blog_posts[$col_index]) ? $blog_posts[$col_index] : null;
+                    $col_num = $col_index + 1;
+                    if ($post_one) {
+                        $bpid = $post_one->ID;
+                        $blink = get_permalink($bpid);
+                        $bthumb = get_the_post_thumbnail_url($bpid, 'large');
+                        if (empty($bthumb)) {
+                            $bthumb = $col_num === 1 ? $assets_url . '/images/hero-1.jpg' : $assets_url . '/images/hero-2.jpg';
+                        }
+                        $btitle = mb_strtoupper(get_the_title($bpid));
+                    } else {
+                        $blink = '#';
+                        $bthumb = $col_num === 1 ? $assets_url . '/images/hero-1.jpg' : $assets_url . '/images/hero-2.jpg';
+                        $btitle = $col_num === 1 ? 'SUPERCAR EXCELLENCE' : 'AUTOMOTIVE DESIGN';
+                    }
+                    ?>
                 <div class="ref-blog-post-column div-blog-post-column flex flex-col">
-                    <a href="#" class="ref-blog-post ref-blog-post-1 link-blog-post link-blog-post-1">
+                    <a href="<?php echo esc_url($blink); ?>" class="ref-blog-post ref-blog-post-<?php echo esc_attr((string) $col_num); ?> link-blog-post link-blog-post-<?php echo esc_attr((string) $col_num); ?>">
                         <div class="ref-blog-post-card div-blog-post-card">
-                            <div class="ref-blog-post-image-wrapper div-blog-post-image-wrapper">
-                                <img src="<?php echo esc_url($assets_url . '/images/hero-1.jpg'); ?>" alt="Blog Post 1" class="ref-blog-post-image img-blog-post-image">
+                            <div class="ref-blog-post-image-wrapper div-blog-post-image-wrapper aspect-[16/9] overflow-hidden">
+                                <img src="<?php echo esc_url($bthumb); ?>" alt="<?php echo esc_attr($btitle); ?>" class="ref-blog-post-image img-blog-post-image w-full h-full object-cover">
                             </div>
                             <div class="ref-blog-post-title-wrapper div-blog-post-title-wrapper">
                                 <h3 class="ref-blog-post-title h3-blog-post-title">
-                                    <span class="ref-blog-post-title-text span-blog-post-title-text">SUPERCAR EXCELLENCE</span>
+                                    <span class="ref-blog-post-title-text span-blog-post-title-text"><?php echo esc_html($btitle); ?></span>
                                 </h3>
                             </div>
                         </div>
                     </a>
                 </div>
-                
-                <!-- Right Column - Post 2 -->
-                <div class="ref-blog-post-column div-blog-post-column flex flex-col">
-                    <a href="#" class="ref-blog-post ref-blog-post-2 link-blog-post link-blog-post-2">
-                        <div class="ref-blog-post-card div-blog-post-card">
-                            <div class="ref-blog-post-image-wrapper div-blog-post-image-wrapper">
-                                <img src="<?php echo esc_url($assets_url . '/images/hero-2.jpg'); ?>" alt="Blog Post 2" class="ref-blog-post-image img-blog-post-image">
-                            </div>
-                            <div class="ref-blog-post-title-wrapper div-blog-post-title-wrapper">
-                                <h3 class="ref-blog-post-title h3-blog-post-title">
-                                    <span class="ref-blog-post-title-text span-blog-post-title-text">AUTOMOTIVE DESIGN</span>
-                                </h3>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </section>
