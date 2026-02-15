@@ -15,28 +15,28 @@ get_header();
 ?>
 
 <!-- Blog Section -->
-<section class="ref-blog-category-section section-blog-category w-full relative py-24 bg-[#F6F7F8]">
-    <div class="ref-blog-category-container div-blog-category-container w-full max-w-[1440px] mx-auto px-6">
+<section class="ref-category-blog-section section-blog-category w-full relative py-24 bg-[#F6F7F8]">
+    <div class="ref-category-blog-container div-blog-category-container w-full max-w-[1440px] mx-auto px-6">
         <!-- Page Title -->
-        <div class="ref-blog-category-title-wrapper div-blog-category-title-wrapper text-center mb-6">
-            <h1 class="ref-blog-category-title h1-blog-category-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl uppercase">
+        <div class="ref-category-blog-title-wrapper div-blog-category-title-wrapper text-center mb-6">
+            <h1 class="ref-category-blog-title h1-blog-category-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl uppercase">
                 Blog
             </h1>
         </div>
         
         <!-- Breadcrumb -->
-        <div class="ref-blog-category-breadcrumb-wrapper div-blog-category-breadcrumb-wrapper text-center mb-12">
-            <nav class="ref-blog-category-breadcrumb nav-blog-category-breadcrumb">
-                <ol class="ref-blog-category-breadcrumb-list ol-blog-category-breadcrumb-list flex items-center justify-center gap-2">
-                    <li class="ref-blog-category-breadcrumb-item li-blog-category-breadcrumb-item">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-blog-category-breadcrumb-home link-blog-category-breadcrumb-home text-[#7A7C80] hover:text-[#4F5053] transition-colors duration-200">
+        <div class="ref-category-blog-breadcrumb-wrapper div-blog-category-breadcrumb-wrapper text-center mb-12">
+            <nav class="ref-category-blog-breadcrumb nav-blog-category-breadcrumb">
+                <ol class="ref-category-blog-breadcrumb-list ol-blog-category-breadcrumb-list flex items-center justify-center gap-2">
+                    <li class="ref-category-blog-breadcrumb-item li-blog-category-breadcrumb-item">
+                        <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-category-blog-breadcrumb-home link-blog-category-breadcrumb-home text-[#7A7C80] hover:text-[#4F5053] transition-colors duration-200">
                             Home
                         </a>
                     </li>
-                    <li class="ref-blog-category-breadcrumb-separator li-blog-category-breadcrumb-separator text-[#BCBDC0]">
+                    <li class="ref-category-blog-breadcrumb-separator li-blog-category-breadcrumb-separator text-[#BCBDC0]">
                         /
                     </li>
-                    <li class="ref-blog-category-breadcrumb-current li-blog-category-breadcrumb-current text-[#7A7C80]">
+                    <li class="ref-category-blog-breadcrumb-current li-blog-category-breadcrumb-current text-[#7A7C80]">
                         Blog
                     </li>
                 </ol>
@@ -44,9 +44,9 @@ get_header();
         </div>
         
         <!-- Two Column Layout -->
-        <div class="ref-blog-category-content-wrapper div-blog-category-content-wrapper flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div class="ref-category-blog-content-wrapper div-blog-category-content-wrapper flex flex-col lg:flex-row gap-8 lg:gap-12">
         <!-- Left Column - Article List (category slug "blog" / tag_ID=1, 3 per page, ordered by recently updated) -->
-        <div class="ref-blog-category-content div-blog-category-content w-full lg:w-[65%]">
+        <div class="ref-category-blog-content div-blog-category-content w-full lg:w-[65%]">
             <?php
             $blog_paged = get_query_var('paged') ? (int) get_query_var('paged') : 1;
             $blog_cat = get_queried_object();
@@ -78,22 +78,22 @@ get_header();
                     $index++;
             ?>
             <!-- Article Card -->
-            <article class="ref-blog-article-card ref-blog-article-card-<?php echo esc_attr((string) $index); ?> div-blog-article-card mb-12">
-                <a href="<?php echo esc_url($art_link); ?>" class="ref-blog-article-link link-blog-article block group">
-                    <div class="ref-blog-article-image-wrapper div-blog-article-image-wrapper w-full aspect-[16/9] overflow-hidden mb-4">
+            <article class="ref-category-blog-article-card ref-category-blog-article-card-<?php echo esc_attr((string) $index); ?> div-blog-article-card mb-12">
+                <a href="<?php echo esc_url($art_link); ?>" class="ref-category-blog-article-link link-blog-article block group">
+                    <div class="ref-category-blog-article-image-wrapper div-blog-article-image-wrapper w-full aspect-[16/9] overflow-hidden mb-4">
                         <img
                             src="<?php echo esc_url($art_img); ?>"
                             alt="<?php echo esc_attr($art_title); ?>"
-                            class="ref-blog-article-image img-blog-article-image w-full h-full object-cover"
+                            class="ref-category-blog-article-image img-blog-article-image w-full h-full object-cover"
                         >
                     </div>
-                    <h2 class="ref-blog-article-title h2-blog-article-title text-[#4F5053] font-semibold text-2xl md:text-3xl leading-tight uppercase group-hover:text-[#DCAF47] transition-colors duration-200">
+                    <h2 class="ref-category-blog-article-title h2-blog-article-title text-[#4F5053] font-semibold text-2xl md:text-3xl leading-tight uppercase group-hover:text-[#DCAF47] transition-colors duration-200">
                         <?php echo esc_html($art_title); ?>
                     </h2>
-                    <p class="ref-blog-article-description p-blog-article-description text-[#7A7C80] text-sm line-clamp-1">
+                    <p class="ref-category-blog-article-description p-blog-article-description text-[#7A7C80] text-sm line-clamp-1">
                         <?php echo esc_html($art_excerpt); ?>
                     </p>
-                    <span class="ref-blog-article-read-more span-blog-article-read-more inline-flex items-center gap-2 text-[#7A7C80] group-hover:text-[#4F5053] transition-colors duration-200 text-sm font-medium uppercase tracking-wide">
+                    <span class="ref-category-blog-article-read-more span-blog-article-read-more inline-flex items-center gap-2 text-[#7A7C80] group-hover:text-[#4F5053] transition-colors duration-200 text-sm font-medium uppercase tracking-wide">
                         Read more
                         <i class="ph ph-arrow-right"></i>
                     </span>
@@ -115,7 +115,7 @@ get_header();
             }
             ?>
             <?php if ($show_pagination) : ?>
-            <nav class="ref-blog-category-pagination nav-blog-category-pagination div-blog-category-pagination flex justify-center items-center gap-2 mt-12 pt-8 border-t border-[#E1E2E4]">
+            <nav class="ref-category-blog-pagination nav-blog-category-pagination div-blog-category-pagination flex justify-center items-center gap-2 mt-12 pt-8 border-t border-[#E1E2E4]">
                 <?php
                 $prev_url = $blog_paged > 1 ? get_pagenum_link($blog_paged - 1, false) : '';
                 $next_url = $blog_paged < $blog_max_pages ? get_pagenum_link($blog_paged + 1, false) : '';
@@ -128,20 +128,20 @@ get_header();
                 }
                 ?>
                 <?php if ($prev_url) : ?>
-                <a href="<?php echo esc_url($prev_url); ?>" class="ref-blog-pagination-prev link-blog-pagination-prev px-4 py-2 text-[#7A7C80] hover:text-[#4F5053] hover:bg-[#E1E2E4] transition-colors duration-200 text-sm font-medium">
+                <a href="<?php echo esc_url($prev_url); ?>" class="ref-category-blog-pagination-prev link-blog-pagination-prev px-4 py-2 text-[#7A7C80] hover:text-[#4F5053] hover:bg-[#E1E2E4] transition-colors duration-200 text-sm font-medium">
                     ← Previous
                 </a>
                 <?php else : ?>
-                <span class="ref-blog-pagination-prev span-blog-pagination-prev px-4 py-2 text-[#BCBDC0] cursor-not-allowed text-sm font-medium">← Previous</span>
+                <span class="ref-category-blog-pagination-prev span-blog-pagination-prev px-4 py-2 text-[#BCBDC0] cursor-not-allowed text-sm font-medium">← Previous</span>
                 <?php endif; ?>
-                <span class="ref-blog-pagination-pages span-blog-pagination-pages flex gap-1">
+                <span class="ref-category-blog-pagination-pages span-blog-pagination-pages flex gap-1">
                     <?php
                     for ($p = 1; $p <= $blog_max_pages; $p++) {
                         $is_current = (int) $p === (int) $blog_paged;
                         $page_url = $p === 1 ? $term_link : get_pagenum_link($p, false);
-                        $link_class = 'ref-blog-pagination-page link-blog-pagination-page px-3 py-2 text-[#7A7C80] hover:text-[#4F5053] hover:bg-[#E1E2E4] transition-colors duration-200 text-sm font-medium';
+                        $link_class = 'ref-category-blog-pagination-page link-blog-pagination-page px-3 py-2 text-[#7A7C80] hover:text-[#4F5053] hover:bg-[#E1E2E4] transition-colors duration-200 text-sm font-medium';
                         if ($is_current) {
-                            $link_class = 'ref-blog-pagination-page ref-blog-pagination-page-current link-blog-pagination-page link-blog-pagination-page-current px-3 py-2 text-sm font-medium';
+                            $link_class = 'ref-category-blog-pagination-page ref-category-blog-pagination-page-current link-blog-pagination-page link-blog-pagination-page-current px-3 py-2 text-sm font-medium';
                         }
                         if ($is_current) {
                             echo '<span class="' . esc_attr($link_class) . '">' . (int) $p . '</span>';
@@ -152,18 +152,18 @@ get_header();
                     ?>
                 </span>
                 <?php if ($next_url) : ?>
-                <a href="<?php echo esc_url($next_url); ?>" class="ref-blog-pagination-next link-blog-pagination-next px-4 py-2 text-[#7A7C80] hover:text-[#4F5053] hover:bg-[#E1E2E4] transition-colors duration-200 text-sm font-medium">
+                <a href="<?php echo esc_url($next_url); ?>" class="ref-category-blog-pagination-next link-blog-pagination-next px-4 py-2 text-[#7A7C80] hover:text-[#4F5053] hover:bg-[#E1E2E4] transition-colors duration-200 text-sm font-medium">
                     Next →
                 </a>
                 <?php else : ?>
-                <span class="ref-blog-pagination-next span-blog-pagination-next px-4 py-2 text-[#BCBDC0] cursor-not-allowed text-sm font-medium">Next →</span>
+                <span class="ref-category-blog-pagination-next span-blog-pagination-next px-4 py-2 text-[#BCBDC0] cursor-not-allowed text-sm font-medium">Next →</span>
                 <?php endif; ?>
             </nav>
             <?php endif; ?>
         </div>
         
         <!-- Right Column - Recent Posts -->
-        <div class="ref-blog-category-sidebar div-blog-category-sidebar w-full lg:w-[35%]">
+        <div class="ref-category-blog-sidebar div-blog-category-sidebar w-full lg:w-[35%]">
             <div class="ref-blog-recent-posts-wrapper div-blog-recent-posts-wrapper">
                 <h3 class="ref-blog-recent-posts-title h3-blog-recent-posts-title text-[#4F5053] font-semibold text-lg uppercase mb-4">
                     Recent Posts

@@ -648,7 +648,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Single article featured image: hover to show video slideshow (continues after mouse out)
 document.addEventListener('DOMContentLoaded', function() {
-    const wrapper = document.querySelector('.ref-single-article-featured-image-wrapper');
+    const wrapper = document.querySelector('.ref-single-post-featured-image-wrapper');
     if (!wrapper) return;
     const dataVideos = wrapper.getAttribute('data-videos');
     if (!dataVideos) return;
@@ -659,9 +659,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     if (videos.length === 0) return;
-    const overlay = wrapper.querySelector('.ref-single-article-featured-video-overlay');
-    const videoEl = wrapper.querySelector('.ref-single-article-featured-video');
-    const dotsContainer = wrapper.querySelector('.ref-single-article-featured-dots');
+    const overlay = wrapper.querySelector('.ref-single-post-featured-video-overlay');
+    const videoEl = wrapper.querySelector('.ref-single-post-featured-video');
+    const dotsContainer = wrapper.querySelector('.ref-single-post-featured-dots');
     if (!overlay || !videoEl) return;
 
     let currentIndex = 0;
@@ -704,7 +704,7 @@ document.addEventListener('DOMContentLoaded', function() {
         videos.forEach(function(_, i) {
             const dot = document.createElement('button');
             dot.type = 'button';
-            dot.className = 'ref-single-article-featured-dot div-single-post-featured-dot';
+            dot.className = 'ref-single-post-featured-dot div-single-post-featured-dot';
             dot.setAttribute('aria-label', 'Go to video ' + (i + 1));
             dot.dataset.index = String(i);
             dot.addEventListener('click', function() {
