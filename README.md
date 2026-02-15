@@ -65,6 +65,7 @@ Custom WordPress theme for **Chronevo.com** - creative agency bridging professio
 **Frontend:** Tailwind CSS CDN (`https://cdn.tailwindcss.com`), custom CSS `./assets/css/main.css` only if Tailwind fails | Vanilla JS (ES6+) `./assets/js/main.js` | No inline CSS/scripts, no `!important`
 
 **File Structure:**
+
 ```
 wp-content/themes/chronevo/  [Theme files only]
 ./assets/                    [CSS, JS, images - NEVER in theme/assets/]
@@ -74,7 +75,7 @@ wp-content/themes/chronevo/  [Theme files only]
 
 **⚠️ CRITICAL:** All assets MUST be in `./assets/*` - NEVER in `wp-content/themes/chronevo/assets/*`
 
-**Tracked in Git (add, commit, push):** `wp-content/themes/chronevo/`, `./assets/`, `./_db/`, `./media/`, and `wp-config.php` when changed. Do **not** commit `wp-admin/` or `wp-includes/` (core).
+**Tracked in Git (add, commit, push):** `wp-content/themes/chronevo/`, `./assets/`, `./_db/`, `./media/`, and `wp-config.php` when changed.
 
 ---
 
@@ -103,6 +104,7 @@ Modify ONLY `wp-content/themes/chronevo` | Never delete without permission | Use
 ### Page Transitions
 
 **MANDATORY:** All page changes require:
+
 - Small grey circled loader with smooth transition
 - Fadeout effect for next page
 - Apply to all pages
