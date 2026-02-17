@@ -87,12 +87,15 @@ $next_post = get_next_post();
                 <div class="ref-single-post-main div-single-post-description div-single-article-main">
                     <?php
                     $content = get_the_content();
-                    if (!empty($content)) {
-                        the_content();
-                    } else {
-                        ?>
-                        <!-- Dummy Article Contents -->
-                        <div class="ref-single-post-dummy div-single-post-dummy-content">
+                    ?>
+                    <!-- Post content placed inside ref-single-post-dummy -->
+                    <div class="ref-single-post-dummy div-single-post-dummy-content">
+                        <?php
+                        if (!empty($content)) {
+                            the_content();
+                        } else {
+                            ?>
+                            <!-- Dummy Article Contents -->
                             <p class="ref-single-post-paragraph p-single-post-dummy-paragraph text-[#7A7C80] text-base leading-relaxed mb-6">
                                 Design trends are constantly evolving, shaping the way we interact with digital and physical spaces. In recent years, we have seen a significant shift towards minimalism, sustainability, and user-centric design approaches.
                             </p>
@@ -130,10 +133,10 @@ $next_post = get_next_post();
                             <p class="ref-single-post-paragraph p-single-post-dummy-paragraph text-[#7A7C80] text-base leading-relaxed mb-8">
                                 As we move forward, designers must continue to adapt and evolve their practices to meet the changing needs of users and the environment. Every decision is measured. Every detail has a purpose.
                             </p>
-                        </div>
-                        <?php
-                    }
-                    ?>
+                            <?php
+                        }
+                        ?>
+                    </div>
                 </div>
             
             <!-- Share -->
@@ -159,8 +162,8 @@ $next_post = get_next_post();
             
             <!-- Back to Blog Link -->
             <div class="ref-single-post-back-wrapper div-single-post-next-link-wrapper mt-8 text-center">
-                <a href="<?php echo esc_url(home_url('/blog')); ?>" class="ref-single-post-back-link link-single-post-next text-[#7A7C80] hover:text-[#4F5053] transition-colors duration-200 text-sm">
-                    ← Back to Blog
+                <a href="<?php echo esc_url($category_link); ?>" class="ref-single-post-back-link link-single-post-next text-[#7A7C80] hover:text-[#4F5053] transition-colors duration-200 text-sm">
+                    ← Back to <?php echo esc_html($category_name); ?>
                 </a>
             </div>
         </div>
