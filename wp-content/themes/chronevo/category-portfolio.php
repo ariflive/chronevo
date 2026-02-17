@@ -106,10 +106,6 @@ get_header();
 
 <!-- Trusted By / Clients - Logo carousel from category 8 posts (below ref-portfolio-grid) -->
 <?php
-$clients_category = get_term(8, 'category');
-$clients_title = (!is_wp_error($clients_category) && isset($clients_category->name)) ? $clients_category->name : 'Trusted By';
-$clients_subtitle = (!is_wp_error($clients_category) && isset($clients_category->description)) ? strip_tags($clients_category->description) : "Where we've worked";
-
 $clients_query = new WP_Query(array(
     'cat'                 => 8,
     'posts_per_page'      => -1,
@@ -139,8 +135,7 @@ if (!empty($clients_items)) :
 <section class="ref-clients-section section-clients w-full py-16 md:py-24 bg-[#F6F7F8] border-t border-[#E1E2E4]">
     <div class="ref-clients-container div-clients-container w-full max-w-[1440px] mx-auto px-6">
         <div class="ref-clients-title-wrapper div-clients-title-wrapper text-center mb-12">
-            <h2 class="ref-clients-title h2-clients-title text-[#4F5053] font-semibold text-2xl md:text-3xl lg:text-4xl uppercase tracking-tight"><?php echo esc_html($clients_title); ?></h2>
-            <p class="ref-clients-subtitle p-clients-subtitle text-[#7A7C80] text-base md:text-lg mt-2"><?php echo esc_html($clients_subtitle); ?></p>
+            <h2 class="ref-clients-title h2-clients-title text-[#4F5053] font-semibold text-2xl md:text-3xl lg:text-4xl uppercase tracking-tight">Clients</h2>
         </div>
         <div class="ref-clients-carousel div-clients-carousel w-full overflow-hidden">
             <div class="ref-clients-track div-clients-track flex items-center gap-12 md:gap-16 animate-clients-logo-scroll">
