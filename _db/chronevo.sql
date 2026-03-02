@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2026 at 04:44 PM
+-- Generation Time: Mar 02, 2026 at 05:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -105,7 +105,7 @@ CREATE TABLE `wp_options` (
 --
 
 INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`) VALUES
-(1, 'cron', 'a:12:{i:1772467978;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1772471596;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772475177;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772476977;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772478777;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772514778;a:1:{s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1772514796;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1772514800;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1772860423;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1772860838;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1772946778;a:1:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'on'),
+(1, 'cron', 'a:12:{i:1772471578;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1772471596;a:1:{s:21:\"wp_update_user_counts\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772475177;a:1:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772476977;a:1:{s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772478777;a:1:{s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1772514778;a:1:{s:32:\"recovery_mode_clean_expired_keys\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1772514796;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1772514800;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1772860423;a:1:{s:30:\"wp_delete_temp_updater_backups\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1772860838;a:1:{s:27:\"acf_update_site_health_data\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}i:1772946778;a:1:{s:30:\"wp_site_health_scheduled_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'on'),
 (2, 'siteurl', 'http://localhost/chronevo', 'on'),
 (3, 'home', 'http://localhost/chronevo', 'on'),
 (4, 'blogname', 'CHRONEVO', 'on'),
@@ -256,8 +256,8 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (509, '_site_transient_timeout_browser_7c73ef5b8d3235ae0606f2e84e457ff5', '1773059938', 'off'),
 (510, '_site_transient_browser_7c73ef5b8d3235ae0606f2e84e457ff5', 'a:10:{s:4:\"name\";s:6:\"Chrome\";s:7:\"version\";s:9:\"145.0.0.0\";s:8:\"platform\";s:7:\"Windows\";s:10:\"update_url\";s:29:\"https://www.google.com/chrome\";s:7:\"img_src\";s:43:\"http://s.w.org/images/browsers/chrome.png?1\";s:11:\"img_src_ssl\";s:44:\"https://s.w.org/images/browsers/chrome.png?1\";s:15:\"current_version\";s:2:\"18\";s:7:\"upgrade\";b:0;s:8:\"insecure\";b:0;s:6:\"mobile\";b:0;}', 'off'),
 (522, 'category_children', 'a:0:{}', 'auto'),
-(540, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1772467800', 'off'),
-(541, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off');
+(548, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1772469605', 'off'),
+(549, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off');
 
 -- --------------------------------------------------------
 
@@ -802,9 +802,9 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (583, 100, '_edit_lock', '1772464120:1'),
 (584, 102, '_edit_last', '1'),
 (585, 102, '_thumbnail_id', '75'),
-(587, 102, 'portfolio_tagline', 'Print Campaign'),
+(587, 102, 'portfolio_tagline', 'Elevated Visual Storytelling for Modern Brands'),
 (588, 102, '_portfolio_tagline', 'field_69905129bd3f8'),
-(589, 102, '_edit_lock', '1771102017:1'),
+(589, 102, '_edit_lock', '1772467544:1'),
 (590, 103, '_edit_last', '1'),
 (591, 103, '_thumbnail_id', '77'),
 (593, 103, 'portfolio_tagline', 'Product Photography'),
@@ -855,7 +855,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (657, 119, '_wp_attachment_metadata', 'a:7:{s:8:\"filesize\";i:25950240;s:9:\"mime_type\";s:15:\"video/quicktime\";s:5:\"width\";i:2560;s:6:\"height\";i:1440;s:10:\"fileformat\";s:3:\"mp4\";s:10:\"dataformat\";s:9:\"quicktime\";s:17:\"created_timestamp\";i:-2082844800;}'),
 (659, 103, 'portfolio_video', '119'),
 (660, 103, '_portfolio_video', 'field_6990dc6905835'),
-(662, 102, 'portfolio_video', '118'),
+(662, 102, 'portfolio_video', '137'),
 (663, 102, '_portfolio_video', 'field_6990dc6905835'),
 (665, 100, 'portfolio_video', '119'),
 (666, 100, '_portfolio_video', 'field_6990dc6905835'),
@@ -902,7 +902,34 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (737, 135, '_edit_last', '1'),
 (738, 135, '_edit_lock', '1772466132:1'),
 (740, 104, 'show_image', '0'),
-(741, 104, '_show_image', 'field_69a5af2213e2d');
+(741, 104, '_show_image', 'field_69a5af2213e2d'),
+(743, 102, '_wp_old_slug', 'advertising'),
+(744, 137, '_wp_attached_file', 'qjazSbqc4uv3cH0O.mp4'),
+(745, 137, '_wp_attachment_metadata', 'a:11:{s:7:\"bitrate\";i:21666252;s:8:\"filesize\";i:27612506;s:9:\"mime_type\";s:9:\"video/mp4\";s:6:\"length\";i:10;s:16:\"length_formatted\";s:4:\"0:10\";s:5:\"width\";i:1920;s:6:\"height\";i:1900;s:10:\"fileformat\";s:3:\"mp4\";s:10:\"dataformat\";s:9:\"quicktime\";s:5:\"audio\";a:9:{s:10:\"dataformat\";s:3:\"mp4\";s:7:\"bitrate\";i:316832;s:5:\"codec\";s:19:\"ISO/IEC 14496-3 AAC\";s:11:\"sample_rate\";d:48000;s:8:\"channels\";i:2;s:15:\"bits_per_sample\";i:16;s:8:\"lossless\";b:0;s:11:\"channelmode\";s:6:\"stereo\";s:17:\"compression_ratio\";d:0.20627083333333332;}s:17:\"created_timestamp\";i:1772445038;}'),
+(747, 102, 'external_url', ''),
+(748, 102, '_external_url', 'field_69a585d831453'),
+(751, 140, '_wp_attached_file', 'od6jdjCuFZ1AbPCs.mp4'),
+(752, 140, '_wp_attachment_metadata', 'a:11:{s:7:\"bitrate\";i:21520107;s:8:\"filesize\";i:27312884;s:9:\"mime_type\";s:9:\"video/mp4\";s:6:\"length\";i:10;s:16:\"length_formatted\";s:4:\"0:10\";s:5:\"width\";i:1920;s:6:\"height\";i:1900;s:10:\"fileformat\";s:3:\"mp4\";s:10:\"dataformat\";s:9:\"quicktime\";s:5:\"audio\";a:9:{s:10:\"dataformat\";s:3:\"mp4\";s:7:\"bitrate\";i:316830;s:5:\"codec\";s:19:\"ISO/IEC 14496-3 AAC\";s:11:\"sample_rate\";d:48000;s:8:\"channels\";i:2;s:15:\"bits_per_sample\";i:16;s:8:\"lossless\";b:0;s:11:\"channelmode\";s:6:\"stereo\";s:17:\"compression_ratio\";d:0.20626953125;}s:17:\"created_timestamp\";i:1772446785;}'),
+(753, 139, '_edit_last', '1'),
+(754, 139, '_thumbnail_id', '75'),
+(756, 139, 'portfolio_tagline', 'Confident, Cohesive, and Human'),
+(757, 139, '_portfolio_tagline', 'field_69905129bd3f8'),
+(758, 139, 'portfolio_video', '140'),
+(759, 139, '_portfolio_video', 'field_6990dc6905835'),
+(760, 139, 'external_url', ''),
+(761, 139, '_external_url', 'field_69a585d831453'),
+(762, 139, '_edit_lock', '1772467645:1'),
+(763, 142, '_wp_attached_file', 'nTw4Z9ah7TMJxAf8.mp4'),
+(764, 142, '_wp_attachment_metadata', 'a:11:{s:7:\"bitrate\";i:23074855;s:8:\"filesize\";i:29253210;s:9:\"mime_type\";s:9:\"video/mp4\";s:6:\"length\";i:10;s:16:\"length_formatted\";s:4:\"0:10\";s:5:\"width\";i:1920;s:6:\"height\";i:1900;s:10:\"fileformat\";s:3:\"mp4\";s:10:\"dataformat\";s:9:\"quicktime\";s:5:\"audio\";a:9:{s:10:\"dataformat\";s:3:\"mp4\";s:7:\"bitrate\";i:316830;s:5:\"codec\";s:19:\"ISO/IEC 14496-3 AAC\";s:11:\"sample_rate\";d:48000;s:8:\"channels\";i:2;s:15:\"bits_per_sample\";i:16;s:8:\"lossless\";b:0;s:11:\"channelmode\";s:6:\"stereo\";s:17:\"compression_ratio\";d:0.20626953125;}s:17:\"created_timestamp\";i:1772446001;}'),
+(765, 141, '_edit_last', '1'),
+(767, 141, 'portfolio_tagline', 'Seamless execution. Compelling visual storytelling.'),
+(768, 141, '_portfolio_tagline', 'field_69905129bd3f8'),
+(769, 141, 'portfolio_video', '142'),
+(770, 141, '_portfolio_video', 'field_6990dc6905835'),
+(771, 141, 'external_url', ''),
+(772, 141, '_external_url', 'field_69a585d831453'),
+(773, 141, '_edit_lock', '1772467702:1'),
+(774, 141, '_thumbnail_id', '75');
 
 -- --------------------------------------------------------
 
@@ -1034,7 +1061,7 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (99, 1, '2026-02-14 14:47:58', '2026-02-14 10:47:58', 'Clear, engaging written content that strengthens your voice, builds authority, and connects meaningfully with your audience.', 'Editorial', '', 'publish', 'closed', 'closed', '', 'editorial', '', '', '2026-03-02 18:43:43', '2026-03-02 14:43:43', '', 0, 'http://localhost/chronevo/?p=99', 0, 'post', '', 0),
 (100, 1, '2026-02-14 14:49:24', '2026-02-14 10:49:24', 'User-focused digital experiences, from websites to interfaces, crafted to be visually compelling, intuitive, and performance-driven.', 'Digital Design', '', 'publish', 'closed', 'closed', '', 'digital-design', '', '', '2026-03-02 18:43:49', '2026-03-02 14:43:49', '', 0, 'http://localhost/chronevo/?p=100', 0, 'post', '', 0);
 INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
-(102, 1, '2026-02-14 14:50:13', '2026-02-14 10:50:13', '', 'Advertising', '', 'publish', 'closed', 'closed', '', 'advertising', '', '', '2026-02-15 00:49:17', '2026-02-14 20:49:17', '', 0, 'http://localhost/chronevo/?p=102', 0, 'post', '', 0),
+(102, 1, '2026-02-14 14:50:13', '2026-02-14 10:50:13', 'Product Portraiture transforms objects into icons. Through intentional lighting, composition, and styling, each product is treated as the subject of a carefully crafted portrait—designed to communicate value, detail, and brand character at first glance.\r\n\r\nProduct Portraiture goes beyond standard product photography. It applies the principles of classic portraiture—depth, mood, texture, and personality—to physical objects. Every detail is considered: lighting direction, surface interaction, shadow structure, and spatial composition.', 'Product Portraiture', '', 'publish', 'closed', 'closed', '', 'product-portraiture', '', '', '2026-03-02 20:03:01', '2026-03-02 16:03:01', '', 0, 'http://localhost/chronevo/?p=102', 0, 'post', '', 0),
 (103, 1, '2026-02-14 14:50:45', '2026-02-14 10:50:45', 'High-quality visual content that captures your brand’s essence, communicates credibility, and elevates your presence across digital and print platforms.', 'Photography', '', 'publish', 'closed', 'closed', '', 'photography', '', '', '2026-03-02 18:43:09', '2026-03-02 14:43:09', '', 0, 'http://localhost/chronevo/?p=103', 0, 'post', '', 0),
 (104, 1, '2026-02-14 14:51:16', '2026-02-14 10:51:16', 'Strategic guidance to clarify your vision, refine your positioning, and implement practical solutions that drive measurable growth.', 'Consulting', '', 'publish', 'closed', 'closed', '', 'consulting', '', '', '2026-03-02 19:40:35', '2026-03-02 15:40:35', '', 0, 'http://localhost/chronevo/?p=104', 0, 'post', '', 0),
 (105, 1, '2026-02-14 15:04:05', '2026-02-14 11:04:05', '', 'G42', '', 'publish', 'closed', 'closed', '', 'g42', '', '', '2026-02-17 21:34:45', '2026-02-17 17:34:45', '', 0, 'http://localhost/chronevo/?p=105', 0, 'post', '', 0),
@@ -1067,7 +1094,13 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (133, 1, '2026-03-02 18:06:50', '2026-03-02 14:06:50', '', 'Supercarbaldie', '', 'inherit', 'closed', 'closed', '', '126-autosave-v1', '', '', '2026-03-02 18:06:50', '2026-03-02 14:06:50', '', 126, 'http://localhost/chronevo/?p=133', 0, 'revision', '', 0),
 (134, 1, '2026-03-02 18:07:28', '2026-03-02 14:07:28', '', 'Consulting', '', 'inherit', 'closed', 'closed', '', '104-autosave-v1', '', '', '2026-03-02 18:07:28', '2026-03-02 14:07:28', '', 104, 'http://localhost/chronevo/?p=134', 0, 'revision', '', 0),
 (135, 1, '2026-03-02 19:40:01', '2026-03-02 15:40:01', 'a:9:{s:8:\"location\";a:1:{i:0;a:1:{i:0;a:3:{s:5:\"param\";s:13:\"post_category\";s:8:\"operator\";s:2:\"==\";s:5:\"value\";s:17:\"category:services\";}}}s:8:\"position\";s:6:\"normal\";s:5:\"style\";s:7:\"default\";s:15:\"label_placement\";s:3:\"top\";s:21:\"instruction_placement\";s:5:\"label\";s:14:\"hide_on_screen\";s:0:\"\";s:11:\"description\";s:0:\"\";s:12:\"show_in_rest\";i:0;s:13:\"display_title\";s:0:\"\";}', 'Services Fields', 'services-fields', 'publish', 'closed', 'closed', '', 'group_69a5af2231e34', '', '', '2026-03-02 19:40:15', '2026-03-02 15:40:15', '', 0, 'http://localhost/chronevo/?post_type=acf-field-group&#038;p=135', 0, 'acf-field-group', '', 0),
-(136, 1, '2026-03-02 19:40:01', '2026-03-02 15:40:01', 'a:12:{s:10:\"aria-label\";s:0:\"\";s:4:\"type\";s:10:\"true_false\";s:12:\"instructions\";s:0:\"\";s:8:\"required\";i:0;s:17:\"conditional_logic\";i:0;s:7:\"wrapper\";a:3:{s:5:\"width\";s:0:\"\";s:5:\"class\";s:0:\"\";s:2:\"id\";s:0:\"\";}s:7:\"message\";s:0:\"\";s:13:\"default_value\";i:1;s:17:\"allow_in_bindings\";i:0;s:2:\"ui\";i:0;s:10:\"ui_on_text\";s:0:\"\";s:11:\"ui_off_text\";s:0:\"\";}', 'Show Image', 'show_image', 'publish', 'closed', 'closed', '', 'field_69a5af2213e2d', '', '', '2026-03-02 19:40:01', '2026-03-02 15:40:01', '', 135, 'http://localhost/chronevo/?post_type=acf-field&p=136', 0, 'acf-field', '', 0);
+(136, 1, '2026-03-02 19:40:01', '2026-03-02 15:40:01', 'a:12:{s:10:\"aria-label\";s:0:\"\";s:4:\"type\";s:10:\"true_false\";s:12:\"instructions\";s:0:\"\";s:8:\"required\";i:0;s:17:\"conditional_logic\";i:0;s:7:\"wrapper\";a:3:{s:5:\"width\";s:0:\"\";s:5:\"class\";s:0:\"\";s:2:\"id\";s:0:\"\";}s:7:\"message\";s:0:\"\";s:13:\"default_value\";i:1;s:17:\"allow_in_bindings\";i:0;s:2:\"ui\";i:0;s:10:\"ui_on_text\";s:0:\"\";s:11:\"ui_off_text\";s:0:\"\";}', 'Show Image', 'show_image', 'publish', 'closed', 'closed', '', 'field_69a5af2213e2d', '', '', '2026-03-02 19:40:01', '2026-03-02 15:40:01', '', 135, 'http://localhost/chronevo/?post_type=acf-field&p=136', 0, 'acf-field', '', 0),
+(137, 1, '2026-03-02 20:01:53', '2026-03-02 16:01:53', '', 'qjazSbqc4uv3cH0O', '', 'inherit', 'closed', 'closed', '', 'qjazsbqc4uv3ch0o', '', '', '2026-03-02 20:01:53', '2026-03-02 16:01:53', '', 102, 'http://localhost/chronevo/media/qjazSbqc4uv3cH0O.mp4', 0, 'attachment', 'video/mp4', 0),
+(138, 1, '2026-03-02 20:02:01', '2026-03-02 16:02:01', 'Elevated Visual Storytelling for Modern Brands\n\nProduct Portraiture transforms objects into icons. Through intentional lighting, composition, and styling, each product is treated as the subject of a carefully crafted portrait—designed to communicate value, detail, and brand character at first glance.\n\nProduct Portraiture goes beyond standard product photography. It applies the principles of classic portraiture—depth, mood, texture, and personality—to physical objects. Every detail is considered: lighting direction, surface interaction, shadow structure, and spatial composition.', 'Product Portraiture', '', 'inherit', 'closed', 'closed', '', '102-autosave-v1', '', '', '2026-03-02 20:02:01', '2026-03-02 16:02:01', '', 102, 'http://localhost/chronevo/?p=138', 0, 'revision', '', 0),
+(139, 1, '2026-03-02 20:08:57', '2026-03-02 16:08:57', 'Professional team portraiture that reflects the personality, credibility, and culture behind your brand. Whether for corporate websites, annual reports, press features, or internal communications, these portraits present your team with clarity and confidence.\r\n\r\nStrong team imagery does more than document people — it communicates leadership, approachability, and professionalism. Each session is carefully directed to ensure consistency in lighting, composition, and expression, while still allowing individual personality to come through.', 'Professional Team Portraiture', '', 'publish', 'closed', 'closed', '', 'professional-team-portraiture', '', '', '2026-03-02 20:08:57', '2026-03-02 16:08:57', '', 0, 'http://localhost/chronevo/?p=139', 0, 'post', '', 0),
+(140, 1, '2026-03-02 20:08:41', '2026-03-02 16:08:41', '', 'od6jdjCuFZ1AbPCs', '', 'inherit', 'closed', 'closed', '', 'od6jdjcufz1abpcs', '', '', '2026-03-02 20:08:41', '2026-03-02 16:08:41', '', 139, 'http://localhost/chronevo/media/od6jdjCuFZ1AbPCs.mp4', 0, 'attachment', 'video/mp4', 0),
+(141, 1, '2026-03-02 20:10:23', '2026-03-02 16:10:23', 'Successful events require more than logistics — they demand precision, atmosphere, and narrative. Event Delivery and Imagery combines operational execution with high-impact visual documentation to ensure every moment is both flawlessly managed and meaningfully captured.\r\n\r\nFrom concept development through on-site coordination, event delivery focuses on structured planning, timeline management, vendor alignment, and audience experience. Every detail is engineered to support the broader objective — whether that’s brand positioning, community engagement, or commercial impact.\r\n\r\nAlongside delivery, imagery plays a critical strategic role. Professional photography captures not just the event itself, but its energy, interactions, and brand presence. These visuals extend the lifecycle of the event — becoming marketing assets, press materials, social content, and long-term brand documentation.', 'Event Delivery and Imagery', '', 'publish', 'closed', 'closed', '', 'event-delivery-and-imagery', '', '', '2026-03-02 20:10:32', '2026-03-02 16:10:32', '', 0, 'http://localhost/chronevo/?p=141', 0, 'post', '', 0),
+(142, 1, '2026-03-02 20:10:10', '2026-03-02 16:10:10', '', 'nTw4Z9ah7TMJxAf8', '', 'inherit', 'closed', 'closed', '', 'ntw4z9ah7tmjxaf8', '', '', '2026-03-02 20:10:10', '2026-03-02 16:10:10', '', 141, 'http://localhost/chronevo/media/nTw4Z9ah7TMJxAf8.mp4', 0, 'attachment', 'video/mp4', 0);
 
 -- --------------------------------------------------------
 
@@ -1164,7 +1197,9 @@ INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_orde
 (114, 1, 0),
 (115, 1, 0),
 (116, 1, 0),
-(126, 9, 0);
+(126, 9, 0),
+(139, 6, 0),
+(141, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -1191,7 +1226,7 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 (3, 3, 'nav_menu', '', 0, 5),
 (4, 4, 'nav_menu', '', 0, 5),
 (5, 5, 'nav_menu', '', 0, 6),
-(6, 6, 'category', 'A look at some of the clients and companies I\'ve been fortunate to work with.', 0, 1),
+(6, 6, 'category', 'A look at some of the clients and companies I\'ve been fortunate to work with.', 0, 3),
 (7, 7, 'category', '', 0, 5),
 (8, 8, 'category', 'Where I\'ve worked', 0, 5),
 (9, 9, 'category', '', 0, 6);
@@ -1401,19 +1436,19 @@ ALTER TABLE `wp_links`
 -- AUTO_INCREMENT for table `wp_options`
 --
 ALTER TABLE `wp_options`
-  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- AUTO_INCREMENT for table `wp_postmeta`
 --
 ALTER TABLE `wp_postmeta`
-  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=742;
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=776;
 
 --
 -- AUTO_INCREMENT for table `wp_posts`
 --
 ALTER TABLE `wp_posts`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `wp_termmeta`
