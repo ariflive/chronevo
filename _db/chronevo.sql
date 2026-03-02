@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2026 at 04:28 PM
+-- Generation Time: Mar 02, 2026 at 04:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -256,8 +256,8 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (509, '_site_transient_timeout_browser_7c73ef5b8d3235ae0606f2e84e457ff5', '1773059938', 'off'),
 (510, '_site_transient_browser_7c73ef5b8d3235ae0606f2e84e457ff5', 'a:10:{s:4:\"name\";s:6:\"Chrome\";s:7:\"version\";s:9:\"145.0.0.0\";s:8:\"platform\";s:7:\"Windows\";s:10:\"update_url\";s:29:\"https://www.google.com/chrome\";s:7:\"img_src\";s:43:\"http://s.w.org/images/browsers/chrome.png?1\";s:11:\"img_src_ssl\";s:44:\"https://s.w.org/images/browsers/chrome.png?1\";s:15:\"current_version\";s:2:\"18\";s:7:\"upgrade\";b:0;s:8:\"insecure\";b:0;s:6:\"mobile\";b:0;}', 'off'),
 (522, 'category_children', 'a:0:{}', 'auto'),
-(537, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1772465981', 'off'),
-(538, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off');
+(540, '_site_transient_timeout_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', '1772467800', 'off'),
+(541, '_site_transient_wp_theme_files_patterns-c4b9c41e05247c5c7f92b5a0c83b2f76', 'a:2:{s:7:\"version\";s:5:\"1.0.0\";s:8:\"patterns\";a:0:{}}', 'off');
 
 -- --------------------------------------------------------
 
@@ -814,7 +814,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (597, 104, '_thumbnail_id', '51'),
 (599, 104, 'portfolio_tagline', 'Brand Strategy'),
 (600, 104, '_portfolio_tagline', 'field_69905129bd3f8'),
-(601, 104, '_edit_lock', '1772462432:1'),
+(601, 104, '_edit_lock', '1772466130:1'),
 (602, 105, '_edit_last', '1'),
 (603, 105, '_edit_lock', '1771349666:1'),
 (604, 106, '_wp_attached_file', 'lcGi9UV4EX546C04.jpg'),
@@ -898,7 +898,11 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (721, 132, '_wp_attached_file', 'mORMxMbEv6gDe7Od.mp4'),
 (722, 132, '_wp_attachment_metadata', 'a:11:{s:7:\"bitrate\";i:21666252;s:8:\"filesize\";i:27612506;s:9:\"mime_type\";s:9:\"video/mp4\";s:6:\"length\";i:10;s:16:\"length_formatted\";s:4:\"0:10\";s:5:\"width\";i:1920;s:6:\"height\";i:1900;s:10:\"fileformat\";s:3:\"mp4\";s:10:\"dataformat\";s:9:\"quicktime\";s:5:\"audio\";a:9:{s:10:\"dataformat\";s:3:\"mp4\";s:7:\"bitrate\";i:316832;s:5:\"codec\";s:19:\"ISO/IEC 14496-3 AAC\";s:11:\"sample_rate\";d:48000;s:8:\"channels\";i:2;s:15:\"bits_per_sample\";i:16;s:8:\"lossless\";b:0;s:11:\"channelmode\";s:6:\"stereo\";s:17:\"compression_ratio\";d:0.20627083333333332;}s:17:\"created_timestamp\";i:1772445038;}'),
 (723, 8, 'video_mp4', ''),
-(724, 8, '_video_mp4', 'field_69a58a1aaa9c1');
+(724, 8, '_video_mp4', 'field_69a58a1aaa9c1'),
+(737, 135, '_edit_last', '1'),
+(738, 135, '_edit_lock', '1772466132:1'),
+(740, 104, 'show_image', '0'),
+(741, 104, '_show_image', 'field_69a5af2213e2d');
 
 -- --------------------------------------------------------
 
@@ -1032,7 +1036,7 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
 (102, 1, '2026-02-14 14:50:13', '2026-02-14 10:50:13', '', 'Advertising', '', 'publish', 'closed', 'closed', '', 'advertising', '', '', '2026-02-15 00:49:17', '2026-02-14 20:49:17', '', 0, 'http://localhost/chronevo/?p=102', 0, 'post', '', 0),
 (103, 1, '2026-02-14 14:50:45', '2026-02-14 10:50:45', 'High-quality visual content that captures your brand’s essence, communicates credibility, and elevates your presence across digital and print platforms.', 'Photography', '', 'publish', 'closed', 'closed', '', 'photography', '', '', '2026-03-02 18:43:09', '2026-03-02 14:43:09', '', 0, 'http://localhost/chronevo/?p=103', 0, 'post', '', 0),
-(104, 1, '2026-02-14 14:51:16', '2026-02-14 10:51:16', 'Strategic guidance to clarify your vision, refine your positioning, and implement practical solutions that drive measurable growth.', 'Consulting', '', 'publish', 'closed', 'closed', '', 'consulting', '', '', '2026-03-02 18:42:51', '2026-03-02 14:42:51', '', 0, 'http://localhost/chronevo/?p=104', 0, 'post', '', 0),
+(104, 1, '2026-02-14 14:51:16', '2026-02-14 10:51:16', 'Strategic guidance to clarify your vision, refine your positioning, and implement practical solutions that drive measurable growth.', 'Consulting', '', 'publish', 'closed', 'closed', '', 'consulting', '', '', '2026-03-02 19:40:35', '2026-03-02 15:40:35', '', 0, 'http://localhost/chronevo/?p=104', 0, 'post', '', 0),
 (105, 1, '2026-02-14 15:04:05', '2026-02-14 11:04:05', '', 'G42', '', 'publish', 'closed', 'closed', '', 'g42', '', '', '2026-02-17 21:34:45', '2026-02-17 17:34:45', '', 0, 'http://localhost/chronevo/?p=105', 0, 'post', '', 0),
 (106, 1, '2026-02-14 15:04:01', '2026-02-14 11:04:01', '', 'lcGi9UV4EX546C04', '', 'inherit', 'closed', 'closed', '', 'lcgi9uv4ex546c04', '', '', '2026-02-14 15:04:01', '2026-02-14 11:04:01', '', 105, 'http://localhost/chronevo/media/lcGi9UV4EX546C04.jpg', 0, 'attachment', 'image/jpeg', 0),
 (107, 1, '2026-02-14 15:04:46', '2026-02-14 11:04:46', '', 'Arab News', '', 'publish', 'closed', 'closed', '', 'arab-news', '', '', '2026-02-17 21:37:41', '2026-02-17 17:37:41', '', 0, 'http://localhost/chronevo/?p=107', 0, 'post', '', 0),
@@ -1061,7 +1065,9 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (131, 1, '2026-03-02 17:02:35', '2026-03-02 13:02:35', 'a:12:{s:10:\"aria-label\";s:0:\"\";s:4:\"type\";s:4:\"file\";s:12:\"instructions\";s:0:\"\";s:8:\"required\";i:0;s:17:\"conditional_logic\";i:0;s:7:\"wrapper\";a:3:{s:5:\"width\";s:0:\"\";s:5:\"class\";s:0:\"\";s:2:\"id\";s:0:\"\";}s:13:\"return_format\";s:2:\"id\";s:7:\"library\";s:3:\"all\";s:8:\"min_size\";s:0:\"\";s:8:\"max_size\";s:0:\"\";s:10:\"mime_types\";s:0:\"\";s:17:\"allow_in_bindings\";i:0;}', 'Video MP4', 'video_mp4', 'publish', 'closed', 'closed', '', 'field_69a58a1aaa9c1', '', '', '2026-03-02 17:45:17', '2026-03-02 13:45:17', '', 67, 'http://localhost/chronevo/?post_type=acf-field&#038;p=131', 5, 'acf-field', '', 0),
 (132, 1, '2026-03-02 17:11:18', '2026-03-02 13:11:18', '', 'mORMxMbEv6gDe7Od', '', 'inherit', 'closed', 'closed', '', 'mormxmbev6gde7od', '', '', '2026-03-02 17:11:18', '2026-03-02 13:11:18', '', 8, 'http://localhost/chronevo/media/mORMxMbEv6gDe7Od.mp4', 0, 'attachment', 'video/mp4', 0),
 (133, 1, '2026-03-02 18:06:50', '2026-03-02 14:06:50', '', 'Supercarbaldie', '', 'inherit', 'closed', 'closed', '', '126-autosave-v1', '', '', '2026-03-02 18:06:50', '2026-03-02 14:06:50', '', 126, 'http://localhost/chronevo/?p=133', 0, 'revision', '', 0),
-(134, 1, '2026-03-02 18:07:28', '2026-03-02 14:07:28', '', 'Consulting', '', 'inherit', 'closed', 'closed', '', '104-autosave-v1', '', '', '2026-03-02 18:07:28', '2026-03-02 14:07:28', '', 104, 'http://localhost/chronevo/?p=134', 0, 'revision', '', 0);
+(134, 1, '2026-03-02 18:07:28', '2026-03-02 14:07:28', '', 'Consulting', '', 'inherit', 'closed', 'closed', '', '104-autosave-v1', '', '', '2026-03-02 18:07:28', '2026-03-02 14:07:28', '', 104, 'http://localhost/chronevo/?p=134', 0, 'revision', '', 0),
+(135, 1, '2026-03-02 19:40:01', '2026-03-02 15:40:01', 'a:9:{s:8:\"location\";a:1:{i:0;a:1:{i:0;a:3:{s:5:\"param\";s:13:\"post_category\";s:8:\"operator\";s:2:\"==\";s:5:\"value\";s:17:\"category:services\";}}}s:8:\"position\";s:6:\"normal\";s:5:\"style\";s:7:\"default\";s:15:\"label_placement\";s:3:\"top\";s:21:\"instruction_placement\";s:5:\"label\";s:14:\"hide_on_screen\";s:0:\"\";s:11:\"description\";s:0:\"\";s:12:\"show_in_rest\";i:0;s:13:\"display_title\";s:0:\"\";}', 'Services Fields', 'services-fields', 'publish', 'closed', 'closed', '', 'group_69a5af2231e34', '', '', '2026-03-02 19:40:15', '2026-03-02 15:40:15', '', 0, 'http://localhost/chronevo/?post_type=acf-field-group&#038;p=135', 0, 'acf-field-group', '', 0),
+(136, 1, '2026-03-02 19:40:01', '2026-03-02 15:40:01', 'a:12:{s:10:\"aria-label\";s:0:\"\";s:4:\"type\";s:10:\"true_false\";s:12:\"instructions\";s:0:\"\";s:8:\"required\";i:0;s:17:\"conditional_logic\";i:0;s:7:\"wrapper\";a:3:{s:5:\"width\";s:0:\"\";s:5:\"class\";s:0:\"\";s:2:\"id\";s:0:\"\";}s:7:\"message\";s:0:\"\";s:13:\"default_value\";i:1;s:17:\"allow_in_bindings\";i:0;s:2:\"ui\";i:0;s:10:\"ui_on_text\";s:0:\"\";s:11:\"ui_off_text\";s:0:\"\";}', 'Show Image', 'show_image', 'publish', 'closed', 'closed', '', 'field_69a5af2213e2d', '', '', '2026-03-02 19:40:01', '2026-03-02 15:40:01', '', 135, 'http://localhost/chronevo/?post_type=acf-field&p=136', 0, 'acf-field', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1395,19 +1401,19 @@ ALTER TABLE `wp_links`
 -- AUTO_INCREMENT for table `wp_options`
 --
 ALTER TABLE `wp_options`
-  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=540;
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=543;
 
 --
 -- AUTO_INCREMENT for table `wp_postmeta`
 --
 ALTER TABLE `wp_postmeta`
-  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=737;
+  MODIFY `meta_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=742;
 
 --
 -- AUTO_INCREMENT for table `wp_posts`
 --
 ALTER TABLE `wp_posts`
-  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 
 --
 -- AUTO_INCREMENT for table `wp_termmeta`
