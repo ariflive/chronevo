@@ -2535,6 +2535,93 @@ button:focus-visible:hover {
     margin-bottom: 2rem;
 }
 
+/* ref-about-awards-description: inner content typography (h3, p, em, strong, a, lists) – theme pattern */
+.ref-about-awards-description h3,
+.div-about-awards-description h3 {
+    font-weight: 600;
+    color: #4F5053;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin: 0 0 1rem;
+    letter-spacing: 0.02em;
+}
+
+.ref-about-awards-description h3:first-child,
+.div-about-awards-description h3:first-child {
+    margin-top: 0;
+}
+
+.ref-about-awards-description p,
+.div-about-awards-description p {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #7A7C80;
+    font-weight: 400;
+    margin: 0 0 1rem;
+}
+
+.ref-about-awards-description p:last-child,
+.div-about-awards-description p:last-child {
+    margin-bottom: 0;
+}
+
+.ref-about-awards-description em,
+.div-about-awards-description em {
+    font-style: italic;
+    color: #4F5053;
+    font-weight: 500;
+}
+
+.ref-about-awards-description strong,
+.div-about-awards-description strong {
+    font-weight: 600;
+    color: #4F5053;
+}
+
+.ref-about-awards-description a,
+.div-about-awards-description a {
+    color: #DCAF47;
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+}
+
+.ref-about-awards-description a:hover,
+.div-about-awards-description a:hover {
+    color: #B89438;
+}
+
+.ref-about-awards-description ul,
+.div-about-awards-description ul {
+    list-style: disc outside;
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+.ref-about-awards-description ol,
+.div-about-awards-description ol {
+    list-style: decimal outside;
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+.ref-about-awards-description li,
+.div-about-awards-description li {
+    margin-bottom: 0.5rem;
+    color: #7A7C80;
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+.ref-about-awards-description blockquote,
+.div-about-awards-description blockquote {
+    margin: 1rem 0;
+    padding-left: 1rem;
+    border-left: 2px solid #DCAF47;
+    color: #4F5053;
+    font-style: italic;
+    font-size: 1.125rem;
+}
+
 .p-about-awards-description-text {
     font-size: 1.125rem;
     line-height: 1.75;
@@ -2950,6 +3037,11 @@ button:focus-visible:hover {
         flex-direction: row;
         gap: 3rem;
     }
+}
+
+/* Max width for single service/content (48rem) */
+.max-w-3xl {
+    max-width: 48rem;
 }
 
 /* Single Article - Centered Layout */
@@ -3813,4 +3905,95 @@ button:focus-visible:hover {
 
 .button-contact-submit:active {
     background-color: #8C7325;
+}
+
+/* Single Service – contact block CTAs */
+.div-single-service-contact-block {
+    text-align: center;
+}
+
+.h2-single-service-contact-heading {
+    color: #4F5053;
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.p-single-service-contact-intro {
+    color: #7A7C80;
+    font-size: 1rem;
+    line-height: 1.625;
+    margin-bottom: 1.5rem;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div-single-service-cta-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .div-single-service-cta-wrapper {
+        flex-direction: row;
+    }
+}
+
+.link-single-service-contact-cta {
+    display: inline-block;
+    padding: 0.875rem 2rem;
+    background-color: #DCAF47;
+    color: #4F5053;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    border-radius: 0.125rem;
+    text-decoration: none;
+    border: none;
+    transition: background-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.link-single-service-contact-cta:hover {
+    background-color: #B89438;
+}
+
+.link-single-service-contact-cta:active {
+    background-color: #8C7325;
+}
+
+.link-single-service-contact-cta:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(220, 175, 71, 0.4);
+}
+
+.link-single-service-portfolio-cta {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #E1E2E4;
+    background-color: transparent;
+    color: #4F5053;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    border-radius: 0.125rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.link-single-service-portfolio-cta:hover {
+    background-color: #F6F7F8;
+    border-color: #BCBDC0;
+}
+
+.link-single-service-portfolio-cta:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(220, 175, 71, 0.4);
 }

@@ -149,10 +149,10 @@ get_header();
                 <h2 class="ref-home-services-title h2-services-title text-white font-normal uppercase tracking-tight">Services</h2>
             </div>
             
-            <!-- Floating Images (from category 6, ordered by recently updated) -->
+            <!-- Floating Images (from category 9, ordered by recently updated) -->
             <?php
             $services_query = new WP_Query(array(
-                'cat'                 => 6,
+                'cat'                 => 9,
                 'posts_per_page'      => -1,
                 'orderby'             => 'modified',
                 'order'               => 'DESC',
@@ -173,8 +173,12 @@ get_header();
                             $thumb = $assets_url . '/images/hero-1.jpg';
                         }
                         $service_title = get_the_title();
+                        $external_url = (function_exists('get_field')) ? get_field('external_url', $pid) : '';
+                        $has_valid_external = !empty($external_url) && is_string($external_url) && filter_var($external_url, FILTER_VALIDATE_URL);
+                        $service_link = $has_valid_external ? esc_url($external_url) : esc_url(get_permalink($pid));
+                        $link_target_attr = $has_valid_external ? ' target="_blank" rel="noopener noreferrer"' : '';
                         ?>
-                <a href="<?php echo esc_url(get_permalink()); ?>" class="ref-home-service-image-wrapper ref-home-service-image-<?php echo esc_attr((string) $si); ?> div-service-image-wrapper div-service-image-<?php echo esc_attr((string) $si); ?> absolute block">
+                <a href="<?php echo $service_link; ?>" class="ref-home-service-image-wrapper ref-home-service-image-<?php echo esc_attr((string) $si); ?> div-service-image-wrapper div-service-image-<?php echo esc_attr((string) $si); ?> absolute block"<?php echo $link_target_attr; ?>>
                     <img src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($service_title); ?>" class="ref-home-service-image-<?php echo esc_attr((string) $si); ?> img-service-image-<?php echo esc_attr((string) $si); ?> object-cover aspect-square">
                     <div class="ref-home-service-image-overlay div-service-image-overlay absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" aria-hidden="true"></div>
                     <span class="ref-home-service-label ref-home-service-label-<?php echo esc_attr((string) $si); ?> span-service-label span-service-label-<?php echo esc_attr((string) $si); ?>"><?php echo esc_html($service_title); ?></span>

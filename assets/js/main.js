@@ -405,14 +405,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // About Page Video Section - Interactive Play Button
+    // About Page Video Section - YouTube or MP4 with loading UX
     const aboutVideoContainer = document.querySelector('.div-about-video-container');
     const aboutVideoCover = document.querySelector('.div-about-video-cover');
-    const aboutVideoIframe = document.querySelector('#ref-about-video-iframe');
     const aboutVideoPlayButton = document.querySelector('.div-about-video-play-button');
     const aboutVideoLoader = document.querySelector('.div-about-video-loader');
+    const videoType = aboutVideoContainer ? aboutVideoContainer.getAttribute('data-video-type') : null;
+    const aboutVideoIframe = document.querySelector('#ref-about-video-iframe');
+    const aboutVideoNative = document.querySelector('#ref-about-video-native');
     
-    if (aboutVideoContainer && aboutVideoCover && aboutVideoIframe && aboutVideoPlayButton && aboutVideoLoader) {
+    const isYouTube = videoType === 'youtube' && aboutVideoIframe;
+    const isMp4 = videoType === 'mp4' && aboutVideoNative;
+    
+    if (aboutVideoContainer && aboutVideoCover && aboutVideoPlayButton && aboutVideoLoader && (isYouTube || isMp4)) {
         let isMouseInside = false;
         let mouseX = 0;
         let mouseY = 0;
@@ -423,7 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let isVideoPlaying = false;
         let isVideoLoading = false;
         
-        // Initialize play button position (center)
         function initPlayButtonPosition() {
             const rect = aboutVideoContainer.getBoundingClientRect();
             playButtonX = rect.width / 2;
@@ -431,16 +435,13 @@ document.addEventListener('DOMContentLoaded', function() {
             updatePlayButtonPosition();
         }
         
-        // Update play button position
         function updatePlayButtonPosition() {
             aboutVideoPlayButton.style.left = playButtonX + 'px';
             aboutVideoPlayButton.style.top = playButtonY + 'px';
         }
         
-        // Smooth follow mouse animation
         function animatePlayButton() {
             if (isMouseInside) {
-                // Smooth interpolation (easing)
                 const easing = 0.15;
                 playButtonX += (mouseX - playButtonX) * easing;
                 playButtonY += (mouseY - playButtonY) * easing;
@@ -449,19 +450,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Mouse move handler
         aboutVideoContainer.addEventListener('mousemove', function(e) {
             const rect = aboutVideoContainer.getBoundingClientRect();
             mouseX = e.clientX - rect.left;
             mouseY = e.clientY - rect.top;
-            
             if (!isMouseInside) {
                 isMouseInside = true;
                 animatePlayButton();
             }
         }, { passive: true });
         
-        // Mouse enter handler
         aboutVideoContainer.addEventListener('mouseenter', function() {
             isMouseInside = true;
             aboutVideoContainer.style.cursor = 'none';
@@ -469,180 +467,178 @@ document.addEventListener('DOMContentLoaded', function() {
             animatePlayButton();
         });
         
-        // Mouse leave handler
         aboutVideoContainer.addEventListener('mouseleave', function() {
             isMouseInside = false;
             aboutVideoContainer.style.cursor = '';
-            if (animationFrame) {
-                cancelAnimationFrame(animationFrame);
-            }
+            if (animationFrame) cancelAnimationFrame(animationFrame);
         });
         
-        // Load YouTube IFrame API
-        function loadYouTubeAPI(callback) {
-            if (window.YT && window.YT.Player) {
-                if (window.YT.loaded) {
-                    callback();
-                } else {
-                    window.YT.ready(callback);
-                }
-            } else {
-                if (!window.onYouTubeIframeAPIReady) {
-                    window.onYouTubeIframeAPIReady = function() {
-                        callback();
-                    };
-                    
-                    const tag = document.createElement('script');
-                    tag.src = 'https://www.youtube.com/iframe_api';
-                    tag.onerror = function() {
-                        // If API fails to load, use direct iframe approach
-                        callback();
-                    };
-                    const firstScriptTag = document.getElementsByTagName('script')[0];
-                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-                } else {
-                    const originalCallback = window.onYouTubeIframeAPIReady;
-                    window.onYouTubeIframeAPIReady = function() {
-                        if (originalCallback) originalCallback();
-                        callback();
-                    };
-                }
-            }
-        }
-        
-        // Function to play video
-        function playVideo() {
-            // Prevent multiple simultaneous loads
-            if (isVideoLoading) return;
-            
-            // If video is already playing and player exists, don't restart
-            if (isVideoPlaying && youtubePlayer) return;
-            
-            isVideoLoading = true;
-            
-            // Extract video ID
-            const videoId = aboutVideoContainer.getAttribute('data-youtube-id') || 'KfIaXTb45tI';
-            
-            // Hide cover and play button first
+        function hideCoverAndPlayShowLoader() {
             aboutVideoCover.classList.add('hidden');
             aboutVideoCover.style.display = 'none';
             aboutVideoCover.style.pointerEvents = 'none';
             aboutVideoCover.style.zIndex = '0';
-            
             aboutVideoPlayButton.style.display = 'none';
             aboutVideoPlayButton.style.pointerEvents = 'none';
+            aboutVideoLoader.classList.remove('hidden');
+            aboutVideoLoader.style.display = 'flex';
+        }
+        
+        function hideLoader() {
+            aboutVideoLoader.classList.add('hidden');
+            aboutVideoLoader.style.display = 'none';
+        }
+        
+        function playVideo() {
+            if (isVideoLoading) return;
+            if (isYouTube && isVideoPlaying && youtubePlayer) return;
+            if (isMp4 && isVideoPlaying) return;
             
-            // Show iframe
+            isVideoLoading = true;
+            hideCoverAndPlayShowLoader();
+            
+            if (isMp4) {
+                const src = aboutVideoContainer.getAttribute('data-video-src');
+                if (!src) {
+                    isVideoLoading = false;
+                    hideLoader();
+                    return;
+                }
+                aboutVideoNative.loop = true;
+                aboutVideoNative.muted = true;
+                aboutVideoNative.style.display = 'block';
+                aboutVideoNative.style.zIndex = '15';
+                aboutVideoNative.style.pointerEvents = 'auto';
+                aboutVideoNative.classList.remove('hidden');
+                if (aboutVideoNative.src !== src) {
+                    aboutVideoNative.src = src;
+                }
+                var onCanPlay = function() {
+                    hideLoader();
+                    isVideoLoading = false;
+                    isVideoPlaying = true;
+                    aboutVideoNative.removeEventListener('canplay', onCanPlay);
+                    aboutVideoNative.removeEventListener('playing', onPlaying);
+                };
+                var onPlaying = function() {
+                    hideLoader();
+                    isVideoLoading = false;
+                    isVideoPlaying = true;
+                    aboutVideoNative.removeEventListener('canplay', onCanPlay);
+                    aboutVideoNative.removeEventListener('playing', onPlaying);
+                };
+                aboutVideoNative.addEventListener('canplay', onCanPlay, { once: true });
+                aboutVideoNative.addEventListener('playing', onPlaying, { once: true });
+                setTimeout(function() {
+                    hideLoader();
+                    if (aboutVideoNative.readyState >= 2) {
+                        isVideoLoading = false;
+                        isVideoPlaying = true;
+                    }
+                }, 6000);
+                var playPromise = aboutVideoNative.play();
+                if (playPromise && typeof playPromise.then === 'function') {
+                    playPromise.catch(function() {
+                        hideLoader();
+                        isVideoLoading = false;
+                    });
+                }
+                return;
+            }
+            
+            var videoId = aboutVideoContainer.getAttribute('data-youtube-id') || '';
             aboutVideoIframe.classList.remove('hidden');
             aboutVideoIframe.classList.add('show');
             aboutVideoIframe.style.display = 'block';
             aboutVideoIframe.style.zIndex = '15';
             aboutVideoIframe.style.pointerEvents = 'auto';
             
-            // Show loader
-            aboutVideoLoader.classList.remove('hidden');
-            aboutVideoLoader.style.display = 'flex';
+            function loadYouTubeAPI(callback) {
+                if (window.YT && window.YT.Player) {
+                    if (window.YT.loaded) callback();
+                    else window.YT.ready(callback);
+                } else {
+                    if (!window.onYouTubeIframeAPIReady) {
+                        window.onYouTubeIframeAPIReady = function() { callback(); };
+                        var tag = document.createElement('script');
+                        tag.src = 'https://www.youtube.com/iframe_api';
+                        tag.onerror = function() { callback(); };
+                        var firstScriptTag = document.getElementsByTagName('script')[0];
+                        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+                    } else {
+                        var orig = window.onYouTubeIframeAPIReady;
+                        window.onYouTubeIframeAPIReady = function() {
+                            if (orig) orig();
+                            callback();
+                        };
+                    }
+                }
+            }
             
-            // Use direct iframe approach (most reliable for user-initiated playback)
-            // This works because user interaction allows autoplay
+            function useDirectIframe(id) {
+                var embedUrl = 'https://www.youtube.com/embed/' + id + '?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1&enablejsapi=1';
+                aboutVideoIframe.src = embedUrl;
+                isVideoPlaying = true;
+                isVideoLoading = false;
+                var loaderHidden = false;
+                function hide() {
+                    if (!loaderHidden) {
+                        loaderHidden = true;
+                        hideLoader();
+                    }
+                }
+                window.addEventListener('message', function(event) {
+                    if (event.origin !== 'https://www.youtube.com') return;
+                    try {
+                        var data = JSON.parse(event.data);
+                        if (data && data.event === 'onStateChange' && data.info === 1) hide();
+                    } catch(e) {}
+                });
+                aboutVideoIframe.addEventListener('load', function() { setTimeout(hide, 1000); }, { once: true });
+                setTimeout(hide, 3000);
+            }
+            
             useDirectIframe(videoId);
-            
-            // Optionally try to load YouTube API for better control (but don't wait for it)
             loadYouTubeAPI(function() {
-                // If API loads successfully, we can use it for future interactions
                 if (window.YT && window.YT.Player && !youtubePlayer) {
                     try {
                         youtubePlayer = new YT.Player('ref-about-video-iframe', {
                             videoId: videoId,
-                            playerVars: {
-                                'autoplay': 1,
-                                'mute': 0,
-                                'controls': 1,
-                                'modestbranding': 1,
-                                'rel': 0,
-                                'showinfo': 0,
-                                'iv_load_policy': 3,
-                                'playsinline': 1,
-                                'enablejsapi': 1
-                            },
+                            playerVars: { autoplay: 1, mute: 0, controls: 1, modestbranding: 1, rel: 0, showinfo: 0, iv_load_policy: 3, playsinline: 1, enablejsapi: 1 },
                             events: {
-                                'onStateChange': function(event) {
+                                onStateChange: function(event) {
                                     if (event.data === YT.PlayerState.PLAYING) {
                                         isVideoLoading = false;
                                         isVideoPlaying = true;
-                                        aboutVideoLoader.classList.add('hidden');
-                                        aboutVideoLoader.style.display = 'none';
-                                        try {
-                                            if (youtubePlayer.isMuted()) {
-                                                youtubePlayer.unMute();
-                                            }
-                                        } catch(e) {}
+                                        hideLoader();
+                                        try { if (youtubePlayer.isMuted()) youtubePlayer.unMute(); } catch(e) {}
                                     }
                                 }
                             }
                         });
-                    } catch(e) {
-                        // API player creation failed, direct iframe already set
-                    }
+                    } catch(e) {}
                 }
             });
         }
         
-        // Fallback function to use direct iframe src
-        function useDirectIframe(videoId) {
-            const embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1&enablejsapi=1';
-            
-            // Set src
-            aboutVideoIframe.src = embedUrl;
-            isVideoPlaying = true;
-            isVideoLoading = false;
-            
-            // Try to detect when video starts playing using postMessage
-            let loaderHidden = false;
-            function hideLoader() {
-                if (!loaderHidden) {
-                    loaderHidden = true;
-                    aboutVideoLoader.classList.add('hidden');
-                    aboutVideoLoader.style.display = 'none';
-                }
-            }
-            
-            // Listen for YouTube postMessage events
-            window.addEventListener('message', function(event) {
-                if (event.origin !== 'https://www.youtube.com') return;
-                try {
-                    const data = JSON.parse(event.data);
-                    if (data && data.event === 'onStateChange' && data.info === 1) {
-                        // State 1 = PLAYING
-                        hideLoader();
-                    }
-                } catch(e) {
-                    // Not JSON, ignore
-                }
-            });
-            
-            // Hide loader after iframe loads
-            aboutVideoIframe.addEventListener('load', function() {
-                setTimeout(hideLoader, 1000);
-            }, { once: true });
-            
-            // Fallback timeout to hide loader (in case events don't fire)
-            setTimeout(hideLoader, 3000);
-        }
-        
-        // Click handler on container
-        aboutVideoContainer.addEventListener('click', function(e) {
-            playVideo();
-        });
-        
-        // Click handler on cover (in case container click doesn't fire)
+        aboutVideoContainer.addEventListener('click', function() { playVideo(); });
         aboutVideoCover.addEventListener('click', function(e) {
             e.stopPropagation();
             playVideo();
         });
-        
-        // Initialize play button position on load
         initPlayButtonPosition();
+        
+        if ((isYouTube || isMp4) && typeof IntersectionObserver !== 'undefined') {
+            var videoAutoplayTriggered = false;
+            var videoObserver = new IntersectionObserver(function(entries) {
+                if (videoAutoplayTriggered) return;
+                var ent = entries[0];
+                if (!ent || !ent.isIntersecting) return;
+                videoAutoplayTriggered = true;
+                playVideo();
+            }, { root: null, rootMargin: '0px', threshold: 0.5 });
+            videoObserver.observe(aboutVideoContainer);
+        }
     }
 });
 

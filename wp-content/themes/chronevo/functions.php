@@ -261,3 +261,37 @@ function chronevo_disable_revisions($num, $post) {
     return 0;
 }
 add_filter('wp_revisions_to_keep', 'chronevo_disable_revisions', 10, 2);
+
+/**
+ * Use single-service.php for single posts in the Services category (ID 9 or slug "services").
+ * Applies to URLs like /services/{slug}.
+ */
+function chronevo_single_service_template($template) {
+    if (!is_singular('post')) {
+        return $template;
+    }
+    $post_id = get_queried_object_id();
+    if (!$post_id) {
+        return $template;
+    }
+    $is_services = in_category(9, $post_id) || in_category('services', $post_id);
+    if (!$is_services) {
+        $categories = get_the_category($post_id);
+        if (!empty($categories)) {
+            foreach ($categories as $cat) {
+                if (isset($cat->slug) && $cat->slug === 'services') {
+                    $is_services = true;
+                    break;
+                }
+            }
+        }
+    }
+    if ($is_services) {
+        $service_template = get_stylesheet_directory() . '/single-service.php';
+        if (file_exists($service_template)) {
+            return $service_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'chronevo_single_service_template', 20);

@@ -179,18 +179,46 @@ $about_scrolling_sep_class = 'ref-scrolling-text-separator span-scrolling-text-s
     </div>
 </section>
 
-<!-- Video Section (YouTube ID from ACF "youtube"; section hidden when field is empty) -->
+<!-- Video Section: Case 1 = YouTube ID (embed), Case 2 = video_mp4 (native), Case 3 = both empty (no section) -->
 <?php
-$youtube_video_id = get_field('youtube', get_queried_object_id());
-$youtube_video_id = is_string($youtube_video_id) ? trim($youtube_video_id) : '';
-if ($youtube_video_id !== '') {
+$about_page_id = get_queried_object_id();
+$youtube_raw = function_exists('get_field') ? get_field('youtube', $about_page_id) : '';
+$youtube_video_id = is_string($youtube_raw) ? trim($youtube_raw) : '';
+$is_valid_youtube_id = (preg_match('/^[a-zA-Z0-9_-]{11}$/', $youtube_video_id) === 1);
+
+$video_mp4_raw = null;
+if (function_exists('get_field')) {
+    $video_mp4_raw = get_field('video_mp4', $about_page_id);
+    if (empty($video_mp4_raw)) {
+        $video_mp4_raw = get_field('video', $about_page_id);
+    }
+}
+$video_mp4_url = '';
+if (is_string($video_mp4_raw) && trim($video_mp4_raw) !== '') {
+    $video_mp4_url = trim($video_mp4_raw);
+} elseif (is_array($video_mp4_raw) && !empty($video_mp4_raw['url'])) {
+    $video_mp4_url = is_string($video_mp4_raw['url']) ? trim($video_mp4_raw['url']) : '';
+} elseif (is_numeric($video_mp4_raw) && (int) $video_mp4_raw > 0) {
+    $attachment_url = wp_get_attachment_url((int) $video_mp4_raw);
+    $video_mp4_url = is_string($attachment_url) ? trim($attachment_url) : '';
+}
+$has_valid_mp4 = false;
+if ($video_mp4_url !== '') {
+    $url_lower = strtolower($video_mp4_url);
+    $has_valid_mp4 = (filter_var($video_mp4_url, FILTER_VALIDATE_URL) !== false)
+        || (strpos($video_mp4_url, '/') === 0 || strpos($video_mp4_url, 'http') === 0)
+        || (strpos($url_lower, '.mp4') !== false);
+}
+
+$show_youtube = $is_valid_youtube_id;
+$show_mp4 = !$show_youtube && $has_valid_mp4;
+
+if ($show_youtube) {
     $youtube_thumbnail_url = 'https://img.youtube.com/vi/' . $youtube_video_id . '/hqdefault.jpg';
     ?>
 <section class="ref-about-video section-about-video w-full relative overflow-hidden">
     <div class="ref-about-video-wrapper div-about-video-wrapper w-full relative">
-        <!-- YouTube Video Container -->
-        <div class="ref-about-video-container div-about-video-container w-full relative bg-black" data-youtube-id="<?php echo esc_attr($youtube_video_id); ?>">
-            <!-- YouTube iframe (hidden initially, shown after click) -->
+        <div class="ref-about-video-container div-about-video-container w-full relative bg-black aspect-video" data-video-type="youtube" data-youtube-id="<?php echo esc_attr($youtube_video_id); ?>">
             <iframe 
                 id="ref-about-video-iframe" 
                 class="ref-about-video-iframe iframe-about-video w-full h-full absolute inset-0 hidden" 
@@ -200,8 +228,6 @@ if ($youtube_video_id !== '') {
                 allowfullscreen
                 style="width: 100%; height: 100%;"
             ></iframe>
-            
-            <!-- Video Cover/Thumbnail -->
             <div class="ref-about-video-cover div-about-video-cover w-full h-full absolute inset-0 bg-black flex items-center justify-center cursor-none overflow-hidden">
                 <img 
                     src="<?php echo esc_url($youtube_thumbnail_url); ?>" 
@@ -209,15 +235,40 @@ if ($youtube_video_id !== '') {
                     class="ref-about-video-thumbnail img-about-video-thumbnail w-full h-full object-cover"
                 >
             </div>
-            
-            <!-- Play Button Circle (follows mouse) -->
             <div class="ref-about-video-play-button div-about-video-play-button absolute z-20 pointer-events-none">
                 <div class="ref-about-video-play-circle div-about-video-play-circle w-16 h-16 rounded-full bg-[#DCAF47] flex items-center justify-center group-hover:bg-[#B89438] transition-colors duration-200">
                     <span class="ref-about-video-play-text span-about-video-play-text text-[#4F5053] font-semibold text-sm uppercase">Play</span>
                 </div>
             </div>
-            
-            <!-- Video Loader (shown while video is loading) -->
+            <div class="ref-about-video-loader div-about-video-loader absolute inset-0 flex items-center justify-center z-30 pointer-events-none hidden">
+                <div class="ref-about-video-loader-spinner div-about-video-loader-spinner w-8 h-8 border-2 border-[#BCBDC0] border-t-[#DCAF47] rounded-full animate-spin"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<?php
+} elseif ($show_mp4) {
+    ?>
+<section class="ref-about-video section-about-video w-full relative overflow-hidden">
+    <div class="ref-about-video-wrapper div-about-video-wrapper w-full relative">
+        <div class="ref-about-video-container div-about-video-container w-full relative bg-black aspect-video" data-video-type="mp4" data-video-src="<?php echo esc_url($video_mp4_url); ?>">
+            <video 
+                id="ref-about-video-native" 
+                class="ref-about-video-native video-about-video w-full h-full absolute inset-0 object-cover hidden" 
+                playsinline 
+                controls
+                preload="metadata"
+                loop
+                muted
+            ></video>
+            <div class="ref-about-video-cover div-about-video-cover w-full h-full absolute inset-0 bg-black flex items-center justify-center cursor-none overflow-hidden">
+                <span class="ref-about-video-cover-placeholder span-about-video-cover-placeholder text-[#BCBDC0] text-sm uppercase tracking-wider">Video</span>
+            </div>
+            <div class="ref-about-video-play-button div-about-video-play-button absolute z-20 pointer-events-none">
+                <div class="ref-about-video-play-circle div-about-video-play-circle w-16 h-16 rounded-full bg-[#DCAF47] flex items-center justify-center group-hover:bg-[#B89438] transition-colors duration-200">
+                    <span class="ref-about-video-play-text span-about-video-play-text text-[#4F5053] font-semibold text-sm uppercase">Play</span>
+                </div>
+            </div>
             <div class="ref-about-video-loader div-about-video-loader absolute inset-0 flex items-center justify-center z-30 pointer-events-none hidden">
                 <div class="ref-about-video-loader-spinner div-about-video-loader-spinner w-8 h-8 border-2 border-[#BCBDC0] border-t-[#DCAF47] rounded-full animate-spin"></div>
             </div>
