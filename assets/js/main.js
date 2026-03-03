@@ -640,6 +640,89 @@ document.addEventListener('DOMContentLoaded', function() {
             videoObserver.observe(aboutVideoContainer);
         }
     }
+
+    // About Awards Section - ref-about-awards-media video: autoplay when in viewport, infinite loop, loading UX
+    const awardsVideoContainer = document.querySelector('.div-about-awards-video-container');
+    const awardsVideoNative = document.querySelector('#ref-about-awards-video-native');
+    const awardsVideoCover = document.querySelector('.div-about-awards-video-cover');
+    const awardsVideoLoader = document.querySelector('.div-about-awards-video-loader');
+    if (awardsVideoContainer && awardsVideoNative && awardsVideoCover && awardsVideoLoader) {
+        var awardsVideoSrc = awardsVideoContainer.getAttribute('data-video-src');
+        if (awardsVideoContainer.getAttribute('data-video-type') === 'mp4' && awardsVideoSrc) {
+            var awardsStarted = false;
+            var awardsVideoPlaying = false;
+            function awardsHideCoverShowLoader() {
+                awardsVideoCover.classList.add('hidden');
+                awardsVideoCover.style.display = 'none';
+                awardsVideoCover.style.pointerEvents = 'none';
+                awardsVideoCover.style.zIndex = '0';
+                awardsVideoLoader.classList.remove('hidden');
+                awardsVideoLoader.style.display = 'flex';
+            }
+            function awardsHideLoader() {
+                awardsVideoLoader.classList.add('hidden');
+                awardsVideoLoader.style.display = 'none';
+            }
+            function awardsStartVideo() {
+                if (awardsStarted) return;
+                awardsStarted = true;
+                awardsHideCoverShowLoader();
+                awardsVideoNative.loop = true;
+                awardsVideoNative.muted = true;
+                awardsVideoNative.style.display = 'block';
+                awardsVideoNative.style.zIndex = '15';
+                awardsVideoNative.classList.remove('hidden');
+                if (awardsVideoNative.src !== awardsVideoSrc) awardsVideoNative.src = awardsVideoSrc;
+                function onCanPlay() {
+                    awardsHideLoader();
+                    awardsVideoPlaying = true;
+                    awardsVideoNative.removeEventListener('canplay', onCanPlay);
+                    awardsVideoNative.removeEventListener('playing', onPlaying);
+                }
+                function onPlaying() {
+                    awardsHideLoader();
+                    awardsVideoPlaying = true;
+                    awardsVideoNative.removeEventListener('canplay', onCanPlay);
+                    awardsVideoNative.removeEventListener('playing', onPlaying);
+                }
+                awardsVideoNative.addEventListener('canplay', onCanPlay, { once: true });
+                awardsVideoNative.addEventListener('playing', onPlaying, { once: true });
+                setTimeout(function() {
+                    awardsHideLoader();
+                    if (awardsVideoNative.readyState >= 2) awardsVideoPlaying = true;
+                }, 6000);
+                var p = awardsVideoNative.play();
+                if (p && typeof p.then === 'function') {
+                    p.catch(function() {
+                        awardsHideLoader();
+                    });
+                }
+            }
+            function awardsPauseVideo() {
+                if (awardsVideoNative.src && awardsVideoPlaying) {
+                    awardsVideoNative.pause();
+                }
+            }
+            if (typeof IntersectionObserver !== 'undefined') {
+                var awardsObserver = new IntersectionObserver(function(entries) {
+                    var ent = entries[0];
+                    if (!ent) return;
+                    if (ent.isIntersecting) {
+                        if (!awardsStarted) {
+                            awardsStartVideo();
+                        } else if (awardsVideoNative.src) {
+                            awardsVideoNative.play().catch(function() {});
+                        }
+                    } else {
+                        awardsPauseVideo();
+                    }
+                }, { root: null, rootMargin: '0px', threshold: 0.25 });
+                awardsObserver.observe(awardsVideoContainer);
+            } else {
+                awardsStartVideo();
+            }
+        }
+    }
 });
 
 // Single article featured image: hover to show video slideshow (continues after mouse out)

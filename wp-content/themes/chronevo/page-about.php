@@ -307,17 +307,63 @@ if ($show_youtube) {
                 </div>
             </div>
             
-            <!-- Right Column - Image (ACF image, aspect 1/1) -->
+            <!-- Right Column - ref-about-awards-media: Case 1 = image, Case 2 = award_video (video + UX), Case 3 = both empty => empty -->
             <?php
-            $awards_image = get_field('image', get_queried_object_id());
-            $awards_image_url = is_string($awards_image) ? $awards_image : (is_array($awards_image) && !empty($awards_image['url']) ? $awards_image['url'] : '');
-            $awards_img_src = $awards_image_url !== '' ? $awards_image_url : $assets_url . '/images/hero-2.jpg';
+            $about_page_id = get_queried_object_id();
+            $awards_image_raw = function_exists('get_field') ? get_field('image', $about_page_id) : null;
+            $awards_image_url = '';
+            if (is_numeric($awards_image_raw) && (int) $awards_image_raw > 0) {
+                $awards_image_url = wp_get_attachment_image_url((int) $awards_image_raw, 'full');
+                $awards_image_url = is_string($awards_image_url) ? $awards_image_url : '';
+            } elseif (is_array($awards_image_raw) && !empty($awards_image_raw['url'])) {
+                $awards_image_url = is_string($awards_image_raw['url']) ? trim($awards_image_raw['url']) : '';
+            } elseif (is_string($awards_image_raw) && trim($awards_image_raw) !== '') {
+                $awards_image_url = trim($awards_image_raw);
+            }
+            $has_awards_image = $awards_image_url !== '' && filter_var($awards_image_url, FILTER_VALIDATE_URL) !== false;
+
+            $award_video_raw = function_exists('get_field') ? get_field('award_video', $about_page_id) : null;
+            $award_video_url = '';
+            if (is_numeric($award_video_raw) && (int) $award_video_raw > 0) {
+                $award_video_url = wp_get_attachment_url((int) $award_video_raw);
+                $award_video_url = is_string($award_video_url) ? trim($award_video_url) : '';
+            } elseif (is_array($award_video_raw) && !empty($award_video_raw['url'])) {
+                $award_video_url = is_string($award_video_raw['url']) ? trim($award_video_raw['url']) : '';
+            } elseif (is_string($award_video_raw) && trim($award_video_raw) !== '') {
+                $award_video_url = trim($award_video_raw);
+            }
+            $has_award_video = $award_video_url !== '' && (filter_var($award_video_url, FILTER_VALIDATE_URL) !== false || strpos($award_video_url, '/') === 0);
+
+            $has_any_media = $has_awards_image || $has_award_video;
             ?>
+            <?php if ($has_any_media) : ?>
             <div class="ref-about-awards-media-wrapper div-about-awards-media-wrapper flex-1 w-full lg:w-1/2">
-                <div class="ref-about-awards-media div-about-awards-media relative aspect-square overflow-hidden bg-[#E1E2E4] flex items-center justify-center group cursor-pointer">
-                    <img src="<?php echo esc_url($awards_img_src); ?>" alt="Awards" class="ref-about-awards-img img-about-awards w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                <div class="ref-about-awards-media div-about-awards-media relative aspect-square overflow-hidden bg-[#E1E2E4] flex items-center justify-center group">
+                    <?php if ($has_award_video) : ?>
+                    <!-- Case 2: ACF award_video - autoplay when in viewport, infinite loop, loading UX -->
+                    <div class="ref-about-awards-video-container div-about-awards-video-container w-full h-full absolute inset-0 bg-black" data-video-type="mp4" data-video-src="<?php echo esc_url($award_video_url); ?>">
+                        <video
+                            id="ref-about-awards-video-native"
+                            class="ref-about-awards-video-native video-about-awards-video w-full h-full absolute inset-0 object-cover hidden"
+                            playsinline
+                            muted
+                            loop
+                            preload="none"
+                        ></video>
+                        <div class="ref-about-awards-video-cover div-about-awards-video-cover w-full h-full absolute inset-0 bg-black flex items-center justify-center">
+                            <span class="ref-about-awards-video-cover-placeholder span-about-awards-video-cover-placeholder text-[#BCBDC0] text-sm uppercase tracking-wider">Video</span>
+                        </div>
+                        <div class="ref-about-awards-video-loader div-about-awards-video-loader absolute inset-0 flex items-center justify-center z-30 pointer-events-none hidden">
+                            <div class="ref-about-awards-video-loader-spinner div-about-awards-video-loader-spinner w-8 h-8 border-2 border-[#BCBDC0] border-t-[#DCAF47] rounded-full animate-spin"></div>
+                        </div>
+                    </div>
+                    <?php elseif ($has_awards_image) : ?>
+                    <!-- Case 1: ACF image -->
+                    <img src="<?php echo esc_url($awards_image_url); ?>" alt="Awards" class="ref-about-awards-img img-about-awards w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <?php endif; ?>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
