@@ -75,7 +75,7 @@ wp-content/themes/chronevo/  [Theme files only]
 
 **⚠️ CRITICAL:** All assets MUST be in `./assets/*` - NEVER in `wp-content/themes/chronevo/assets/*`
 
-**Tracked in Git (add, commit, push):** `wp-content/themes/chronevo/`, `./assets/`, `./_db/`, `./media/`, and `wp-config.php` when changed.
+**Tracked in Git (add, commit, push):** all/any files and folders in the repo when changed.
 
 ---
 
@@ -118,7 +118,7 @@ Build from scratch (no reused elements) | Optimize performance (lazy loading, co
 ## Git Workflow
 
 1. Review repo
-2. Add **tracked** paths only: `wp-content/themes/chronevo/`, `./assets/`, `./_db/`, `./media/`, `README.md`, and `wp-config.php` if modified
+2. Add **tracked** paths only: all files and folders exists in the repo, if modified
 3. Commit with message
 4. **Pre-Push:** Remove all `console.log()` and `error.log()` testing codes
 5. Push to origin/master

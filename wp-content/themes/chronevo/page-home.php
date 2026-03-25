@@ -100,33 +100,15 @@ get_header();
         </div>
     </section>
     
-    <!-- Taglines Section (populated from category taglines, ordered by last updated) -->
+    <!-- Taglines Section -->
     <?php
-    $taglines_query = new WP_Query(array(
-        'category_name' => 'taglines',
-        'posts_per_page' => -1,
-        'orderby'        => 'modified',
-        'order'          => 'DESC',
-        'post_status'    => 'publish',
-        'no_found_rows'  => true,
-    ));
-    $tagline_posts = $taglines_query->have_posts() ? $taglines_query->posts : array();
-    wp_reset_postdata();
-    $tagline_fallback = array('Visuals & Storytelling', 'Art & Expression', 'Imagery & Meaning', 'Design & Dialogue', 'Picture & Prose');
+    $tagline_items = array('Where your future is treated with care, not just strategy.');
     ?>
     <section class="ref-home-taglines-section section-taglines w-full py-12 relative">
         <div class="ref-home-taglines-wrapper div-taglines-wrapper flex">
             <div class="ref-home-taglines-content div-taglines-content flex items-center gap-8 whitespace-nowrap animate-taglines-scroll">
                 <?php
-                $tagline_items = array();
-                if (!empty($tagline_posts)) {
-                    foreach ($tagline_posts as $p) {
-                        $tagline_items[] = get_the_title($p);
-                    }
-                } else {
-                    $tagline_items = $tagline_fallback;
-                }
-                $tagline_item_class = 'ref-home-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight';
+                $tagline_item_class = 'ref-home-tagline-item span-tagline-item text-white/40 font-light text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-tight';
                 $separator_class = 'ref-home-tagline-separator span-tagline-separator text-white/10 text-4xl md:text-5xl lg:text-6xl';
                 foreach (array($tagline_items, $tagline_items) as $round) {
                     foreach ($round as $idx => $text) {
@@ -142,11 +124,11 @@ get_header();
     </section>
     
     <!-- Services Section -->
-    <section class="ref-home-services-section section-services w-full relative min-h-screen flex items-center justify-center">
+    <section class="ref-home-services-section section-services w-full relative min-h-[calc(100svh+3rem)] flex items-center justify-center pt-16 md:pt-20 pb-24 md:pb-28">
         <div class="ref-home-services-container div-services-container relative w-full max-w-[1440px] mx-auto px-6">
             <!-- Services Title -->
             <div class="ref-home-services-title-wrapper div-services-title-wrapper relative text-center">
-                <h2 class="ref-home-services-title h2-services-title text-white font-normal uppercase tracking-tight">Services</h2>
+                <h2 class="ref-home-services-title h2-services-title text-white font-normal uppercase tracking-tight">EXPLORE</h2>
             </div>
             
             <!-- Floating Images (from category 9, ordered by recently updated) -->
@@ -189,6 +171,11 @@ get_header();
                 endif;
                 ?>
             </div>
+        </div>
+        <div class="ref-home-services-cta-wrapper div-services-cta-wrapper absolute bottom-2 md:bottom-4 left-0 right-0 z-[35] flex justify-center px-6 pb-8 md:pb-12 pointer-events-none">
+            <a href="<?php echo esc_url( home_url( '/portfolio' ) ); ?>" class="ref-home-services-explore-cta link-services-explore-cta pointer-events-auto inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#4F5053] bg-[#F6F7F8] border-2 border-[#E1E2E4] shadow-xl shadow-black/30 transition-all duration-200 ease-out hover:bg-white hover:border-[#DCAF47] hover:shadow-black/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]">
+                <span class="ref-home-services-explore-cta-text span-services-explore-cta-text">EXPLORE</span>
+            </a>
         </div>
     </section>
     
