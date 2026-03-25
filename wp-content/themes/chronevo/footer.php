@@ -10,24 +10,25 @@ if (!defined('ABSPATH')) {
 }
 
 $assets_url = home_url('/assets');
+$chr_rp = chronevo_ref_page();
 ?>
     
     <!-- Footer Section -->
-    <footer class="ref-footer-section section-footer w-full relative">
-        <div class="ref-footer-container div-footer-container max-w-[1440px] mx-auto px-6">
-            <div class="ref-footer-content div-footer-content flex flex-col items-center">
+    <footer class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'footer', 'root')); ?> section-footer w-full relative">
+        <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'container')); ?> div-footer-container max-w-[1440px] mx-auto px-6">
+            <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'content')); ?> div-footer-content flex flex-col items-center">
                 <!-- Logo - Top -->
-                <div class="ref-footer-logo-section div-footer-logo-section">
-                    <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-footer-logo-home link-footer-logo-home">
-                        <div class="ref-footer-logo-wrapper div-footer-logo-wrapper">
-                            <img src="<?php echo esc_url($assets_url . '/images/chronevo.png'); ?>" alt="Chronevo Logo" class="ref-footer-logo img-footer-logo h-10 w-auto">
+                <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'logo-section')); ?> div-footer-logo-section">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'a', 'logo-home')); ?> link-footer-logo-home">
+                        <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'logo-wrapper')); ?> div-footer-logo-wrapper">
+                            <img src="<?php echo esc_url($assets_url . '/images/chronevo.png'); ?>" alt="Chronevo Logo" class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'img', 'logo')); ?> img-footer-logo h-10 w-auto">
                         </div>
                     </a>
                 </div>
                 
                 <!-- Navigation - Middle -->
-                <nav class="ref-footer-nav nav-footer">
-                    <div class="ref-footer-nav-container div-footer-nav-container flex gap-8">
+                <nav class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'nav', 'links')); ?> nav-footer">
+                    <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'nav-container')); ?> div-footer-nav-container flex gap-8">
                         <?php
                         // Get menu items from menu ID 4
                         $footer_menu_items = wp_get_nav_menu_items(4);
@@ -39,8 +40,6 @@ $assets_url = home_url('/assets');
                                     continue;
                                 }
                                 
-                                // Generate unique ref class based on menu item title
-                                $ref_class = 'ref-footer-nav-' . sanitize_html_class(strtolower($item->title));
                                 $link_class = 'link-footer-nav-' . sanitize_html_class(strtolower($item->title));
                                 
                                 // Get the URL
@@ -49,18 +48,18 @@ $assets_url = home_url('/assets');
                                 // Check if current page matches menu item
                                 $is_current = ($item->object_id == get_queried_object_id()) ? true : false;
                                 ?>
-                                <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr($ref_class . ' ' . $link_class); ?> text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
-                                    <span class="ref-footer-nav-text span-footer-nav-text"><?php echo esc_html($item->title); ?></span>
-                                    <div class="ref-footer-nav-underline div-footer-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#DCAF47] transition-all duration-300"></div>
+                                <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'a', 'nav-item', (int) $item->ID) . ' ' . $link_class); ?> text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
+                                    <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'nav-label', (int) $item->ID)); ?> span-footer-nav-text"><?php echo esc_html($item->title); ?></span>
+                                    <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'nav-underline', (int) $item->ID)); ?> div-footer-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#DCAF47] transition-all duration-300"></div>
                                 </a>
                                 <?php
                             }
                         } else {
                             // Fallback if menu doesn't exist or has no items
                             ?>
-                            <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-footer-nav-home link-footer-nav-home text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
-                                <span class="ref-footer-nav-text span-footer-nav-text">Home</span>
-                                <div class="ref-footer-nav-underline div-footer-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#DCAF47] transition-all duration-300"></div>
+                            <a href="<?php echo esc_url(home_url('/')); ?>" class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'a', 'nav-fallback-home')); ?> link-footer-nav-home text-white/75 hover:text-white transition-all duration-300 font-semibold text-sm uppercase tracking-tight relative group">
+                                <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'nav-fallback-label')); ?> span-footer-nav-text">Home</span>
+                                <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'nav-fallback-underline')); ?> div-footer-nav-underline absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 group-hover:bg-[#DCAF47] transition-all duration-300"></div>
                             </a>
                             <?php
                         }
@@ -69,8 +68,8 @@ $assets_url = home_url('/assets');
                 </nav>
                 
                 <!-- Social Media Links - Bottom -->
-                <div class="ref-footer-social-section div-footer-social-section">
-                    <div class="ref-footer-social-media-links div-footer-social-media-links flex items-center gap-4">
+                <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'social-section')); ?> div-footer-social-section">
+                    <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'social-links')); ?> div-footer-social-media-links flex items-center gap-4">
                         <?php
                         // Get menu items from menu ID 5
                         $footer_social_menu_items = wp_get_nav_menu_items(5);
@@ -88,10 +87,7 @@ $assets_url = home_url('/assets');
                                 // Get target attribute (default to _blank for external links)
                                 $target = !empty($item->target) ? $item->target : '_blank';
                                 
-                                // Generate unique ref class based on menu item title
-                                $sanitized_title = sanitize_html_class(strtolower($item->title));
-                                $ref_class = 'ref-footer-social-' . $sanitized_title;
-                                $link_class = 'link-footer-social-' . $sanitized_title;
+                                $link_class = 'link-footer-social-' . sanitize_html_class(strtolower($item->title));
                                 
                                 // Map social media names to Phosphor icon classes
                                 $icon_map = array(
@@ -150,9 +146,9 @@ $assets_url = home_url('/assets');
                                     }
                                 }
                                 ?>
-                                <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" rel="noopener noreferrer" class="<?php echo esc_attr($ref_class . ' ' . $link_class); ?> text-white/60 hover:text-white transition-all duration-300 group">
-                                    <i class="ph <?php echo esc_attr($icon_class); ?> text-xl"></i>
-                                    <span class="sr-only"><?php echo esc_html($item->title); ?></span>
+                                <a href="<?php echo esc_url($url); ?>" target="<?php echo esc_attr($target); ?>" rel="noopener noreferrer" class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'a', 'social', (int) $item->ID) . ' ' . $link_class); ?> text-white/60 hover:text-white transition-all duration-300 group">
+                                    <i class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'i', 'social-icon', (int) $item->ID)); ?> ph <?php echo esc_attr($icon_class); ?> text-xl"></i>
+                                    <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'social-sr-only', (int) $item->ID)); ?> sr-only"><?php echo esc_html($item->title); ?></span>
                                 </a>
                                 <?php
                             }
@@ -162,12 +158,12 @@ $assets_url = home_url('/assets');
                 </div>
                 
                 <!-- Copyright Message -->
-                <div class="ref-footer-copyright-section div-footer-copyright-section">
-                    <p class="ref-footer-copyright-text p-footer-copyright-text">
-                        <span class="ref-footer-copyright-symbol span-footer-copyright-symbol">&copy;</span>
-                        <span class="ref-footer-copyright-year span-footer-copyright-year"><?php echo esc_html(date('Y')); ?></span>
-                        <span class="ref-footer-copyright-name span-footer-copyright-name">ChronEvo</span>
-                        <span class="ref-footer-copyright-rights span-footer-copyright-rights">All rights reserved.</span>
+                <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'copyright-section')); ?> div-footer-copyright-section">
+                    <p class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'p', 'copyright')); ?> p-footer-copyright-text">
+                        <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-symbol')); ?> span-footer-copyright-symbol">&copy;</span>
+                        <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-year')); ?> span-footer-copyright-year"><?php echo esc_html(date('Y')); ?></span>
+                        <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-name')); ?> span-footer-copyright-name">ChronEvo</span>
+                        <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-rights')); ?> span-footer-copyright-rights">All rights reserved.</span>
                     </p>
                 </div>
             </div>
@@ -175,10 +171,10 @@ $assets_url = home_url('/assets');
     </footer>
     
     <!-- Background Pattern Overlay -->
-    <div class="ref-background-pattern div-background-pattern absolute inset-0 opacity-10"></div>
+    <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'shell', 'div', 'background-pattern')); ?> div-background-pattern absolute inset-0 opacity-10"></div>
     
     <!-- Geometric Background Elements -->
-    <div class="ref-geometric-background div-geometric-background absolute inset-0">
+    <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'shell', 'div', 'geometric-background')); ?> div-geometric-background absolute inset-0">
     </div>
 
 </div>

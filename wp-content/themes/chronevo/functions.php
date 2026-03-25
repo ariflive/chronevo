@@ -10,6 +10,32 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * Reference-only class name: ref-{page}-{section}-{element}-{name}[-{uid}]
+ * Per README: identification only; do not use for CSS or JS selectors.
+ *
+ * @param string       $page    Page slug, e.g. home (front) or inner (other routes).
+ * @param string       $section Logical block, e.g. hero, header, shell.
+ * @param string       $element HTML element: section, div, span, a, img, i, button, nav, p, h1, etc.
+ * @param string       $name    Semantic name within the block.
+ * @param string|int   $uid     Optional suffix for loops/listings (menu item ID, post ID, index).
+ */
+function chronevo_ref_class($page, $section, $element, $name, $uid = '') {
+    $segments = array('ref', $page, $section, $element, $name);
+    $base = implode('-', array_map('sanitize_html_class', $segments));
+    if ($uid !== '' && $uid !== null) {
+        $base .= '-' . sanitize_html_class((string) $uid);
+    }
+    return $base;
+}
+
+/**
+ * Page slug for shared templates: home on front page, inner elsewhere.
+ */
+function chronevo_ref_page() {
+    return is_front_page() ? 'home' : 'inner';
+}
+
+/**
  * Theme Setup
  */
 function chronevo_setup() {

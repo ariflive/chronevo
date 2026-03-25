@@ -327,7 +327,7 @@ img {
 }
 
 /* App-style rounded corners on photos; keep dimensions — exclude brand logos (header/footer/popup/clients carousel) */
-img:not(.ref-logo-img):not(.img-logo):not(.ref-footer-logo):not(.img-footer-logo):not(.ref-popup-menu-logo-img):not(.img-popup-menu-logo):not(.ref-clients-logo-img):not(.img-clients-logo) {
+img:not(.img-logo):not(.img-footer-logo):not(.img-popup-menu-logo):not(.img-clients-logo) {
     border-radius: var(--img-app-radius);
 }
 
@@ -618,7 +618,7 @@ button:focus-visible:hover {
 }
 
 /* Service Images Floating Animations - very slow, ~50px square from center, return to center each round */
-/* ref-home-service-image-* wrappers: transform-origin center; each path random; max displacement ~±25px */
+/* .div-service-image-wrapper: transform-origin center; each path random; max displacement ~±25px */
 @keyframes float-service-1 {
     0%, 100% { transform: translate(-50%, 0); }
     25% { transform: translate(calc(-50% + 18px), -22px); }
@@ -794,8 +794,7 @@ button:focus-visible:hover {
     z-index: 20;
 }
 /* Services title: 3x base, reduced by 15% (12.075rem * 0.85 = 10.26375rem). Scoped + wrapper selector so Tailwind cannot override. */
-.ref-home-services-section .div-services-title-wrapper .h2-services-title,
-.ref-home-services-section .ref-home-services-title {
+.section-services .div-services-title-wrapper .h2-services-title {
     font-size: 10.26375rem;
 }
 
