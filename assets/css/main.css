@@ -111,6 +111,8 @@
     --light-gray: #f5f5f5;
     --medium-gray: #808080;
     --dark-gray: #333333;
+    /* App-style photo corners — wrappers + imgs stay in sync (hover scale clips to arc) */
+    --img-app-radius: 1.25rem;
 }
 
 /* Base Styles */
@@ -322,6 +324,54 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+/* App-style rounded corners on photos; keep dimensions — exclude brand logos (header/footer/popup/clients carousel) */
+img:not(.ref-logo-img):not(.img-logo):not(.ref-footer-logo):not(.img-footer-logo):not(.ref-popup-menu-logo-img):not(.img-popup-menu-logo):not(.ref-clients-logo-img):not(.img-clients-logo) {
+    border-radius: var(--img-app-radius);
+}
+
+/* Match radius on clip wrappers so transform/scale on hover stays inside arced corners */
+.div-hero-image-wrapper-1,
+.div-hero-image-wrapper-2,
+.div-hero-image-wrapper-3,
+.div-blog-post-image-wrapper,
+.div-service-image-wrapper,
+.div-blog-article-image-wrapper,
+.div-blog-recent-post-image-wrapper,
+.div-single-post-featured-image-wrapper,
+.div-about-hero-image-1,
+.div-about-hero-image-2,
+.div-about-video-container,
+.div-about-awards-media,
+.div-single-post-hero-image-wrapper,
+.div-single-post-second-image-wrapper,
+.div-portfolio-grid .div-portfolio-card,
+.section-portfolio .div-portfolio-carousel-track .div-portfolio-card {
+    border-radius: var(--img-app-radius);
+    overflow: hidden;
+}
+
+/* Inner media fills rounded mask — avoids double-radius / clip-path glitches on hero */
+.div-hero-image-wrapper-1 img,
+.div-hero-image-wrapper-2 img,
+.div-hero-image-wrapper-3 img,
+.section-portfolio .div-portfolio-carousel-track .div-portfolio-card img,
+.div-portfolio-card-image-wrapper img,
+.div-blog-post-image-wrapper img,
+.div-service-image-wrapper img,
+.div-blog-article-image-wrapper img,
+.div-blog-recent-post-image-wrapper img,
+.div-single-post-featured-image-wrapper > img.img-single-post-featured,
+.div-single-post-featured-image-wrapper .img-single-post-featured-video,
+.div-about-hero-image-1 img,
+.div-about-hero-image-2 img,
+.div-about-video-container .img-about-video-thumbnail,
+.div-about-awards-media .img-about-awards,
+.div-portfolio-grid .div-portfolio-card .img-portfolio-card,
+.div-single-post-hero-image-wrapper img,
+.div-single-post-second-image-wrapper img {
+    border-radius: 0;
 }
 
 /* Background Pattern */
@@ -676,7 +726,6 @@ button:focus-visible:hover {
     transform-origin: center;
     cursor: pointer;
     will-change: width, height;
-    border-radius: 0;
     filter: grayscale(50%);
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1432,56 +1481,56 @@ button:focus-visible:hover {
 .div-service-image-wrapper:hover {
     animation: none;
     z-index: 10;
-    overflow: visible;
+    overflow: hidden;
     transform: scale(1.0625);
 }
 
 /* Preserve positioning translate so zoom stays centered */
 .div-service-image-1:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: translateX(-50%) scale(1.0625);
 }
 
 .div-service-image-2:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: scale(1.0625);
 }
 
 .div-service-image-3:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: translateY(-50%) scale(1.0625);
 }
 
 .div-service-image-4:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: scale(1.0625);
 }
 
 .div-service-image-5:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: translateX(-50%) scale(1.0625);
 }
 
 .div-service-image-6:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: scale(1.0625);
 }
 
 .div-service-image-7:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: translateY(-50%) scale(1.0625);
 }
 
 .div-service-image-8:hover {
     animation: none;
-    overflow: visible;
+    overflow: hidden;
     transform: scale(1.0625);
 }
 
