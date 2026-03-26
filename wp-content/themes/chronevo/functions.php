@@ -321,3 +321,26 @@ function chronevo_single_service_template($template) {
     return $template;
 }
 add_filter('template_include', 'chronevo_single_service_template', 20);
+
+/**
+ * Render the Supercarbaldie client highlight card (shared on About and Portfolio).
+ *
+ * @param array $args {
+ *     @type string $ref_page     'about' or 'portfolio' — ref-* prefix segment.
+ *     @type int    $acf_post_id  Post ID for ACF fields (about_client_*). Defaults to queried object if 0.
+ *     @type string $layout       'standalone' (default) or 'embedded' (inside clients section).
+ *     @type bool   $show_eyebrow Whether to show the small "Clients" label (default true).
+ *     @type string $heading_id   Optional unique id for the card title (for aria-labelledby).
+ * }
+ */
+function chronevo_render_client_highlight_supercarbaldie(array $args = array()) {
+    $defaults = array(
+        'ref_page' => 'about',
+        'acf_post_id' => 0,
+        'layout' => 'standalone',
+        'show_eyebrow' => true,
+        'heading_id' => '',
+    );
+    $args = wp_parse_args($args, $defaults);
+    get_template_part('template-parts/client-highlight-supercarbaldie', null, $args);
+}

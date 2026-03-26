@@ -75,9 +75,9 @@ get_header();
                     $card_subtitle = get_the_title();
                     ?>
             <!-- Project Card -->
-            <a href="<?php echo esc_url($card_link); ?>" class="ref-portfolio-card-<?php echo esc_attr((string) $card_index); ?> div-portfolio-card group relative aspect-square overflow-hidden cursor-pointer block">
-                <!-- Project Image (1:1) -->
-                <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper w-full h-full relative aspect-square overflow-hidden">
+            <a href="<?php echo esc_url($card_link); ?>" class="ref-portfolio-card-<?php echo esc_attr((string) $card_index); ?> div-portfolio-card group relative aspect-[4/3] overflow-hidden cursor-pointer block">
+                <!-- Project Image (4:3) -->
+                <div class="ref-portfolio-card-image-wrapper div-portfolio-card-image-wrapper w-full h-full relative aspect-[4/3] overflow-hidden">
                     <img 
                         src="<?php echo esc_url($thumb_url); ?>" 
                         alt="<?php echo esc_attr($card_subtitle); ?>" 
@@ -130,10 +130,10 @@ if ($clients_query->have_posts()) {
     }
     wp_reset_postdata();
 }
-if (!empty($clients_items)) :
 ?>
 <section class="ref-clients-section section-clients w-full py-16 md:py-24 bg-[#F6F7F8] border-t border-[#E1E2E4]">
     <div class="ref-clients-container div-clients-container w-full max-w-[1440px] mx-auto px-6">
+        <?php if (!empty($clients_items)) : ?>
         <div class="ref-clients-title-wrapper div-clients-title-wrapper text-center mb-12">
             <h2 class="ref-clients-title h2-clients-title text-[#4F5053] font-semibold text-2xl md:text-3xl lg:text-4xl uppercase tracking-tight">Clients</h2>
         </div>
@@ -152,8 +152,21 @@ if (!empty($clients_items)) :
                 ?>
             </div>
         </div>
+        <?php endif; ?>
+        <?php
+        $chronevo_about_for_client_card = get_page_by_path('about', OBJECT, 'page');
+        $chronevo_client_acf_post_id = ($chronevo_about_for_client_card instanceof WP_Post)
+            ? (int) $chronevo_about_for_client_card->ID
+            : 0;
+        chronevo_render_client_highlight_supercarbaldie(array(
+            'ref_page' => 'portfolio',
+            'acf_post_id' => $chronevo_client_acf_post_id,
+            'layout' => 'embedded',
+            'show_eyebrow' => false,
+            'heading_id' => 'portfolio-supercarbaldie-title',
+        ));
+        ?>
     </div>
 </section>
-<?php endif; ?>
 
 <?php get_footer(); ?>

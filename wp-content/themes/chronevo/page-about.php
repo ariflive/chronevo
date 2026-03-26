@@ -369,4 +369,78 @@ if ($show_youtube) {
 </section>
 <?php endif; ?>
 
+<?php
+$chr_about_create_show = false;
+if (function_exists('get_field')) {
+    $chr_about_create_val = get_field('about_create_show', get_queried_object_id());
+    $chr_about_create_show = ($chr_about_create_val === true || $chr_about_create_val === 1 || $chr_about_create_val === '1');
+}
+?>
+<?php if ($chr_about_create_show) : ?>
+<?php
+$about_conv_page_id = get_queried_object_id();
+$about_create_title = '';
+$about_create_description = '';
+$about_create_cta_label = '';
+$about_create_cta_url = home_url('/contact');
+
+if (function_exists('get_field')) {
+    $acf_title = get_field('about_create_title', $about_conv_page_id);
+    $about_create_title = is_string($acf_title) ? trim($acf_title) : '';
+
+    $acf_desc = get_field('about_create_description', $about_conv_page_id);
+    $about_create_description = is_string($acf_desc) ? trim($acf_desc) : '';
+
+    $acf_cta_label = get_field('about_create_cta_label', $about_conv_page_id);
+    $about_create_cta_label = is_string($acf_cta_label) ? trim($acf_cta_label) : '';
+
+    $acf_cta_link = get_field('about_create_cta_link', $about_conv_page_id);
+    $resolved_cta = '';
+    if ($acf_cta_link instanceof WP_Post) {
+        $resolved_cta = get_permalink($acf_cta_link);
+    } elseif (is_numeric($acf_cta_link) && (int) $acf_cta_link > 0) {
+        $resolved_cta = get_permalink((int) $acf_cta_link);
+    } elseif (is_array($acf_cta_link) && !empty($acf_cta_link['ID']) && is_numeric($acf_cta_link['ID'])) {
+        $resolved_cta = get_permalink((int) $acf_cta_link['ID']);
+    }
+    if (is_string($resolved_cta) && $resolved_cta !== '') {
+        $about_create_cta_url = $resolved_cta;
+    }
+}
+
+if ($about_create_title === '') {
+    $about_create_title = 'Create with Us';
+}
+if ($about_create_description === '') {
+    $about_create_description = 'We collaborate with teams that value clarity and craft—where design is deliberate, not decorative. When you are ready to begin with intention, we would welcome the conversation.';
+}
+if ($about_create_cta_label === '') {
+    $about_create_cta_label = 'Get in touch';
+}
+?>
+<!-- Conversion block (ACF about_create_* on About page; below awards, above footer) -->
+<section class="ref-about-conv-section section-about-conv w-full py-20 md:py-28 bg-white border-t border-[#E1E2E4]" aria-labelledby="about-conv-heading">
+    <div class="ref-about-conv-container div-about-conv-container w-full max-w-[1440px] mx-auto px-6">
+        <div class="ref-about-conv-inner div-about-conv-inner max-w-2xl mx-auto text-center flex flex-col items-center">
+            <span class="ref-about-conv-accent span-about-conv-accent block w-12 h-0.5 bg-[#DCAF47] mb-8" aria-hidden="true"></span>
+            <h2 id="about-conv-heading" class="ref-about-conv-title h2-about-conv-title text-[#4F5053] font-semibold text-3xl md:text-4xl tracking-tight"><?php echo esc_html($about_create_title); ?></h2>
+            <p class="ref-about-conv-lead p-about-conv-lead mt-6 text-[#7A7C80] text-base md:text-lg leading-relaxed"><?php echo nl2br(esc_html($about_create_description)); ?></p>
+            <a href="<?php echo esc_url($about_create_cta_url); ?>" class="ref-about-conv-cta link-about-conv-cta">
+                <span class="ref-about-conv-cta-label span-about-conv-cta-label"><?php echo esc_html($about_create_cta_label); ?></span>
+            </a>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<?php
+chronevo_render_client_highlight_supercarbaldie(array(
+    'ref_page' => 'about',
+    'acf_post_id' => (int) get_queried_object_id(),
+    'layout' => 'standalone',
+    'show_eyebrow' => true,
+    'heading_id' => 'about-supercarbaldie-title',
+));
+?>
+
 <?php get_footer(); ?>

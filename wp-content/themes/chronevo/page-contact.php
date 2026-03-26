@@ -10,6 +10,23 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+$contact_intro_plain = '';
+$contact_page_id = get_queried_object_id();
+if ($contact_page_id && is_page()) {
+    $contact_page_post = get_post($contact_page_id);
+    if ($contact_page_post instanceof WP_Post && $contact_page_post->post_content !== '') {
+        $raw = $contact_page_post->post_content;
+        $raw = strip_shortcodes($raw);
+        if (function_exists('do_blocks')) {
+            $raw = do_blocks($raw);
+        }
+        $plain = wp_strip_all_tags($raw);
+        $plain = html_entity_decode($plain, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $plain = preg_replace('/\s+/u', ' ', trim($plain));
+        $contact_intro_plain = $plain;
+    }
+}
+
 get_header();
 ?>
 
@@ -17,36 +34,19 @@ get_header();
 <section class="ref-contact-section section-contact w-full relative py-24 bg-[#F6F7F8]">
     <div class="ref-contact-container div-contact-container w-full max-w-[1440px] mx-auto px-6">
         <!-- Page Title -->
-        <div class="ref-contact-title-wrapper div-contact-title-wrapper text-center mb-6">
+        <div class="ref-contact-title-wrapper div-contact-title-wrapper text-center mb-12">
             <h1 class="ref-contact-title h1-contact-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl uppercase">
-                Contact Us
+                Create with US
             </h1>
-        </div>
-        
-        <!-- Breadcrumb -->
-        <div class="ref-contact-breadcrumb-wrapper div-contact-breadcrumb-wrapper text-center mb-12">
-            <nav class="ref-contact-breadcrumb nav-contact-breadcrumb">
-                <ol class="ref-contact-breadcrumb-list ol-contact-breadcrumb-list flex items-center justify-center gap-2">
-                    <li class="ref-contact-breadcrumb-item li-contact-breadcrumb-item">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-contact-breadcrumb-home link-contact-breadcrumb-home text-[#7A7C80] hover:text-[#4F5053] transition-colors duration-200">
-                            Home
-                        </a>
-                    </li>
-                    <li class="ref-contact-breadcrumb-separator li-contact-breadcrumb-separator text-[#BCBDC0]">
-                        /
-                    </li>
-                    <li class="ref-contact-breadcrumb-current li-contact-breadcrumb-current text-[#7A7C80]">
-                        Contact
-                    </li>
-                </ol>
-            </nav>
         </div>
         
         <!-- Centered Content -->
         <div class="ref-contact-content-wrapper div-contact-content-wrapper w-full max-w-2xl mx-auto">
+            <?php if ($contact_intro_plain !== '') : ?>
             <p class="ref-contact-intro p-contact-intro text-[#7A7C80] text-center text-base leading-relaxed mb-8">
-                Get in touch. We would love to hear from you.
+                <?php echo esc_html($contact_intro_plain); ?>
             </p>
+            <?php endif; ?>
             
             <!-- Contact Form -->
             <form class="ref-contact-form form-contact div-contact-form-card bg-white border border-[#E1E2E4] p-8" method="post" action="#">

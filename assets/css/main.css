@@ -841,7 +841,7 @@ button:focus-visible:hover {
     overflow-wrap: break-word;
 }
 
-/* Portfolio Main Title - Big, all caps, most prominent */
+/* Portfolio Main Title - Big, most prominent (casing from markup) */
 .h2-portfolio-main-title {
     margin-bottom: 1.5rem;
 }
@@ -850,7 +850,7 @@ button:focus-visible:hover {
     font-size: 2rem;
     line-height: 1.1;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: none;
     letter-spacing: -0.02em;
     color: #000000;
     display: block;
@@ -2846,6 +2846,214 @@ button:focus-visible:hover {
     background-color: #B89438;
 }
 
+/* About conversion block (below awards, above footer) */
+.section-about-conv {
+    width: 100%;
+}
+
+.h2-about-conv-title {
+    margin: 0;
+    line-height: 1.15;
+    text-transform: none;
+}
+
+.p-about-conv-lead {
+    margin: 0;
+    max-width: 36rem;
+}
+
+.link-about-conv-cta {
+    margin-top: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 22rem;
+    min-height: 3.5rem;
+    padding: 1.125rem 2.5rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #4F5053;
+    background-color: #DCAF47;
+    border: 2px solid #C9A23D;
+    border-radius: 0;
+    text-decoration: none;
+    box-shadow:
+        0 6px 28px rgba(0, 0, 0, 0.14),
+        0 1px 0 rgba(255, 255, 255, 0.22) inset;
+    transition:
+        background-color 0.2s ease-out,
+        border-color 0.2s ease-out,
+        box-shadow 0.2s ease-out,
+        transform 0.2s ease-out,
+        color 0.2s ease-out;
+}
+
+.link-about-conv-cta:hover {
+    background-color: #B89438;
+    border-color: #B89438;
+    color: #4F5053;
+    box-shadow:
+        0 10px 36px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(220, 175, 71, 0.45);
+    transform: translateY(-3px);
+}
+
+.link-about-conv-cta:active {
+    background-color: #8C7325;
+    border-color: #8C7325;
+    color: #4F5053;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.link-about-conv-cta:focus {
+    outline: none;
+}
+
+.link-about-conv-cta:focus-visible {
+    outline: none;
+    box-shadow:
+        0 6px 28px rgba(0, 0, 0, 0.14),
+        0 0 0 2px #ffffff,
+        0 0 0 4px rgba(220, 175, 71, 0.45);
+}
+
+.span-about-conv-cta-label {
+    display: inline-block;
+    text-align: center;
+}
+
+/* Client highlight — Supercarbaldie card (About + Portfolio; shared template part) */
+.section-client-highlight-supercarbaldie {
+    width: 100%;
+}
+
+.section-client-highlight-supercarbaldie--embedded {
+    width: 100%;
+}
+
+.div-client-highlight-supercarbaldie-container {
+    position: relative;
+}
+
+.link-client-highlight-supercarbaldie-container {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* Single outer link + WYSIWYG: pass clicks through inner nodes to the anchor; re-enable only inline links in the description */
+.div-client-highlight-supercarbaldie-card-pass,
+.div-client-highlight-supercarbaldie-card-pass * {
+    pointer-events: none;
+}
+
+.div-client-highlight-supercarbaldie-card-pass .div-client-highlight-description a {
+    pointer-events: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.div-client-highlight-supercarbaldie-card {
+    width: 100%;
+}
+
+.div-client-highlight-supercarbaldie-card-inner {
+    border-radius: 2px;
+}
+
+.img-client-highlight-supercarbaldie {
+    display: block;
+}
+
+.h3-client-highlight-supercarbaldie-title {
+    margin-top: 0;
+}
+
+/* div-client-highlight-description: WYSIWYG below title (compact card typography) */
+.div-client-highlight-description {
+    margin-top: 0;
+}
+
+.div-client-highlight-description h3 {
+    font-weight: 600;
+    color: #4F5053;
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+.div-client-highlight-description h3:first-child {
+    margin-top: 0;
+}
+
+.div-client-highlight-description p {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: #7A7C80;
+    font-weight: 400;
+    margin: 0 0 0.75rem;
+}
+
+.div-client-highlight-description p:last-child {
+    margin-bottom: 0;
+}
+
+.div-client-highlight-description em {
+    font-style: italic;
+    color: #4F5053;
+    font-weight: 500;
+}
+
+.div-client-highlight-description strong {
+    font-weight: 600;
+    color: #4F5053;
+}
+
+.div-client-highlight-description a {
+    color: #DCAF47;
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+}
+
+.div-client-highlight-description a:hover {
+    color: #B89438;
+}
+
+.div-client-highlight-description ul {
+    list-style: disc outside;
+    margin: 0 0 0.75rem;
+    padding-left: 1.25rem;
+}
+
+.div-client-highlight-description ol {
+    list-style: decimal outside;
+    margin: 0 0 0.75rem;
+    padding-left: 1.25rem;
+}
+
+.div-client-highlight-description li {
+    margin-bottom: 0.375rem;
+    color: #7A7C80;
+    font-size: 0.9375rem;
+    line-height: 1.75;
+}
+
+.div-client-highlight-description blockquote {
+    margin: 0.75rem 0;
+    padding-left: 0.875rem;
+    border-left: 2px solid #DCAF47;
+    color: #4F5053;
+    font-style: italic;
+    font-size: 0.9375rem;
+}
+
 /* Responsive Design for About Page */
 @media (max-width: 1024px) {
     .div-about-hero-content {
@@ -2865,6 +3073,7 @@ button:focus-visible:hover {
 @media (max-width: 768px) {
     .h1-about-main-title,
     .h2-about-awards-title,
+    .h2-about-conv-title,
     .h2-about-newsletter-title {
         font-size: 2rem;
     }
@@ -2877,6 +3086,15 @@ button:focus-visible:hover {
     .div-about-awards-play-icon {
         width: 4rem;
         height: 4rem;
+    }
+
+    .link-about-conv-cta {
+        margin-top: 2.25rem;
+        max-width: 100%;
+        padding: 1rem 1.75rem;
+        font-size: 0.9375rem;
+        letter-spacing: 0.12em;
+        min-height: 3.25rem;
     }
 }
 
@@ -2988,7 +3206,7 @@ button:focus-visible:hover {
 .div-portfolio-card {
     position: relative;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     cursor: pointer;
     background-color: #000000;
@@ -3920,7 +4138,7 @@ button:focus-visible:hover {
 
 .div-contact-title-wrapper {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
 }
 
 .h1-contact-title {
@@ -3941,42 +4159,6 @@ button:focus-visible:hover {
     .h1-contact-title {
         font-size: 3.75rem;
     }
-}
-
-.div-contact-breadcrumb-wrapper {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.ol-contact-breadcrumb-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.link-contact-breadcrumb-home {
-    color: #7A7C80;
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color 0.2s ease-out;
-}
-
-.link-contact-breadcrumb-home:hover {
-    color: #4F5053;
-}
-
-.li-contact-breadcrumb-separator {
-    color: #BCBDC0;
-    font-size: 0.875rem;
-}
-
-.li-contact-breadcrumb-current {
-    color: #7A7C80;
-    font-size: 0.875rem;
 }
 
 .div-contact-content-wrapper {

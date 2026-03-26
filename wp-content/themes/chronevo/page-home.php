@@ -156,16 +156,12 @@ get_header();
                             $thumb = $assets_url . '/images/hero-1.jpg';
                         }
                         $service_title = get_the_title();
-                        $external_url = (function_exists('get_field')) ? get_field('external_url', $pid) : '';
-                        $has_valid_external = !empty($external_url) && is_string($external_url) && filter_var($external_url, FILTER_VALIDATE_URL);
-                        $service_link = $has_valid_external ? esc_url($external_url) : esc_url(get_permalink($pid));
-                        $link_target_attr = $has_valid_external ? ' target="_blank" rel="noopener noreferrer"' : '';
                         ?>
-                <a href="<?php echo $service_link; ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'a', 'service', $pid) . ' div-service-image-wrapper div-service-image-' . (int) $si); ?> absolute block"<?php echo $link_target_attr; ?>>
+                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'service', $pid) . ' div-service-image-wrapper div-service-image-' . (int) $si); ?> absolute block">
                     <img src="<?php echo esc_url($thumb); ?>" alt="<?php echo esc_attr($service_title); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'img', 'thumb', $pid) . ' img-service-image-' . (int) $si); ?> object-cover aspect-square">
                     <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'image-overlay', $pid)); ?> div-service-image-overlay absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" aria-hidden="true"></div>
                     <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'span', 'label', $pid) . ' span-service-label span-service-label-' . (int) $si); ?>"><?php echo esc_html($service_title); ?></span>
-                </a>
+                </div>
                         <?php
                     endwhile;
                     wp_reset_postdata();
@@ -195,7 +191,7 @@ get_header();
                         <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'category-short-text')); ?> span-portfolio-short-title-text"><?php echo esc_html($portfolio_short_title); ?></span>
                     </a>
                     <h2 class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'h2', 'main-heading')); ?> h2-portfolio-main-title">
-                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'main-heading-text')); ?> span-portfolio-main-title-text">Brands I'm Proud to Work With</span>
+                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'main-heading-text')); ?> span-portfolio-main-title-text">Create with With US</span>
                     </h2>
                     <p class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'p', 'description')); ?> p-portfolio-description">
                         <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'description-text')); ?> span-portfolio-description-text"><?php echo esc_html($portfolio_desc_text); ?></span>
@@ -213,7 +209,7 @@ get_header();
                     
                     <!-- Portfolio CTA Button -->
                     <a href="<?php echo esc_url(home_url('/portfolio')); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'a', 'cta-portfolio')); ?> link-portfolio-cta button-portfolio-cta">
-                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'cta-label')); ?> span-portfolio-cta-text">Portfolio</span>
+                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'cta-label')); ?> span-portfolio-cta-text">DESIGN</span>
                     </a>
                 </div>
                 
@@ -263,7 +259,15 @@ get_header();
         </div>
     </section>
     
-    <!-- Blog Section -->
+    <?php
+    $chr_show_blog = false;
+    if (function_exists('get_field')) {
+        $chr_show_blog_val = get_field('show_blog', get_queried_object_id());
+        $chr_show_blog = ($chr_show_blog_val === true || $chr_show_blog_val === 1 || $chr_show_blog_val === '1');
+    }
+    ?>
+    <?php if ($chr_show_blog) : ?>
+    <!-- Blog Section (ACF show_blog on front page) -->
     <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'blog', 'section', 'root')); ?> section-blog w-full relative">
         <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'blog', 'div', 'container')); ?> div-blog-container w-full max-w-[1440px] mx-auto">
             <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'blog', 'div', 'intro-row')); ?> div-blog-content-wrapper flex gap-12 px-6 pt-24 pb-12">
@@ -344,5 +348,6 @@ get_header();
             </div>
         </div>
     </section>
+    <?php endif; ?>
     
 <?php get_footer(); ?>
