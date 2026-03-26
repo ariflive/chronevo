@@ -91,13 +91,13 @@ $show_eyebrow = !empty($cfg['show_eyebrow']);
         <?php if ($show_eyebrow) : ?>
         <p class="ref-<?php echo esc_attr($ref_page); ?>-clients-eyebrow p-client-highlight-eyebrow text-[#7A7C80] text-xs font-semibold uppercase tracking-[0.2em] mb-10 md:mb-12">Clients</p>
         <?php endif; ?>
-        <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-inner div-client-highlight-supercarbaldie-inner flex flex-col lg:flex-row items-center gap-12 lg:gap-24 w-full">
-            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-image-wrap div-client-highlight-supercarbaldie-image-wrap w-full lg:flex-1 lg:w-1/2">
+        <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-inner div-client-highlight-supercarbaldie-inner flex flex-col lg:flex-row items-center gap-12 lg:gap-20 w-full">
+            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-image-wrap div-client-highlight-supercarbaldie-image-wrap w-full lg:w-1/3">
                 <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-image-inner div-client-highlight-supercarbaldie-image-inner w-full aspect-square overflow-hidden">
                     <img src="<?php echo esc_url($client_image_url); ?>" alt="<?php echo esc_attr($client_title); ?>" width="960" height="960" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-img img-client-highlight-supercarbaldie w-full h-full object-cover">
                 </div>
             </div>
-            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-text-wrap div-client-highlight-supercarbaldie-text-wrap w-full lg:flex-1 lg:w-1/2 flex flex-col justify-center min-w-0 text-left">
+            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-text-wrap div-client-highlight-supercarbaldie-text-wrap w-full lg:w-2/3 flex flex-col justify-center min-w-0 text-left">
                 <h3 id="<?php echo esc_attr($heading_id); ?>" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-title h3-client-highlight-supercarbaldie-title text-[#4F5053] font-semibold text-3xl md:text-4xl tracking-tight mb-6 md:mb-8"><?php echo esc_html($client_title); ?></h3>
                 <?php if ($description_html !== '') : ?>
                 <div class="ref-<?php echo esc_attr($ref_page); ?>-client-description div-client-highlight-description mt-0">
