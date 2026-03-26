@@ -79,7 +79,7 @@ get_header();
                 </div>
                 
                 <div class="ref-contact-submit-wrapper div-contact-submit-wrapper flex flex-col sm:flex-row sm:justify-center sm:items-center pt-2 mt-6 border-t border-[#E1E2E4]">
-                    <button type="submit" class="ref-contact-submit button-contact-submit w-full sm:w-auto min-w-[200px] px-8 py-3.5 bg-[#DCAF47] text-[#4F5053] font-semibold text-sm uppercase tracking-wide rounded-sm hover:bg-[#B89438] active:bg-[#8C7325] focus:outline-none focus:ring-2 focus:ring-[#DCAF47] focus:ring-opacity-40 transition-colors duration-200 ease-out">
+                    <button type="submit" class="ref-contact-submit button-contact-submit w-full sm:w-auto min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] transition-all duration-200 ease-out">
                         Send Message
                     </button>
                 </div>
@@ -87,5 +87,21 @@ get_header();
         </div>
     </div>
 </section>
+
+<?php
+$chronevo_about_for_client_card = get_page_by_path('about', OBJECT, 'page');
+$chronevo_client_acf_post_id = ($chronevo_about_for_client_card instanceof WP_Post)
+    ? (int) $chronevo_about_for_client_card->ID
+    : 0;
+chronevo_render_client_highlight_supercarbaldie(array(
+    'ref_page' => 'portfolio',
+    'acf_post_id' => $chronevo_client_acf_post_id,
+    'layout' => 'embedded',
+    'show_eyebrow' => false,
+    'add_bottom_padding' => true,
+    'equal_embedded_padding' => true,
+    'heading_id' => 'portfolio-supercarbaldie-title',
+));
+?>
 
 <?php get_footer(); ?>

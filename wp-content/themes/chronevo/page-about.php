@@ -425,7 +425,7 @@ if ($about_create_cta_label === '') {
             <span class="ref-about-conv-accent span-about-conv-accent block w-12 h-0.5 bg-[#DCAF47] mb-8" aria-hidden="true"></span>
             <h2 id="about-conv-heading" class="ref-about-conv-title h2-about-conv-title text-[#4F5053] font-semibold text-3xl md:text-4xl tracking-tight"><?php echo esc_html($about_create_title); ?></h2>
             <p class="ref-about-conv-lead p-about-conv-lead mt-6 text-[#7A7C80] text-base md:text-lg leading-relaxed"><?php echo nl2br(esc_html($about_create_description)); ?></p>
-            <a href="<?php echo esc_url($about_create_cta_url); ?>" class="ref-about-conv-cta link-about-conv-cta">
+            <a href="<?php echo esc_url($about_create_cta_url); ?>" class="ref-about-conv-cta link-about-conv-cta mt-12 inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] transition-all duration-200 ease-out hover:bg-[#1a1a1a] hover:border-[#DCAF47] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]">
                 <span class="ref-about-conv-cta-label span-about-conv-cta-label"><?php echo esc_html($about_create_cta_label); ?></span>
             </a>
         </div>
@@ -438,7 +438,7 @@ chronevo_render_client_highlight_supercarbaldie(array(
     'ref_page' => 'about',
     'acf_post_id' => (int) get_queried_object_id(),
     'layout' => 'standalone',
-    'show_eyebrow' => true,
+    'show_eyebrow' => false,
     'heading_id' => 'about-supercarbaldie-title',
 ));
 ?>

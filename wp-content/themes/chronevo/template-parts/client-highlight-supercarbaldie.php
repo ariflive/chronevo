@@ -10,6 +10,8 @@
  * - layout          string 'standalone'|'embedded' — standalone = full-width section; embedded = inside clients strip.
  * - show_eyebrow    bool   Show small "Clients" label above the card.
  * - heading_id      string Unique id for h3 (aria-labelledby on section).
+ * - add_bottom_padding bool Add bottom padding when embedded (optional).
+ * - equal_embedded_padding bool Use equal top/bottom embedded padding (optional).
  */
 
 if (!defined('ABSPATH')) {
@@ -22,6 +24,8 @@ $defaults = array(
     'layout' => 'standalone',
     'show_eyebrow' => true,
     'heading_id' => '',
+    'add_bottom_padding' => false,
+    'equal_embedded_padding' => false,
 );
 
 $cfg = isset($args) && is_array($args) ? wp_parse_args($args, $defaults) : $defaults;
@@ -39,6 +43,8 @@ $heading_id = is_string($cfg['heading_id']) && $cfg['heading_id'] !== ''
     : $ref_page . '-supercarbaldie-title';
 
 $is_embedded = ($cfg['layout'] === 'embedded');
+$add_bottom_padding = !empty($cfg['add_bottom_padding']);
+$equal_embedded_padding = !empty($cfg['equal_embedded_padding']);
 
 $client_title = 'Supercarbaldie';
 $client_image_url = home_url('/media/yeRYAvoIoz2cTWcP.png');
@@ -80,6 +86,12 @@ $external_url = 'https://supercarbaldie.com';
 $section_tw = $is_embedded
     ? 'w-full border-0 pt-12 md:pt-16 mt-8 md:mt-12 bg-transparent'
     : 'w-full py-12 md:py-16 bg-[#F6F7F8] border-t border-[#E1E2E4]';
+if ($is_embedded && $equal_embedded_padding) {
+    $section_tw = 'w-full border-0 py-12 md:py-16 bg-transparent';
+}
+if ($is_embedded && $add_bottom_padding) {
+    $section_tw .= ' pb-12 md:pb-16';
+}
 
 $show_eyebrow = !empty($cfg['show_eyebrow']);
 ?>

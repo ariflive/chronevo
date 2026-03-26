@@ -2863,7 +2863,7 @@ button:focus-visible:hover {
 }
 
 .link-about-conv-cta {
-    margin-top: 2.75rem;
+    margin-top: 3rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2877,38 +2877,30 @@ button:focus-visible:hover {
     line-height: 1.2;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #4F5053;
-    background-color: #DCAF47;
-    border: 2px solid #C9A23D;
+    color: #F6F7F8;
+    background-color: #0a0a0a;
+    border: 2px solid #4F5053;
     border-radius: 0;
     text-decoration: none;
-    box-shadow:
-        0 6px 28px rgba(0, 0, 0, 0.14),
-        0 1px 0 rgba(255, 255, 255, 0.22) inset;
     transition:
         background-color 0.2s ease-out,
         border-color 0.2s ease-out,
-        box-shadow 0.2s ease-out,
         transform 0.2s ease-out,
         color 0.2s ease-out;
 }
 
 .link-about-conv-cta:hover {
-    background-color: #B89438;
-    border-color: #B89438;
-    color: #4F5053;
-    box-shadow:
-        0 10px 36px rgba(0, 0, 0, 0.18),
-        0 0 0 1px rgba(220, 175, 71, 0.45);
+    background-color: #1a1a1a;
+    border-color: #DCAF47;
+    color: #F6F7F8;
     transform: translateY(-3px);
 }
 
 .link-about-conv-cta:active {
-    background-color: #8C7325;
+    background-color: #000000;
     border-color: #8C7325;
-    color: #4F5053;
+    color: #F6F7F8;
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 .link-about-conv-cta:focus {
@@ -2918,7 +2910,6 @@ button:focus-visible:hover {
 .link-about-conv-cta:focus-visible {
     outline: none;
     box-shadow:
-        0 6px 28px rgba(0, 0, 0, 0.14),
         0 0 0 2px #ffffff,
         0 0 0 4px rgba(220, 175, 71, 0.45);
 }
@@ -4221,24 +4212,35 @@ button:focus-visible:hover {
 }
 
 .button-contact-submit {
-    padding: 0.75rem 2rem;
-    background-color: #DCAF47;
-    color: #4F5053;
+    padding: 1rem 3rem;
+    background-color: #0a0a0a;
+    color: #F6F7F8;
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border: none;
+    letter-spacing: 0.15em;
+    border: 2px solid #4F5053;
     cursor: pointer;
-    transition: background-color 0.2s ease-out;
+    transition: background-color 0.2s ease-out, border-color 0.2s ease-out, color 0.2s ease-out;
 }
 
 .button-contact-submit:hover {
-    background-color: #B89438;
+    background-color: #1a1a1a;
+    border-color: #DCAF47;
+    color: #F6F7F8;
 }
 
 .button-contact-submit:active {
-    background-color: #8C7325;
+    background-color: #000000;
+    border-color: #8C7325;
+    color: #F6F7F8;
+}
+
+.button-contact-submit:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 0 4px rgba(220, 175, 71, 0.45);
 }
 
 /* Single Service – contact block CTAs */
