@@ -2919,7 +2919,7 @@ button:focus-visible:hover {
     text-align: center;
 }
 
-/* Client highlight — Supercarbaldie card (About + Portfolio; shared template part) */
+/* Client highlight — Supercarbaldie full-width block (About + Portfolio + Contact; shared template part) */
 .section-client-highlight-supercarbaldie {
     width: 100%;
 }
@@ -2932,30 +2932,8 @@ button:focus-visible:hover {
     position: relative;
 }
 
-.link-client-highlight-supercarbaldie-container {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-}
-
-/* Single outer link + WYSIWYG: pass clicks through inner nodes to the anchor; re-enable only inline links in the description */
-.div-client-highlight-supercarbaldie-card-pass,
-.div-client-highlight-supercarbaldie-card-pass * {
-    pointer-events: none;
-}
-
-.div-client-highlight-supercarbaldie-card-pass .div-client-highlight-description a {
-    pointer-events: auto;
-    position: relative;
-    z-index: 1;
-}
-
-.div-client-highlight-supercarbaldie-card {
+.div-client-highlight-supercarbaldie-inner {
     width: 100%;
-}
-
-.div-client-highlight-supercarbaldie-card-inner {
-    border-radius: 2px;
 }
 
 .img-client-highlight-supercarbaldie {
@@ -2966,83 +2944,112 @@ button:focus-visible:hover {
     margin-top: 0;
 }
 
-/* div-client-highlight-description: WYSIWYG below title (compact card typography) */
-.div-client-highlight-description {
+.span-client-highlight-supercarbaldie-cta-label {
+    display: inline-block;
+    text-align: center;
+}
+
+/* WYSIWYG: match block body scale (about-conv-lead) */
+.section-client-highlight-supercarbaldie .div-client-highlight-description {
     margin-top: 0;
 }
 
-.div-client-highlight-description h3 {
+.section-client-highlight-supercarbaldie .div-client-highlight-description h3 {
     font-weight: 600;
     color: #4F5053;
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
     line-height: 1.4;
     margin: 0 0 0.75rem;
     letter-spacing: 0.02em;
 }
 
-.div-client-highlight-description h3:first-child {
+@media (min-width: 768px) {
+    .section-client-highlight-supercarbaldie .div-client-highlight-description h3 {
+        font-size: 1.1875rem;
+    }
+}
+
+.section-client-highlight-supercarbaldie .div-client-highlight-description h3:first-child {
     margin-top: 0;
 }
 
-.div-client-highlight-description p {
-    font-size: 0.9375rem;
+.section-client-highlight-supercarbaldie .div-client-highlight-description p {
+    font-size: 1rem;
     line-height: 1.75;
     color: #7A7C80;
     font-weight: 400;
     margin: 0 0 0.75rem;
 }
 
-.div-client-highlight-description p:last-child {
+@media (min-width: 768px) {
+    .section-client-highlight-supercarbaldie .div-client-highlight-description p {
+        font-size: 1.125rem;
+    }
+}
+
+.section-client-highlight-supercarbaldie .div-client-highlight-description p:last-child {
     margin-bottom: 0;
 }
 
-.div-client-highlight-description em {
+.section-client-highlight-supercarbaldie .div-client-highlight-description em {
     font-style: italic;
     color: #4F5053;
     font-weight: 500;
 }
 
-.div-client-highlight-description strong {
+.section-client-highlight-supercarbaldie .div-client-highlight-description strong {
     font-weight: 600;
     color: #4F5053;
 }
 
-.div-client-highlight-description a {
+.section-client-highlight-supercarbaldie .div-client-highlight-description a {
     color: #DCAF47;
     text-decoration: none;
     transition: color 0.2s ease-out;
 }
 
-.div-client-highlight-description a:hover {
+.section-client-highlight-supercarbaldie .div-client-highlight-description a:hover {
     color: #B89438;
 }
 
-.div-client-highlight-description ul {
+.section-client-highlight-supercarbaldie .div-client-highlight-description ul {
     list-style: disc outside;
     margin: 0 0 0.75rem;
     padding-left: 1.25rem;
 }
 
-.div-client-highlight-description ol {
+.section-client-highlight-supercarbaldie .div-client-highlight-description ol {
     list-style: decimal outside;
     margin: 0 0 0.75rem;
     padding-left: 1.25rem;
 }
 
-.div-client-highlight-description li {
+.section-client-highlight-supercarbaldie .div-client-highlight-description li {
     margin-bottom: 0.375rem;
     color: #7A7C80;
-    font-size: 0.9375rem;
+    font-size: 1rem;
     line-height: 1.75;
 }
 
-.div-client-highlight-description blockquote {
+@media (min-width: 768px) {
+    .section-client-highlight-supercarbaldie .div-client-highlight-description li {
+        font-size: 1.125rem;
+    }
+}
+
+.section-client-highlight-supercarbaldie .div-client-highlight-description blockquote {
     margin: 0.75rem 0;
     padding-left: 0.875rem;
     border-left: 2px solid #DCAF47;
     color: #4F5053;
     font-style: italic;
-    font-size: 0.9375rem;
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .section-client-highlight-supercarbaldie .div-client-highlight-description blockquote {
+        font-size: 1.125rem;
+    }
 }
 
 /* Responsive Design for About Page */

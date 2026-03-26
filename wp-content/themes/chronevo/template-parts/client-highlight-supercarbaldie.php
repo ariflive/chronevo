@@ -10,8 +10,8 @@
  * - layout          string 'standalone'|'embedded' — standalone = full-width section; embedded = inside clients strip.
  * - show_eyebrow    bool   Show small "Clients" label above the card.
  * - heading_id      string Unique id for h3 (aria-labelledby on section).
- * - add_bottom_padding bool Add bottom padding when embedded (optional).
- * - equal_embedded_padding bool Use equal top/bottom embedded padding (optional).
+ * - add_bottom_padding bool (legacy; ignored — section uses fixed full-width padding).
+ * - equal_embedded_padding bool (legacy; ignored).
  */
 
 if (!defined('ABSPATH')) {
@@ -43,8 +43,6 @@ $heading_id = is_string($cfg['heading_id']) && $cfg['heading_id'] !== ''
     : $ref_page . '-supercarbaldie-title';
 
 $is_embedded = ($cfg['layout'] === 'embedded');
-$add_bottom_padding = !empty($cfg['add_bottom_padding']);
-$equal_embedded_padding = !empty($cfg['equal_embedded_padding']);
 
 $client_title = 'Supercarbaldie';
 $client_image_url = home_url('/media/yeRYAvoIoz2cTWcP.png');
@@ -83,37 +81,35 @@ if (function_exists('get_field')) {
 
 $external_url = 'https://supercarbaldie.com';
 
-$section_tw = $is_embedded
-    ? 'w-full border-0 pt-12 md:pt-16 mt-8 md:mt-12 bg-transparent'
-    : 'w-full py-12 md:py-16 bg-[#F6F7F8] border-t border-[#E1E2E4]';
-if ($is_embedded && $equal_embedded_padding) {
-    $section_tw = 'w-full border-0 py-12 md:py-16 bg-transparent';
-}
-if ($is_embedded && $add_bottom_padding) {
-    $section_tw .= ' pb-12 md:pb-16';
-}
+// Full-width block: match section-about-conv (Create With Us) — py, bg, border; no inner card panel.
+$section_tw = 'w-full py-20 md:py-28 bg-white border-t border-[#E1E2E4]';
 
 $show_eyebrow = !empty($cfg['show_eyebrow']);
 ?>
 <section class="ref-<?php echo esc_attr($ref_page); ?>-clients-supercarbaldie-section section-client-highlight-supercarbaldie <?php echo $is_embedded ? 'section-client-highlight-supercarbaldie--embedded' : ''; ?> <?php echo esc_attr($section_tw); ?>" aria-labelledby="<?php echo esc_attr($heading_id); ?>">
-    <a href="<?php echo esc_url($external_url); ?>" class="ref-<?php echo esc_attr($ref_page); ?>-clients-supercarbaldie-container div-client-highlight-supercarbaldie-container link-client-highlight-supercarbaldie-container group block no-underline text-inherit w-full max-w-[960px] mx-auto px-6 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F6F7F8] rounded-sm" target="_blank" rel="noopener noreferrer">
+    <div class="ref-<?php echo esc_attr($ref_page); ?>-clients-supercarbaldie-container div-client-highlight-supercarbaldie-container w-full max-w-[1440px] mx-auto px-6">
         <?php if ($show_eyebrow) : ?>
-        <p class="ref-<?php echo esc_attr($ref_page); ?>-clients-eyebrow p-client-highlight-eyebrow text-[#7A7C80] text-xs font-semibold uppercase tracking-[0.2em] mb-4">Clients</p>
+        <p class="ref-<?php echo esc_attr($ref_page); ?>-clients-eyebrow p-client-highlight-eyebrow text-[#7A7C80] text-xs font-semibold uppercase tracking-[0.2em] mb-10 md:mb-12">Clients</p>
         <?php endif; ?>
-        <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-card-inner div-client-highlight-supercarbaldie-card-inner div-client-highlight-supercarbaldie-card-pass ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-card div-client-highlight-supercarbaldie-card flex flex-col sm:flex-row gap-6 sm:gap-8 items-stretch bg-white border border-[#E1E2E4] p-5 sm:p-6 transition-[box-shadow,transform,border-color] duration-200 ease-out group-hover:shadow-md group-hover:border-[#BCBDC0] group-hover:-translate-y-0.5">
-            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-image-wrap div-client-highlight-supercarbaldie-image-wrap shrink-0 w-full sm:w-[200px] md:w-[220px]">
-                <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-image-inner div-client-highlight-supercarbaldie-image-inner w-full aspect-[4/3] sm:aspect-square overflow-hidden">
-                    <img src="<?php echo esc_url($client_image_url); ?>" alt="<?php echo esc_attr($client_title); ?>" width="440" height="440" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-img img-client-highlight-supercarbaldie w-full h-full object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]">
+        <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-inner div-client-highlight-supercarbaldie-inner flex flex-col lg:flex-row items-center gap-12 lg:gap-24 w-full">
+            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-image-wrap div-client-highlight-supercarbaldie-image-wrap w-full lg:flex-1 lg:w-1/2">
+                <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-image-inner div-client-highlight-supercarbaldie-image-inner w-full aspect-square overflow-hidden">
+                    <img src="<?php echo esc_url($client_image_url); ?>" alt="<?php echo esc_attr($client_title); ?>" width="960" height="960" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-img img-client-highlight-supercarbaldie w-full h-full object-cover">
                 </div>
             </div>
-            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-text-wrap div-client-highlight-supercarbaldie-text-wrap flex-1 flex flex-col justify-center min-w-0 text-left">
-                <h3 id="<?php echo esc_attr($heading_id); ?>" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-title h3-client-highlight-supercarbaldie-title text-[#4F5053] font-semibold text-lg md:text-xl tracking-tight mb-3"><?php echo esc_html($client_title); ?></h3>
+            <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-text-wrap div-client-highlight-supercarbaldie-text-wrap w-full lg:flex-1 lg:w-1/2 flex flex-col justify-center min-w-0 text-left">
+                <h3 id="<?php echo esc_attr($heading_id); ?>" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-title h3-client-highlight-supercarbaldie-title text-[#4F5053] font-semibold text-3xl md:text-4xl tracking-tight mb-6 md:mb-8"><?php echo esc_html($client_title); ?></h3>
                 <?php if ($description_html !== '') : ?>
-                <div class="ref-<?php echo esc_attr($ref_page); ?>-client-description div-client-highlight-description">
+                <div class="ref-<?php echo esc_attr($ref_page); ?>-client-description div-client-highlight-description mt-0">
                     <?php echo $description_html; ?>
                 </div>
                 <?php endif; ?>
+                <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta-wrap div-client-highlight-supercarbaldie-cta-wrap mt-10 md:mt-12">
+                    <a href="<?php echo esc_url($external_url); ?>" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta link-client-highlight-supercarbaldie-cta link-about-conv-cta inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] transition-all duration-200 ease-out hover:bg-[#1a1a1a] hover:border-[#DCAF47] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]" target="_blank" rel="noopener noreferrer">
+                        <span class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta-label span-client-highlight-supercarbaldie-cta-label"><?php echo esc_html('Visit Site'); ?></span>
+                    </a>
+                </div>
             </div>
         </div>
-    </a>
+    </div>
 </section>

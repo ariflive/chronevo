@@ -153,20 +153,21 @@ if ($clients_query->have_posts()) {
             </div>
         </div>
         <?php endif; ?>
-        <?php
-        $chronevo_about_for_client_card = get_page_by_path('about', OBJECT, 'page');
-        $chronevo_client_acf_post_id = ($chronevo_about_for_client_card instanceof WP_Post)
-            ? (int) $chronevo_about_for_client_card->ID
-            : 0;
-        chronevo_render_client_highlight_supercarbaldie(array(
-            'ref_page' => 'portfolio',
-            'acf_post_id' => $chronevo_client_acf_post_id,
-            'layout' => 'embedded',
-            'show_eyebrow' => false,
-            'heading_id' => 'portfolio-supercarbaldie-title',
-        ));
-        ?>
     </div>
 </section>
+
+<?php
+$chronevo_about_for_client_card = get_page_by_path('about', OBJECT, 'page');
+$chronevo_client_acf_post_id = ($chronevo_about_for_client_card instanceof WP_Post)
+    ? (int) $chronevo_about_for_client_card->ID
+    : 0;
+chronevo_render_client_highlight_supercarbaldie(array(
+    'ref_page' => 'portfolio',
+    'acf_post_id' => $chronevo_client_acf_post_id,
+    'layout' => 'embedded',
+    'show_eyebrow' => false,
+    'heading_id' => 'portfolio-supercarbaldie-title',
+));
+?>
 
 <?php get_footer(); ?>

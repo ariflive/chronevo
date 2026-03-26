@@ -98,8 +98,6 @@ chronevo_render_client_highlight_supercarbaldie(array(
     'acf_post_id' => $chronevo_client_acf_post_id,
     'layout' => 'embedded',
     'show_eyebrow' => false,
-    'add_bottom_padding' => true,
-    'equal_embedded_padding' => true,
     'heading_id' => 'portfolio-supercarbaldie-title',
 ));
 ?>
