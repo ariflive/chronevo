@@ -21,29 +21,10 @@ get_header();
         $portfolio_category = get_term(6, 'category');
         $portfolio_title = (!is_wp_error($portfolio_category) && isset($portfolio_category->name)) ? $portfolio_category->name : 'Portfolio';
         ?>
-        <div class="ref-portfolio-title-wrapper div-portfolio-title-wrapper text-center mb-6">
+        <div class="ref-portfolio-title-wrapper div-portfolio-title-wrapper text-center mb-12">
             <h1 class="ref-portfolio-title h1-portfolio-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl uppercase">
                 <?php echo esc_html($portfolio_title); ?>
             </h1>
-        </div>
-        
-        <!-- Breadcrumb -->
-        <div class="ref-portfolio-breadcrumb-wrapper div-portfolio-breadcrumb-wrapper text-center mb-12">
-            <nav class="ref-portfolio-breadcrumb nav-portfolio-breadcrumb">
-                <ol class="ref-portfolio-breadcrumb-list ol-portfolio-breadcrumb-list flex items-center justify-center gap-2">
-                    <li class="ref-portfolio-breadcrumb-item li-portfolio-breadcrumb-item">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-portfolio-breadcrumb-home link-portfolio-breadcrumb-home text-[#7A7C80] hover:text-[#4F5053] transition-colors duration-200">
-                            Home
-                        </a>
-                    </li>
-                    <li class="ref-portfolio-breadcrumb-separator li-portfolio-breadcrumb-separator text-[#BCBDC0]">
-                        /
-                    </li>
-                    <li class="ref-portfolio-breadcrumb-current li-portfolio-breadcrumb-current text-[#7A7C80]">
-                        <?php echo esc_html($portfolio_title); ?>
-                    </li>
-                </ol>
-            </nav>
         </div>
         
         <!-- Portfolio Grid (posts from cat=6, order by last updated) -->

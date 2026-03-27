@@ -179,7 +179,6 @@ get_header();
     <!-- Portfolio Section (category 6: title + description) -->
     <?php
     $portfolio_cat_6 = get_term(6, 'category');
-    $portfolio_short_title = (!is_wp_error($portfolio_cat_6) && isset($portfolio_cat_6->name)) ? $portfolio_cat_6->name : 'My Work';
     $portfolio_desc_text = (!is_wp_error($portfolio_cat_6) && !empty($portfolio_cat_6->description)) ? strip_tags($portfolio_cat_6->description) : "A look at some of the clients and companies I've been fortunate to work with.";
     ?>
     <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'section', 'root')); ?> section-portfolio w-full relative">
@@ -187,8 +186,8 @@ get_header();
             <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'content')); ?> div-portfolio-content-wrapper flex gap-12">
                 <!-- Left Column -->
                 <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'col-left')); ?> div-portfolio-left-column flex flex-col">
-                    <a href="<?php echo esc_url(home_url('/portfolio')); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'a', 'category-short-title')); ?> link-portfolio-short-title">
-                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'category-short-text')); ?> span-portfolio-short-title-text"><?php echo esc_html($portfolio_short_title); ?></span>
+                    <a href="<?php echo esc_url(home_url('/contact')); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'a', 'category-short-title')); ?> link-portfolio-short-title">
+                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'category-short-text')); ?> span-portfolio-short-title-text"><?php echo esc_html('Design'); ?></span>
                     </a>
                     <h2 class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'h2', 'main-heading')); ?> h2-portfolio-main-title">
                         <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'main-heading-text')); ?> span-portfolio-main-title-text">Create with With US</span>
@@ -208,7 +207,7 @@ get_header();
                     </div>
                     
                     <!-- Portfolio CTA Button -->
-                    <a href="<?php echo esc_url(home_url('/portfolio')); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'a', 'cta-portfolio')); ?> link-portfolio-cta button-portfolio-cta">
+                    <a href="<?php echo esc_url(home_url('/contact')); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'a', 'cta-portfolio')); ?> link-portfolio-cta button-portfolio-cta">
                         <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'cta-label')); ?> span-portfolio-cta-text">DESIGN</span>
                     </a>
                 </div>
