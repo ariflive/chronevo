@@ -157,12 +157,60 @@ $chr_rp = chronevo_ref_page();
                     </div>
                 </div>
                 
+                <?php
+                $footer_bottom_menu_items = wp_get_nav_menu_items(10);
+                if ($footer_bottom_menu_items && !is_wp_error($footer_bottom_menu_items)) :
+                    ?>
+                <nav class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'nav', 'bottom-links')); ?> nav-footer-bottom-links mt-2 mb-1 w-full" aria-label="<?php echo esc_attr__('Footer secondary links', 'chronevo'); ?>">
+                    <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'bottom-links-row')); ?> div-footer-bottom-links-row flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
+                        <?php
+                        $footer_bottom_top_level = array();
+                        foreach ($footer_bottom_menu_items as $item) {
+                            if ((int) $item->menu_item_parent !== 0) {
+                                continue;
+                            }
+                            $footer_bottom_top_level[] = $item;
+                        }
+                        foreach ($footer_bottom_top_level as $bottom_idx => $item) {
+                            if ($bottom_idx > 0) {
+                                ?>
+                        <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'bottom-link-separator', $bottom_idx)); ?> span-footer-bottom-link-separator text-xs text-white/55 select-none" aria-hidden="true">&middot;</span>
+                                <?php
+                            }
+                            $url = !empty($item->url) ? $item->url : '#';
+                            $target = !empty($item->target) ? $item->target : '';
+                            $link_class = 'link-footer-bottom-' . sanitize_html_class(strtolower($item->title));
+                            $rel_parts = array();
+                            if ($target === '_blank') {
+                                $rel_parts[] = 'noopener';
+                                $rel_parts[] = 'noreferrer';
+                            }
+                            ?>
+                        <a href="<?php echo esc_url($url); ?>" class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'a', 'bottom-link', (int) $item->ID) . ' ' . $link_class); ?> text-white/40 hover:text-white/60 text-xs font-normal tracking-normal transition-colors duration-200"<?php
+                            if ($target !== '') {
+                                echo ' target="' . esc_attr($target) . '"';
+                            }
+                            if ($rel_parts) {
+                                echo ' rel="' . esc_attr(implode(' ', $rel_parts)) . '"';
+                            }
+                            ?>>
+                            <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'bottom-link-label', (int) $item->ID)); ?>"><?php echo esc_html($item->title); ?></span>
+                        </a>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                </nav>
+                    <?php
+                endif;
+                ?>
+                
                 <!-- Copyright Message -->
                 <div class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'div', 'copyright-section')); ?> div-footer-copyright-section">
                     <p class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'p', 'copyright')); ?> p-footer-copyright-text">
                         <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-symbol')); ?> span-footer-copyright-symbol">&copy;</span>
                         <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-year')); ?> span-footer-copyright-year"><?php echo esc_html(date('Y')); ?></span>
-                        <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-name')); ?> span-footer-copyright-name">ChronEvo</span>
+                        <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-name')); ?> span-footer-copyright-name"><?php echo esc_html(get_bloginfo('name')); ?></span>
                         <span class="<?php echo esc_attr(chronevo_ref_class($chr_rp, 'footer', 'span', 'copyright-rights')); ?> span-footer-copyright-rights">All rights reserved.</span>
                     </p>
                 </div>

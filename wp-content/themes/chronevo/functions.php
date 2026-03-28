@@ -121,6 +121,37 @@ function chronevo_scripts() {
 add_action('wp_enqueue_scripts', 'chronevo_scripts');
 
 /**
+ * Google Analytics 4 (gtag.js) — public front-end only.
+ * Uses wp_enqueue_script + async strategy + wp_add_inline_script (WordPress script API).
+ *
+ * Filter `chronevo_ga4_measurement_id` to change or empty-disable the tag (e.g. per environment).
+ */
+function chronevo_enqueue_ga4_gtag() {
+    if (is_admin()) {
+        return;
+    }
+    $measurement_id = apply_filters('chronevo_ga4_measurement_id', 'G-0P2STRT581');
+    if (!is_string($measurement_id) || '' === trim($measurement_id)) {
+        return;
+    }
+    $handle = 'chronevo-google-gtag';
+    $src = 'https://www.googletagmanager.com/gtag/js?id=' . rawurlencode($measurement_id);
+
+    wp_register_script($handle, $src, array(), null, false);
+    if (version_compare(get_bloginfo('version'), '6.3', '>=')) {
+        wp_script_add_data($handle, 'strategy', 'async');
+    }
+    wp_enqueue_script($handle);
+
+    $inline = sprintf(
+        'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config",%s);',
+        wp_json_encode($measurement_id, JSON_UNESCAPED_UNICODE)
+    );
+    wp_add_inline_script($handle, $inline, 'after');
+}
+add_action('wp_enqueue_scripts', 'chronevo_enqueue_ga4_gtag', 1);
+
+/**
  * Remove Admin Bar from Front-End
  */
 function chronevo_remove_admin_bar() {
