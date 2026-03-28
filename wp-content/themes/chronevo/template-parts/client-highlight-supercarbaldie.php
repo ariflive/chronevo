@@ -105,9 +105,7 @@ $show_eyebrow = !empty($cfg['show_eyebrow']);
                 </div>
                 <?php endif; ?>
                 <div class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta-wrap div-client-highlight-supercarbaldie-cta-wrap mt-10 md:mt-12">
-                    <a href="<?php echo esc_url($external_url); ?>" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta link-client-highlight-supercarbaldie-cta link-about-conv-cta inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] transition-all duration-200 ease-out hover:bg-[#1a1a1a] hover:border-[#DCAF47] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]" target="_blank" rel="noopener noreferrer">
-                        <span class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta-label span-client-highlight-supercarbaldie-cta-label"><?php echo esc_html('Visit Site'); ?></span>
-                    </a>
+                    <a href="<?php echo esc_url($external_url); ?>" class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta link-client-highlight-supercarbaldie-cta link-about-conv-cta inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] transition-all duration-200 ease-out hover:bg-[#1a1a1a] hover:border-[#DCAF47] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]" target="_blank" rel="noopener noreferrer"><span class="ref-<?php echo esc_attr($ref_page); ?>-supercarbaldie-cta-label span-client-highlight-supercarbaldie-cta-label whitespace-nowrap"><?php echo esc_html('Explore the Experience'); ?></span></a>
                 </div>
             </div>
         </div>

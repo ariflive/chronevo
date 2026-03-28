@@ -154,9 +154,7 @@ get_header();
         <!-- Right Column - Recent Posts -->
         <div class="ref-blog-category-sidebar div-blog-category-sidebar w-full lg:w-[35%]">
             <div class="ref-blog-recent-posts-wrapper div-blog-recent-posts-wrapper">
-                <h3 class="ref-blog-recent-posts-title h3-blog-recent-posts-title text-[#4F5053] font-semibold text-lg uppercase mb-4">
-                    Recent Posts
-                </h3>
+                <h3 class="ref-blog-recent-posts-title h3-blog-recent-posts-title text-[#4F5053] font-semibold text-lg uppercase mb-4"><?php echo esc_html('Latest Insights'); ?></h3>
                 <ul class="ref-blog-recent-posts-list ul-blog-recent-posts-list list-none p-0 m-0">
                     <?php
                     $recent_posts = array(

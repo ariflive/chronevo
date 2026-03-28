@@ -176,88 +176,68 @@ get_header();
         </div>
     </section>
     
-    <!-- Portfolio Section (category 6: title + description) -->
     <?php
-    $portfolio_cat_6 = get_term(6, 'category');
-    $portfolio_desc_text = (!is_wp_error($portfolio_cat_6) && !empty($portfolio_cat_6->description)) ? strip_tags($portfolio_cat_6->description) : "A look at some of the clients and companies I've been fortunate to work with.";
+    // Conversion block (same markup as ref-about-conv-section on About; ACF sourced from About page so copy stays in sync).
+    $chr_home_conv_acf_id = get_queried_object_id();
+    $chr_home_about_page = get_page_by_path('about');
+    if ($chr_home_about_page instanceof WP_Post) {
+        $chr_home_conv_acf_id = (int) $chr_home_about_page->ID;
+    }
+    $chr_home_conv_show = false;
+    if (function_exists('get_field')) {
+        $chr_home_conv_val = get_field('about_create_show', $chr_home_conv_acf_id);
+        $chr_home_conv_show = ($chr_home_conv_val === true || $chr_home_conv_val === 1 || $chr_home_conv_val === '1');
+    }
     ?>
-    <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'section', 'root')); ?> section-portfolio w-full relative">
-        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'container')); ?> div-portfolio-container w-full max-w-[1440px] mx-auto px-6 py-24">
-            <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'content')); ?> div-portfolio-content-wrapper flex gap-12">
-                <!-- Left Column -->
-                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'col-left')); ?> div-portfolio-left-column flex flex-col">
-                    <a href="<?php echo esc_url(home_url('/contact')); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'a', 'category-short-title')); ?> link-portfolio-short-title">
-                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'category-short-text')); ?> span-portfolio-short-title-text"><?php echo esc_html('Design'); ?></span>
-                    </a>
-                    <h2 class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'h2', 'main-heading')); ?> h2-portfolio-main-title">
-                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'main-heading-text')); ?> span-portfolio-main-title-text">Create with With US</span>
-                    </h2>
-                    <p class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'p', 'description')); ?> p-portfolio-description">
-                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'description-text')); ?> span-portfolio-description-text"><?php echo esc_html($portfolio_desc_text); ?></span>
-                    </p>
-                    
-                    <!-- Carousel Navigation -->
-                    <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'carousel-nav')); ?> div-portfolio-carousel-navigation">
-                        <button type="button" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'button', 'carousel-prev')); ?> button-portfolio-carousel-prev" aria-label="Previous slide">
-                            <i class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'i', 'carousel-arrow-prev')); ?> ph ph-arrow-left"></i>
-                        </button>
-                        <button type="button" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'button', 'carousel-next')); ?> button-portfolio-carousel-next" aria-label="Next slide">
-                            <i class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'i', 'carousel-arrow-next')); ?> ph ph-arrow-right"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Portfolio CTA Button -->
-                    <a href="<?php echo esc_url(home_url('/contact')); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'a', 'cta-portfolio')); ?> link-portfolio-cta button-portfolio-cta">
-                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'cta-label')); ?> span-portfolio-cta-text">DESIGN</span>
-                    </a>
-                </div>
-                
-                <!-- Right Column -->
-                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'col-right')); ?> div-portfolio-right-column">
-                    <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'carousel-wrap')); ?> div-portfolio-carousel-wrapper">
-                        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'carousel-viewport')); ?> div-portfolio-carousel-container">
-                            <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'carousel-track')); ?> div-portfolio-carousel-track">
-                                <?php
-                                $home_carousel_query = new WP_Query(array(
-                                    'cat'                 => 6,
-                                    'posts_per_page'      => -1,
-                                    'orderby'             => 'date',
-                                    'order'               => 'DESC',
-                                    'post_status'         => 'publish',
-                                    'no_found_rows'       => true,
-                                ));
-                                if ($home_carousel_query->have_posts()) :
-                                    while ($home_carousel_query->have_posts()) :
-                                        $home_carousel_query->the_post();
-                                        $cpid = get_the_ID();
-                                        $cthumb = get_the_post_thumbnail_url($cpid, 'large');
-                                        if (empty($cthumb)) {
-                                            $cthumb = $assets_url . '/images/hero-1.jpg';
-                                        }
-                                        $ctitle = get_the_title();
-                                        ?>
-                                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'card', $cpid) . ' div-portfolio-card group relative'); ?>">
-                                    <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'card-image-wrap', $cpid) . ' div-portfolio-card-image-wrapper aspect-square overflow-hidden relative'); ?>">
-                                        <img src="<?php echo esc_url($cthumb); ?>" alt="<?php echo esc_attr($ctitle); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'img', 'card-thumb', $cpid) . ' img-portfolio-card-image w-full h-full object-cover'); ?>">
-                                        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'card-overlay', $cpid)); ?> div-portfolio-card-overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
-                                    </div>
-                                    <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'div', 'card-title-wrap', $cpid)); ?> div-portfolio-card-title-wrapper absolute bottom-4 left-0 right-0 text-center z-10 px-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'portfolio', 'span', 'card-title', $cpid)); ?> span-portfolio-card-title text-white font-semibold drop-shadow-md text-xl md:text-2xl"><?php echo esc_html($ctitle); ?></span>
-                                    </div>
-                                </div>
-                                        <?php
-                                    endwhile;
-                                    wp_reset_postdata();
-                                endif;
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <?php if ($chr_home_conv_show) : ?>
+    <?php
+    $home_conv_about_create_title = '';
+    $home_conv_about_create_description = '';
+    $home_conv_about_create_cta_url = home_url('/contact');
+
+    if (function_exists('get_field')) {
+        $acf_htitle = get_field('about_create_title', $chr_home_conv_acf_id);
+        $home_conv_about_create_title = is_string($acf_htitle) ? trim($acf_htitle) : '';
+
+        $acf_hdesc = get_field('about_create_description', $chr_home_conv_acf_id);
+        $home_conv_about_create_description = is_string($acf_hdesc) ? trim($acf_hdesc) : '';
+
+        $acf_hcta_link = get_field('about_create_cta_link', $chr_home_conv_acf_id);
+        $resolved_hcta = '';
+        if ($acf_hcta_link instanceof WP_Post) {
+            $resolved_hcta = get_permalink($acf_hcta_link);
+        } elseif (is_numeric($acf_hcta_link) && (int) $acf_hcta_link > 0) {
+            $resolved_hcta = get_permalink((int) $acf_hcta_link);
+        } elseif (is_array($acf_hcta_link) && !empty($acf_hcta_link['ID']) && is_numeric($acf_hcta_link['ID'])) {
+            $resolved_hcta = get_permalink((int) $acf_hcta_link['ID']);
+        }
+        if (is_string($resolved_hcta) && $resolved_hcta !== '') {
+            $home_conv_about_create_cta_url = $resolved_hcta;
+        }
+    }
+
+    if ($home_conv_about_create_title === '') {
+        $home_conv_about_create_title = 'Create with Us';
+    }
+    if ($home_conv_about_create_description === '') {
+        $home_conv_about_create_description = 'We collaborate with teams that value clarity and craft—where design is deliberate, not decorative. When you are ready to begin with intention, we would welcome the conversation.';
+    }
+    ?>
+    <!-- Conversion block (mirrors About ref-about-conv-section; ACF about_create_* from About page) -->
+    <section class="ref-about-conv-section section-about-conv w-full py-20 md:py-28 bg-white border-t border-[#E1E2E4]" aria-labelledby="about-conv-heading">
+        <div class="ref-about-conv-container div-about-conv-container w-full max-w-[1440px] mx-auto px-6">
+            <div class="ref-about-conv-inner div-about-conv-inner max-w-2xl mx-auto text-center flex flex-col items-center">
+                <span class="ref-about-conv-accent span-about-conv-accent block w-12 h-0.5 bg-[#DCAF47] mb-8" aria-hidden="true"></span>
+                <h2 id="about-conv-heading" class="ref-about-conv-title h2-about-conv-title text-[#4F5053] font-semibold text-3xl md:text-4xl tracking-tight"><?php echo esc_html($home_conv_about_create_title); ?></h2>
+                <p class="ref-about-conv-lead p-about-conv-lead mt-6 text-[#7A7C80] text-base md:text-lg leading-relaxed"><?php echo nl2br(esc_html($home_conv_about_create_description)); ?></p>
+                <a href="<?php echo esc_url($home_conv_about_create_cta_url); ?>" class="ref-about-conv-cta link-about-conv-cta mt-12 inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] transition-all duration-200 ease-out hover:bg-[#1a1a1a] hover:border-[#DCAF47] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]">
+                    <span class="ref-about-conv-cta-label span-about-conv-cta-label"><?php echo esc_html('Design'); ?></span>
+                </a>
             </div>
         </div>
     </section>
-    
+    <?php endif; ?>
+
     <?php
     $chr_show_blog = false;
     if (function_exists('get_field')) {

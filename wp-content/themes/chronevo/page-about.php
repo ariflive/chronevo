@@ -381,7 +381,6 @@ if (function_exists('get_field')) {
 $about_conv_page_id = get_queried_object_id();
 $about_create_title = '';
 $about_create_description = '';
-$about_create_cta_label = '';
 $about_create_cta_url = home_url('/contact');
 
 if (function_exists('get_field')) {
@@ -390,9 +389,6 @@ if (function_exists('get_field')) {
 
     $acf_desc = get_field('about_create_description', $about_conv_page_id);
     $about_create_description = is_string($acf_desc) ? trim($acf_desc) : '';
-
-    $acf_cta_label = get_field('about_create_cta_label', $about_conv_page_id);
-    $about_create_cta_label = is_string($acf_cta_label) ? trim($acf_cta_label) : '';
 
     $acf_cta_link = get_field('about_create_cta_link', $about_conv_page_id);
     $resolved_cta = '';
@@ -414,9 +410,6 @@ if ($about_create_title === '') {
 if ($about_create_description === '') {
     $about_create_description = 'We collaborate with teams that value clarity and craft—where design is deliberate, not decorative. When you are ready to begin with intention, we would welcome the conversation.';
 }
-if ($about_create_cta_label === '') {
-    $about_create_cta_label = 'Get in touch';
-}
 ?>
 <!-- Conversion block (ACF about_create_* on About page; below awards, above footer) -->
 <section class="ref-about-conv-section section-about-conv w-full py-20 md:py-28 bg-white border-t border-[#E1E2E4]" aria-labelledby="about-conv-heading">
@@ -426,7 +419,7 @@ if ($about_create_cta_label === '') {
             <h2 id="about-conv-heading" class="ref-about-conv-title h2-about-conv-title text-[#4F5053] font-semibold text-3xl md:text-4xl tracking-tight"><?php echo esc_html($about_create_title); ?></h2>
             <p class="ref-about-conv-lead p-about-conv-lead mt-6 text-[#7A7C80] text-base md:text-lg leading-relaxed"><?php echo nl2br(esc_html($about_create_description)); ?></p>
             <a href="<?php echo esc_url($about_create_cta_url); ?>" class="ref-about-conv-cta link-about-conv-cta mt-12 inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] transition-all duration-200 ease-out hover:bg-[#1a1a1a] hover:border-[#DCAF47] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]">
-                <span class="ref-about-conv-cta-label span-about-conv-cta-label"><?php echo esc_html($about_create_cta_label); ?></span>
+                <span class="ref-about-conv-cta-label span-about-conv-cta-label"><?php echo esc_html('Design'); ?></span>
             </a>
         </div>
     </div>

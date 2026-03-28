@@ -19,28 +19,7 @@ get_header();
     <div class="ref-category-blog-container div-blog-category-container w-full max-w-[1440px] mx-auto px-6">
         <!-- Page Title -->
         <div class="ref-category-blog-title-wrapper div-blog-category-title-wrapper text-center mb-6">
-            <h1 class="ref-category-blog-title h1-blog-category-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl uppercase">
-                Blog
-            </h1>
-        </div>
-        
-        <!-- Breadcrumb -->
-        <div class="ref-category-blog-breadcrumb-wrapper div-blog-category-breadcrumb-wrapper text-center mb-12">
-            <nav class="ref-category-blog-breadcrumb nav-blog-category-breadcrumb">
-                <ol class="ref-category-blog-breadcrumb-list ol-blog-category-breadcrumb-list flex items-center justify-center gap-2">
-                    <li class="ref-category-blog-breadcrumb-item li-blog-category-breadcrumb-item">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" class="ref-category-blog-breadcrumb-home link-blog-category-breadcrumb-home text-[#7A7C80] hover:text-[#4F5053] transition-colors duration-200">
-                            Home
-                        </a>
-                    </li>
-                    <li class="ref-category-blog-breadcrumb-separator li-blog-category-breadcrumb-separator text-[#BCBDC0]">
-                        /
-                    </li>
-                    <li class="ref-category-blog-breadcrumb-current li-blog-category-breadcrumb-current text-[#7A7C80]">
-                        Blog
-                    </li>
-                </ol>
-            </nav>
+            <h1 class="ref-category-blog-title h1-blog-category-title text-[#4F5053] font-semibold text-4xl md:text-5xl lg:text-6xl uppercase"><?php echo esc_html('Insights'); ?></h1>
         </div>
         
         <!-- Two Column Layout -->
@@ -93,10 +72,7 @@ get_header();
                     <p class="ref-category-blog-article-description p-blog-article-description text-[#7A7C80] text-sm line-clamp-1">
                         <?php echo esc_html($art_excerpt); ?>
                     </p>
-                    <span class="ref-category-blog-article-read-more span-blog-article-read-more inline-flex items-center gap-2 text-[#7A7C80] group-hover:text-[#4F5053] transition-colors duration-200 text-sm font-medium uppercase tracking-wide">
-                        Read more
-                        <i class="ph ph-arrow-right"></i>
-                    </span>
+                    <span class="ref-category-blog-article-read-more span-blog-article-read-more inline-flex items-center gap-2 text-[#7A7C80] group-hover:text-[#4F5053] transition-colors duration-200 text-sm font-medium uppercase tracking-wide"><?php echo esc_html('Continue Reading'); ?> <i class="ph ph-arrow-right"></i></span>
                 </a>
             </article>
             <?php
@@ -165,9 +141,7 @@ get_header();
         <!-- Right Column - Recent Posts -->
         <div class="ref-category-blog-sidebar div-blog-category-sidebar w-full lg:w-[35%]">
             <div class="ref-blog-recent-posts-wrapper div-blog-recent-posts-wrapper">
-                <h3 class="ref-blog-recent-posts-title h3-blog-recent-posts-title text-[#4F5053] font-semibold text-lg uppercase mb-4">
-                    Recent Posts
-                </h3>
+                <h3 class="ref-blog-recent-posts-title h3-blog-recent-posts-title text-[#4F5053] font-semibold text-lg uppercase mb-4"><?php echo esc_html('Latest Insights'); ?></h3>
                 <ul class="ref-blog-recent-posts-list ul-blog-recent-posts-list list-none p-0 m-0">
                     <?php
                     $recent_cat_slug = $blog_cat && isset($blog_cat->slug) ? $blog_cat->slug : 'blog';

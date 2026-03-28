@@ -51,37 +51,27 @@ get_header();
             <!-- Contact Form -->
             <form class="ref-contact-form form-contact div-contact-form-card bg-white border border-[#E1E2E4] p-8" method="post" action="#">
                 <div class="ref-contact-form-row div-contact-form-row mb-6">
-                    <label for="contact-name" class="ref-contact-label label-contact-name block text-[#4F5053] font-medium text-sm mb-2">
-                        Name
-                    </label>
-                    <input type="text" id="contact-name" name="contact_name" class="ref-contact-input input-contact-name w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base" placeholder="Your name" required>
+                    <label for="contact-name" class="ref-contact-label label-contact-name block text-[#4F5053] font-medium text-sm mb-2"><?php echo esc_html('Your Name'); ?></label>
+                    <input type="text" id="contact-name" name="contact_name" class="ref-contact-input input-contact-name w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base" placeholder="<?php echo esc_attr('Your Name'); ?>" required>
                 </div>
                 
                 <div class="ref-contact-form-row div-contact-form-row mb-6">
-                    <label for="contact-email" class="ref-contact-label label-contact-email block text-[#4F5053] font-medium text-sm mb-2">
-                        Email
-                    </label>
+                    <label for="contact-email" class="ref-contact-label label-contact-email block text-[#4F5053] font-medium text-sm mb-2"><?php echo esc_html('Best Email to Reach You'); ?></label>
                     <input type="email" id="contact-email" name="contact_email" class="ref-contact-input input-contact-email w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base" placeholder="your@email.com" required>
                 </div>
                 
                 <div class="ref-contact-form-row div-contact-form-row mb-6">
-                    <label for="contact-subject" class="ref-contact-label label-contact-subject block text-[#4F5053] font-medium text-sm mb-2">
-                        Subject
-                    </label>
-                    <input type="text" id="contact-subject" name="contact_subject" class="ref-contact-input input-contact-subject w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base" placeholder="Subject">
+                    <label for="contact-subject" class="ref-contact-label label-contact-subject block text-[#4F5053] font-medium text-sm mb-2"><?php echo esc_html('What Brings you Here'); ?></label>
+                    <input type="text" id="contact-subject" name="contact_subject" class="ref-contact-input input-contact-subject w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base" placeholder="<?php echo esc_attr('What Brings you Here'); ?>">
                 </div>
                 
                 <div class="ref-contact-form-row div-contact-form-row mb-8">
-                    <label for="contact-message" class="ref-contact-label label-contact-message block text-[#4F5053] font-medium text-sm mb-2">
-                        Message
-                    </label>
-                    <textarea id="contact-message" name="contact_message" rows="5" class="ref-contact-textarea textarea-contact-message w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base resize-y" placeholder="Your message" required></textarea>
+                    <label for="contact-message" class="ref-contact-label label-contact-message block text-[#4F5053] font-medium text-sm mb-2"><?php echo esc_html('What Would you Like to Explore'); ?></label>
+                    <textarea id="contact-message" name="contact_message" rows="5" class="ref-contact-textarea textarea-contact-message w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base resize-y" placeholder="<?php echo esc_attr('What Would you Like to Explore'); ?>" required></textarea>
                 </div>
                 
                 <div class="ref-contact-submit-wrapper div-contact-submit-wrapper flex flex-col sm:flex-row sm:justify-center sm:items-center pt-2 mt-6 border-t border-[#E1E2E4]">
-                    <button type="submit" class="ref-contact-submit button-contact-submit w-full sm:w-auto min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] transition-all duration-200 ease-out">
-                        Send Message
-                    </button>
+                    <button type="submit" class="ref-contact-submit button-contact-submit w-full sm:w-auto min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#F6F7F8] bg-[#0a0a0a] border-2 border-[#4F5053] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] transition-all duration-200 ease-out whitespace-nowrap"><?php echo esc_html('Begin the Conversation'); ?></button>
                 </div>
             </form>
         </div>
