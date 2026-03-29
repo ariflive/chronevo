@@ -4340,3 +4340,276 @@ button:focus-visible:hover {
     outline: none;
     box-shadow: 0 0 0 2px rgba(220, 175, 71, 0.4);
 }
+
+/* --------------------------------------------------------------------------
+   Legal pages (Terms, Privacy) — ref-post-article / ref-post-content layout
+   Inner HTML: scoped via .div-rich-html-content (not ref-* selectors per README)
+   -------------------------------------------------------------------------- */
+
+.section-legal-page {
+    width: 100%;
+}
+
+.div-legal-page-article {
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    border: 1px solid #E1E2E4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 2rem 1.5rem 2.5rem;
+    border-top: 2px solid #DCAF47;
+}
+
+@media (min-width: 768px) {
+    .div-legal-page-article {
+        padding: 2.5rem 2.5rem 3rem;
+    }
+}
+
+.div-legal-page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #E1E2E4;
+}
+
+.p-legal-page-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7A7C80;
+    margin: 0 0 0.75rem;
+}
+
+.h1-legal-page-title {
+    font-size: 1.875rem;
+    line-height: 1.15;
+    font-weight: 600;
+    color: #4F5053;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+    .h1-legal-page-title {
+        font-size: 2.25rem;
+    }
+}
+
+.time-legal-page-modified {
+    display: block;
+    font-size: 0.875rem;
+    color: #7A7C80;
+    font-weight: 400;
+}
+
+.div-legal-page-body {
+    padding-top: 0.25rem;
+}
+
+/* Rich HTML inside ref-post-content / .div-rich-html-content */
+.div-rich-html-content {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: #7A7C80;
+    font-weight: 400;
+}
+
+.div-rich-html-content > *:first-child {
+    margin-top: 0;
+}
+
+.div-rich-html-content > *:last-child {
+    margin-bottom: 0;
+}
+
+.div-rich-html-content h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #4F5053;
+    margin: 2rem 0 1rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+}
+
+.div-rich-html-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4F5053;
+    margin: 2rem 0 0.875rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.div-rich-html-content h3 {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    color: #4F5053;
+    margin: 1.75rem 0 0.75rem;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+}
+
+.div-rich-html-content h4,
+.div-rich-html-content h5,
+.div-rich-html-content h6 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: #4F5053;
+    margin: 1.5rem 0 0.5rem;
+    line-height: 1.35;
+}
+
+.div-rich-html-content p {
+    margin: 0 0 1rem;
+}
+
+.div-rich-html-content a {
+    color: #DCAF47;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(220, 175, 71, 0.35);
+    transition: color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.div-rich-html-content a:hover {
+    color: #B89438;
+    border-bottom-color: rgba(184, 148, 56, 0.55);
+}
+
+.div-rich-html-content strong,
+.div-rich-html-content b {
+    font-weight: 600;
+    color: #4F5053;
+}
+
+.div-rich-html-content em,
+.div-rich-html-content i {
+    font-style: italic;
+    color: #4F5053;
+}
+
+.div-rich-html-content ul,
+.div-rich-html-content ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.5rem;
+}
+
+.div-rich-html-content ul {
+    list-style-type: disc;
+}
+
+.div-rich-html-content ol {
+    list-style-type: decimal;
+}
+
+.div-rich-html-content li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.25rem;
+}
+
+.div-rich-html-content li::marker {
+    color: #BCBDC0;
+}
+
+.div-rich-html-content blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1rem 1rem 1.25rem;
+    border-left: 3px solid #DCAF47;
+    background-color: #F6F7F8;
+    color: #4F5053;
+    font-style: italic;
+    font-size: 1.0625rem;
+}
+
+.div-rich-html-content blockquote p {
+    margin-bottom: 0.75rem;
+}
+
+.div-rich-html-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.div-rich-html-content hr {
+    border: none;
+    height: 1px;
+    background: #E1E2E4;
+    margin: 2rem 0;
+}
+
+.div-rich-html-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9375rem;
+}
+
+.div-rich-html-content th,
+.div-rich-html-content td {
+    border: 1px solid #E1E2E4;
+    padding: 0.625rem 0.875rem;
+    text-align: left;
+}
+
+.div-rich-html-content th {
+    background-color: #F6F7F8;
+    font-weight: 600;
+    color: #4F5053;
+}
+
+.div-rich-html-content code {
+    font-size: 0.875em;
+    background-color: #F6F7F8;
+    color: #4F5053;
+    padding: 0.125rem 0.375rem;
+    border: 1px solid #E1E2E4;
+    border-radius: 0.25rem;
+}
+
+.div-rich-html-content pre {
+    background-color: #F6F7F8;
+    border: 1px solid #E1E2E4;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.div-rich-html-content pre code {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.div-rich-html-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem 0;
+    border-radius: 0.25rem;
+}
+
+.div-rich-html-content figure {
+    margin: 1.5rem 0;
+}
+
+.div-rich-html-content figcaption {
+    font-size: 0.875rem;
+    color: #7A7C80;
+    margin-top: 0.5rem;
+}
+
+.div-rich-html-content dl {
+    margin: 1rem 0;
+}
+
+.div-rich-html-content dt {
+    font-weight: 600;
+    color: #4F5053;
+    margin-top: 0.75rem;
+}
+
+.div-rich-html-content dd {
+    margin: 0.25rem 0 0 1rem;
+}
