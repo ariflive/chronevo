@@ -143,7 +143,7 @@ body {
     position: relative;
 }
 
-/* Header - Normal block element, no sticky functionality */
+/* Header: relative on md+; sticky compact bar on small viewports only */
 .header-sticky {
     position: relative;
     width: 100%;
@@ -152,6 +152,13 @@ body {
     transition-property: background-color, backdrop-filter, opacity;
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
+}
+
+@media (max-width: 767px) {
+    .header-sticky {
+        position: sticky;
+        top: 0;
+    }
 }
 
 /* Main Sections - Full Viewport Width */
@@ -326,8 +333,8 @@ img {
     display: block;
 }
 
-/* App-style rounded corners on photos; keep dimensions — exclude brand logos (header/footer/popup/clients carousel) */
-img:not(.img-logo):not(.img-footer-logo):not(.img-popup-menu-logo):not(.img-clients-logo) {
+/* App-style rounded corners on photos; keep dimensions — exclude brand logos (header desktop/mobile, footer, popup, clients carousel) */
+img:not(.img-logo):not(.img-header-mobile-logo):not(.img-footer-logo):not(.img-popup-menu-logo):not(.img-clients-logo) {
     border-radius: var(--img-app-radius);
 }
 
@@ -798,6 +805,83 @@ button:focus-visible:hover {
     font-size: 10.26375rem;
 }
 
+@media (max-width: 767px) {
+    /* Proportional downscale of service tiles: same % positions and float motion as desktop, smaller px boxes */
+    .section-services {
+        --services-mob-scale: 0.46;
+        overflow-x: clip;
+    }
+
+    .section-services .div-services-title-wrapper {
+        max-width: 90vw;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+    }
+
+    .section-services .div-services-title-wrapper .h2-services-title {
+        font-size: clamp(2.6125rem, calc((90vw - 1rem) / 4.05 * 0.95), 5.4625rem);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        max-width: 100%;
+    }
+
+    .section-services .div-services-images-wrapper {
+        transform: scale(var(--services-mob-scale));
+        transform-origin: center center;
+        width: 100%;
+        max-width: 100%;
+        left: 0;
+        right: 0;
+    }
+
+    /* Home services tile titles (ref-home-services-span-label-* in markup): stronger presence on small screens */
+    .section-services .span-service-label {
+        font-size: clamp(1.5rem, 5.75vw, 1.8125rem);
+        font-weight: 600;
+        line-height: 1.28;
+        letter-spacing: 0.04em;
+        padding: 0.35rem 0.65rem;
+        max-width: min(16rem, 90vw);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-shadow:
+            0 0.06em 0.2em rgba(0, 0, 0, 0.85),
+            0 0.02em 0.08em rgba(0, 0, 0, 0.5);
+    }
+
+    .section-services .div-service-image-1 {
+        top: 160%;
+        left: 60%;
+    }
+
+    .section-services .div-service-image-2 {
+        top: 158%;
+        right: -56%;
+    }
+
+    .section-services .div-service-image-3 {
+        top: -182%;
+        right: 9%;
+    }
+
+    .section-services .div-service-image-4 {
+        bottom: 212%;
+        right: -47%;
+    }
+
+    .section-services .div-service-image-5 {
+        bottom: 200%;
+        left: -7%;
+    }
+
+    .section-services .div-service-image-6 {
+        bottom: -430%;
+        left: -46%;
+    }
+}
+
 /* Portfolio Section - White background, full width */
 .section-portfolio {
     background-color: #ffffff;
@@ -982,6 +1066,30 @@ button:focus-visible:hover {
     background-color: #DCAF47;
 }
 
+/* Footer primary nav (ref-*-footer-nav-links): proportional downscale on small screens only */
+@media (max-width: 767px) {
+    .section-footer .nav-footer .div-footer-nav-container {
+        gap: 1.25rem;
+        row-gap: 0.625rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .section-footer .nav-footer .div-footer-nav-container > a {
+        font-size: 0.8125rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+
+    .section-footer .nav-footer .span-footer-nav-text {
+        font-size: inherit;
+        line-height: inherit;
+    }
+
+    .section-footer .nav-footer .div-footer-nav-underline {
+        height: 0.0625rem;
+    }
+}
 
 /* Footer Social Section */
 .div-footer-social-section {
@@ -1769,6 +1877,46 @@ button:focus-visible:hover {
 .span-slogan-design.span-design-loaded .span-design-char-5 { transition-delay: 0.504s; }
 .span-slogan-design.span-design-loaded .span-design-char-6 { transition-delay: 0.612s; }
 
+/* Home hero slogan (h1 + per-char spans): compact for small viewports, fit width with side inset */
+@media (max-width: 767px) {
+    .section-hero-slogan {
+        padding-left: max(0.75rem, env(safe-area-inset-left));
+        padding-right: max(0.75rem, env(safe-area-inset-right));
+        box-sizing: border-box;
+    }
+
+    .h1-hero-slogan {
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .span-slogan-connect {
+        margin-bottom: 0.375rem;
+    }
+
+    .span-slogan-connect .span-char-item {
+        font-size: max(1.25rem, min(1.875rem, calc((100vw - 2rem) / 7.5)));
+    }
+
+    .span-slogan-explore {
+        margin-top: max(-0.5rem, calc((100vw - 2rem) * -0.02));
+        margin-bottom: 0.375rem;
+    }
+
+    .span-slogan-explore .span-explore-char {
+        font-size: max(1.125rem, min(1.6875rem, calc((100vw - 2rem) / 7.75)));
+    }
+
+    .span-slogan-design {
+        margin-top: max(-0.5rem, calc((100vw - 2rem) * -0.02));
+    }
+
+    .span-slogan-design .span-design-char {
+        font-size: max(1.25rem, min(1.875rem, calc((100vw - 2rem) / 6.75)));
+    }
+}
+
 /* Popup Menu Styles */
 .div-popup-menu-overlay {
     position: fixed;
@@ -1800,6 +1948,27 @@ button:focus-visible:hover {
     transform: translateX(0);
 }
 
+/* Mobile: full-viewport panel; slide in from right (RTL motion), out to right on close — smooth easing */
+@media (max-width: 767px) {
+    .div-popup-menu {
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        transform: translateX(100%);
+        transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .div-popup-menu-overlay.menu-open .div-popup-menu {
+        transform: translateX(0);
+    }
+}
+
 /* Popup Menu Header */
 .div-popup-menu-header {
     display: flex;
@@ -1807,6 +1976,21 @@ button:focus-visible:hover {
     justify-content: space-between;
     padding: 2.5rem 2.5rem 2rem 2.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 767px) {
+    /* Popup header (ref-*-popup-div-header): less vertical padding; must follow base rule so it wins in cascade */
+    .div-popup-menu-header {
+        padding: 0.5rem 1rem;
+        gap: 0.375rem;
+        flex-wrap: nowrap;
+    }
+
+    .div-popup-menu-header .div-popup-menu-logo,
+    .div-popup-menu-header .link-popup-menu-logo-home,
+    .div-popup-menu-header .div-popup-menu-logo-wrapper {
+        line-height: 0;
+    }
 }
 
 .div-popup-menu-logo {
@@ -1834,6 +2018,12 @@ button:focus-visible:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 767px) {
+    .div-popup-menu .button-popup-menu-close {
+        padding: 0.125rem;
+    }
 }
 
 /* Popup Menu Content */
@@ -2010,6 +2200,43 @@ button:focus-visible:hover {
 
 .div-about-hero-image-2:hover .img-about-hero-2 {
     filter: grayscale(0%);
+}
+
+/* About hero image stack (ref-*-about-hero-image-wrapper): mobile — proportional downscale, same overlay geometry as desktop, fit viewport with side inset */
+@media (max-width: 767px) {
+    .section-about-hero .div-about-hero-image-wrapper {
+        min-height: auto;
+        width: 100%;
+        max-width: min(100%, calc(100vw - 1.5rem));
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
+        padding-right: max(0.5rem, env(safe-area-inset-right, 0px));
+        box-sizing: border-box;
+    }
+
+    .section-about-hero .div-about-hero-image-1-wrapper {
+        justify-content: center;
+    }
+
+    /* ~85% of desktop 28rem cap; never wider than viewport minus gutters */
+    .section-about-hero .div-about-hero-image-1 {
+        max-width: min(23.8rem, calc(100vw - 2.5rem));
+        width: 100%;
+    }
+
+    /* Same vertical center + trailing edge alignment as desktop; slight inset from wrapper edge */
+    .section-about-hero .div-about-hero-image-2-wrapper {
+        top: 50%;
+        right: 0.375rem;
+        transform: translateY(-50%);
+    }
+
+    /* ~85% of 12rem (mobile / base) to match reduced primary portrait */
+    .section-about-hero .div-about-hero-image-2 {
+        width: 10.2rem;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
 }
 
 .div-about-hero-text-wrapper {
@@ -3093,6 +3320,136 @@ button:focus-visible:hover {
         font-size: 0.9375rem;
         letter-spacing: 0.12em;
         min-height: 3.25rem;
+    }
+}
+
+/* About conversion CTA (ref-about-conv-cta; no form submit on /about): tighter control on narrow phones */
+@media (max-width: 767px) {
+    .section-about-conv .link-about-conv-cta {
+        margin-top: 1.75rem;
+        padding: 0.6875rem 1.25rem;
+        min-height: 2.75rem;
+        font-size: 0.8125rem;
+        letter-spacing: 0.1em;
+        max-width: 100%;
+    }
+
+    .section-about-conv .span-about-conv-cta-label {
+        font-size: inherit;
+        line-height: 1.25;
+    }
+}
+
+/* About template only: reduce vertical padding/margins/gaps on mobile to save scroll height */
+@media (max-width: 767px) {
+    body.page-about .section-about-hero {
+        min-height: auto;
+        align-items: flex-start;
+    }
+
+    body.page-about .div-about-hero-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    body.page-about .div-about-hero-content {
+        gap: 1.5rem;
+    }
+
+    body.page-about .div-about-short-title-wrapper {
+        margin-bottom: 0.5rem;
+    }
+
+    body.page-about .h1-about-main-title {
+        margin-bottom: 0.875rem;
+    }
+
+    body.page-about .div-about-description {
+        margin-bottom: 1.25rem;
+    }
+
+    body.page-about .div-about-description p {
+        margin-bottom: 0.75rem;
+    }
+
+    body.page-about .div-about-description p:last-child {
+        margin-bottom: 0;
+    }
+
+    body.page-about .div-about-social-links {
+        gap: 0.75rem;
+    }
+
+    body.page-about .section-about-scrolling-text {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    body.page-about .div-about-scrolling-content {
+        gap: 1.5rem;
+    }
+
+    body.page-about .section-about-awards {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    body.page-about .div-about-awards-content {
+        gap: 1.5rem;
+    }
+
+    body.page-about .div-about-awards-short-title-wrapper {
+        margin-bottom: 0.5rem;
+    }
+
+    body.page-about .h2-about-awards-title {
+        margin-bottom: 0.875rem;
+    }
+
+    body.page-about .div-about-awards-description {
+        margin-bottom: 1.25rem;
+    }
+
+    body.page-about .div-about-awards-description p {
+        margin-bottom: 0.75rem;
+    }
+
+    body.page-about .div-about-awards-description p:last-child {
+        margin-bottom: 0;
+    }
+
+    body.page-about .section-about-conv {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    body.page-about .section-about-conv .span-about-conv-accent {
+        margin-bottom: 1.25rem;
+    }
+
+    body.page-about .section-about-conv .p-about-conv-lead {
+        margin-top: 1rem;
+    }
+
+    body.page-about .section-about-conv .link-about-conv-cta {
+        margin-top: 1.25rem;
+    }
+
+    body.page-about .section-client-highlight-supercarbaldie:not(.section-client-highlight-supercarbaldie--embedded) {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    body.page-about .section-client-highlight-supercarbaldie .div-client-highlight-supercarbaldie-inner {
+        gap: 1.5rem;
+    }
+
+    body.page-about .section-client-highlight-supercarbaldie .h3-client-highlight-supercarbaldie-title {
+        margin-bottom: 1rem;
+    }
+
+    body.page-about .section-client-highlight-supercarbaldie .div-client-highlight-supercarbaldie-cta-wrap {
+        margin-top: 1.25rem;
     }
 }
 
@@ -4248,6 +4605,29 @@ button:focus-visible:hover {
     box-shadow:
         0 0 0 2px #ffffff,
         0 0 0 4px rgba(220, 175, 71, 0.45);
+}
+
+/* Contact submit (ref-contact-submit): mobile — avoid left/right clip from letter-spacing + nowrap on narrow width */
+@media (max-width: 767px) {
+    .section-contact .div-contact-submit-wrapper {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .section-contact .button-contact-submit {
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: 0.875rem clamp(1rem, 4.5vw, 1.75rem);
+        font-size: 0.8125rem;
+        letter-spacing: 0.1em;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.35;
+        overflow: visible;
+    }
 }
 
 /* Single Service – contact block CTAs */

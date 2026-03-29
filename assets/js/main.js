@@ -357,8 +357,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // If parallax interference occurs, JavaScript coordination would be needed.
     
     // Popup Menu Functionality
-    const menuToggleButton = document.querySelector('.button-menu-toggle');
-    const menuCloseButton = document.querySelector('.button-popup-menu-close');
     const popupMenuOverlay = document.querySelector('.div-popup-menu-overlay');
     
     function openMenu() {
@@ -375,19 +373,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    if (menuToggleButton) {
-        menuToggleButton.addEventListener('click', function(e) {
+    document.querySelectorAll('.button-menu-toggle').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
             e.preventDefault();
             openMenu();
         });
-    }
+    });
     
-    if (menuCloseButton) {
-        menuCloseButton.addEventListener('click', function(e) {
+    document.querySelectorAll('.button-popup-menu-close').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
             e.preventDefault();
             closeMenu();
         });
-    }
+    });
     
     // Close menu when clicking outside (on overlay)
     if (popupMenuOverlay) {

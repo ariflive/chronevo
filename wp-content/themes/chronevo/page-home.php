@@ -16,15 +16,15 @@ get_header();
 ?>
     <!-- Hero Section -->
     <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'section', 'root')); ?> section-hero w-full relative pt-12">
-        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'container')); ?> div-hero-container w-[90%] mx-auto px-6 relative">
-            <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'images-row')); ?> div-hero-images w-full flex items-end justify-center gap-32 relative z-0 pt-[40vh]">
+        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'container')); ?> div-hero-container w-full max-w-full mx-auto px-2 box-border md:w-[90%] md:px-6 relative">
+            <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'images-row')); ?> div-hero-images w-full max-w-full flex flex-nowrap items-end justify-center gap-2 md:gap-32 relative z-0 box-border pt-[9vh] md:pt-[40vh]">
                 <!-- Hero Image 2 - Medium Size (aspect 3/4, image fills) - from ACF photo_left -->
                 <?php
                 $photo_left = get_field('photo_left', get_queried_object_id());
                 $photo_left_url = is_string($photo_left) ? $photo_left : (is_array($photo_left) && !empty($photo_left['url']) ? $photo_left['url'] : '');
                 $hero_img_2_src = $photo_left_url !== '' ? $photo_left_url : $assets_url . '/images/hero-2.jpg';
                 ?>
-                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'image-wrap-photo-left')); ?> div-hero-image-wrapper-2 mb-12 aspect-[3/4] overflow-hidden w-[min(375px,90vw)]">
+                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'image-wrap-photo-left')); ?> div-hero-image-wrapper-2 mb-4 aspect-[3/4] overflow-hidden w-[26vw] max-w-[124px] shrink-0 md:mb-12 md:max-w-none md:w-[min(375px,90vw)]">
                     <img src="<?php echo esc_url($hero_img_2_src); ?>" alt="Hero Image 2" class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'img', 'photo-left')); ?> img-hero-2 img-hero-animated-fade img-hero-animated-slide w-full h-full object-cover">
                 </div>
                 
@@ -34,7 +34,7 @@ get_header();
                 $photo_center_url = is_string($photo_center) ? $photo_center : (is_array($photo_center) && !empty($photo_center['url']) ? $photo_center['url'] : '');
                 $hero_img_1_src = $photo_center_url !== '' ? $photo_center_url : $assets_url . '/images/hero-1.jpg';
                 ?>
-                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'image-wrap-photo-center')); ?> div-hero-image-wrapper-1 relative flex-1 min-h-[600px] aspect-square overflow-hidden">
+                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'image-wrap-photo-center')); ?> div-hero-image-wrapper-1 relative flex-[1_1_0] min-w-0 min-h-0 aspect-square overflow-hidden max-h-[min(34vh,50vw)] max-w-[min(44vw,176px)] md:max-h-none md:max-w-none md:flex-1 md:min-h-[600px]">
                     <img src="<?php echo esc_url($hero_img_1_src); ?>" alt="Hero Image 1" class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'img', 'photo-center')); ?> img-hero-1 img-hero-animated-fade img-hero-animated-slide w-full h-full object-cover">
                 </div>
                 
@@ -44,14 +44,14 @@ get_header();
                 $photo_right_url = is_string($photo_right) ? $photo_right : (is_array($photo_right) && !empty($photo_right['url']) ? $photo_right['url'] : '');
                 $hero_img_3_src = $photo_right_url !== '' ? $photo_right_url : $assets_url . '/images/hero-3.jpg';
                 ?>
-                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'image-wrap-photo-right')); ?> div-hero-image-wrapper-3 mb-12 aspect-[9/16] overflow-hidden w-[min(280px,90vw)]">
+                <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'div', 'image-wrap-photo-right')); ?> div-hero-image-wrapper-3 mb-4 aspect-[9/16] overflow-hidden w-[23vw] max-w-[108px] shrink-0 md:mb-12 md:max-w-none md:w-[min(280px,90vw)]">
                     <img src="<?php echo esc_url($hero_img_3_src); ?>" alt="Hero Image 3" class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'img', 'photo-right')); ?> img-hero-3 img-hero-animated-fade img-hero-animated-slide w-full h-full object-cover">
                 </div>
             </div>
             
             <!-- Hero Slogan -->
-            <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'section', 'slogan')); ?> section-hero-slogan absolute top-0 left-0 right-0 z-10">
-                <h1 class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'h1', 'slogan-title')); ?> h1-hero-slogan text-[97.2px] md:text-[129.6px] lg:text-[172.8px] font-bold uppercase leading-none">
+            <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'section', 'slogan')); ?> section-hero-slogan absolute top-0 left-0 right-0 z-10 w-full max-w-full box-border">
+                <h1 class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'h1', 'slogan-title')); ?> h1-hero-slogan text-[0] font-bold uppercase leading-none w-full max-w-full box-border">
                     <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'hero', 'span', 'slogan-row-connect')); ?> span-slogan-connect block text-left">
                         <?php
                         $tagline_1 = get_field('tagline_1', get_queried_object_id());
@@ -125,10 +125,10 @@ get_header();
     </section>
     
     <!-- Services Section -->
-    <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'section', 'root')); ?> section-services w-full relative min-h-[calc(100svh+3rem)] flex items-center justify-center pt-16 md:pt-20 pb-24 md:pb-28">
-        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'container')); ?> div-services-container relative w-full max-w-[1440px] mx-auto px-6">
+    <section class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'section', 'root')); ?> section-services w-full relative min-h-[min(88svh,36rem)] flex items-center justify-center pt-10 pb-16 box-border md:min-h-[calc(100svh+3rem)] md:pt-20 md:pb-28">
+        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'container')); ?> div-services-container relative w-full max-w-[1440px] mx-auto px-3 box-border md:px-6">
             <!-- Services Title -->
-            <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'title-wrap')); ?> div-services-title-wrapper relative text-center">
+            <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'title-wrap')); ?> div-services-title-wrapper relative text-center px-1 md:px-0">
                 <h2 class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'h2', 'title')); ?> h2-services-title text-white font-normal uppercase tracking-tight">EXPLORE</h2>
             </div>
             
@@ -169,8 +169,8 @@ get_header();
                 ?>
             </div>
         </div>
-        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'cta-wrap')); ?> div-services-cta-wrapper absolute bottom-2 md:bottom-4 left-0 right-0 z-[35] flex justify-center px-6 pb-8 md:pb-12 pointer-events-none">
-            <a href="<?php echo esc_url( home_url( '/portfolio' ) ); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'a', 'explore-portfolio')); ?> link-services-explore-cta pointer-events-auto inline-flex items-center justify-center min-w-[13rem] px-12 py-4 text-base md:text-lg font-semibold uppercase tracking-[0.15em] text-[#4F5053] bg-[#F6F7F8] border-2 border-[#E1E2E4] shadow-xl shadow-black/30 transition-all duration-200 ease-out hover:bg-white hover:border-[#DCAF47] hover:shadow-black/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]">
+        <div class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'div', 'cta-wrap')); ?> div-services-cta-wrapper absolute bottom-2 md:bottom-4 left-0 right-0 z-[35] flex justify-center px-3 pb-6 box-border md:px-6 md:pb-12 pointer-events-none">
+            <a href="<?php echo esc_url( home_url( '/portfolio' ) ); ?>" class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'a', 'explore-portfolio')); ?> link-services-explore-cta pointer-events-auto inline-flex items-center justify-center w-auto max-w-[calc(100vw-1.5rem)] min-w-0 px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#4F5053] bg-[#F6F7F8] border-2 border-[#E1E2E4] shadow-xl shadow-black/30 transition-all duration-200 ease-out hover:bg-white hover:border-[#DCAF47] hover:shadow-black/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#DCAF47]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a] md:max-w-none md:min-w-[13rem] md:px-12 md:py-4 md:text-lg md:tracking-[0.15em]">
                 <span class="<?php echo esc_attr(chronevo_ref_class($hr, 'services', 'span', 'explore-label')); ?> span-services-explore-cta-text">EXPLORE</span>
             </a>
         </div>
