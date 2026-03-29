@@ -796,3 +796,125 @@ document.addEventListener('DOMContentLoaded', function() {
         startSlideshow();
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('.form-contact');
+    if (!contactForm || typeof chronevoAjax === 'undefined') {
+        return;
+    }
+
+    const submitBtn = contactForm.querySelector('.button-contact-submit');
+    const feedbackHost = contactForm.querySelector('.div-contact-form-feedback');
+    const feedbackPanel = contactForm.querySelector('.div-contact-form-feedback-panel');
+    const feedbackIcon = contactForm.querySelector('.div-contact-form-feedback-icon');
+    const feedbackHeading = contactForm.querySelector('.p-contact-form-feedback-heading');
+    const feedbackBody = contactForm.querySelector('.p-contact-form-feedback-body');
+    const defaultBtnText = submitBtn ? submitBtn.textContent : '';
+
+    function clearFeedback() {
+        if (!feedbackHost) return;
+        feedbackHost.classList.remove(
+            'div-contact-form-feedback-visible',
+            'div-contact-form-feedback-error',
+            'div-contact-form-feedback-success'
+        );
+        feedbackHost.setAttribute('role', 'status');
+        if (feedbackIcon) {
+            feedbackIcon.className = 'ph div-contact-form-feedback-icon';
+        }
+        if (feedbackHeading) {
+            feedbackHeading.textContent = '';
+        }
+        if (feedbackBody) {
+            feedbackBody.textContent = '';
+        }
+    }
+
+    function showFeedback(message, isError) {
+        if (!feedbackHost || !feedbackHeading || !feedbackBody) return;
+        feedbackHost.classList.remove('div-contact-form-feedback-error', 'div-contact-form-feedback-success');
+        feedbackHost.classList.add(
+            'div-contact-form-feedback-visible',
+            isError ? 'div-contact-form-feedback-error' : 'div-contact-form-feedback-success'
+        );
+        feedbackHost.setAttribute('role', isError ? 'alert' : 'status');
+        if (feedbackIcon) {
+            feedbackIcon.className = 'ph div-contact-form-feedback-icon ' + (isError ? 'ph-warning-circle' : 'ph-check-circle');
+        }
+        feedbackHeading.textContent = isError
+            ? (chronevoAjax.contactFeedbackErrorTitle || 'Could not send')
+            : (chronevoAjax.contactFeedbackSuccessTitle || 'Message sent');
+        feedbackBody.textContent = message;
+        if (feedbackPanel) {
+            try {
+                feedbackPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } catch (err) {
+                feedbackPanel.scrollIntoView(true);
+            }
+        }
+    }
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        clearFeedback();
+
+        if (!contactForm.checkValidity()) {
+            contactForm.reportValidity();
+            return;
+        }
+
+        const fd = new FormData(contactForm);
+        fd.append('action', chronevoAjax.contactAction || 'chronevo_contact');
+        fd.append('nonce', chronevoAjax.nonce);
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.setAttribute('aria-busy', 'true');
+            submitBtn.textContent = chronevoAjax.contactSending || 'Sending…';
+        }
+
+        fetch(chronevoAjax.ajaxurl, {
+            method: 'POST',
+            body: fd,
+            credentials: 'same-origin',
+        })
+            .then(function(res) {
+                return res.text().then(function(text) {
+                    let data = {};
+                    if (text) {
+                        try {
+                            data = JSON.parse(text);
+                        } catch (err) {
+                            data = {};
+                        }
+                    }
+                    return { ok: res.ok, status: res.status, data: data };
+                });
+            })
+            .then(function(result) {
+                const payload = result.data;
+                if (result.ok && payload && payload.success && payload.data && payload.data.message) {
+                    showFeedback(payload.data.message, false);
+                    contactForm.reset();
+                    return;
+                }
+                let msg = chronevoAjax.contactError || 'Something went wrong.';
+                if (payload && payload.data && payload.data.message) {
+                    msg = payload.data.message;
+                } else if (result.status === 429) {
+                    msg = chronevoAjax.contactErrorRate || msg;
+                }
+                showFeedback(msg, true);
+            })
+            .catch(function() {
+                showFeedback(chronevoAjax.contactErrorNetwork || 'Network error.', true);
+            })
+            .finally(function() {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.removeAttribute('aria-busy');
+                    submitBtn.textContent = defaultBtnText;
+                }
+            });
+    });
+});

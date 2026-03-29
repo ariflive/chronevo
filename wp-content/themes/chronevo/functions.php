@@ -116,6 +116,14 @@ function chronevo_scripts() {
     wp_localize_script('chronevo-main-js', 'chronevoAjax', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('chronevo_nonce'),
+        'contactAction' => 'chronevo_contact',
+        'contactSending' => __('Sending…', 'chronevo'),
+        'contactSuccess' => __('Thank you. Your message has been sent.', 'chronevo'),
+        'contactError' => __('Something went wrong. Please try again.', 'chronevo'),
+        'contactErrorNetwork' => __('Network error. Please check your connection.', 'chronevo'),
+        'contactErrorRate' => __('Too many requests. Please try again later.', 'chronevo'),
+        'contactFeedbackSuccessTitle' => __('Message sent', 'chronevo'),
+        'contactFeedbackErrorTitle' => __('Could not send', 'chronevo'),
     ));
 }
 add_action('wp_enqueue_scripts', 'chronevo_scripts');
@@ -166,10 +174,148 @@ add_action('init', 'chronevo_remove_admin_bar');
  * Register AJAX handlers
  */
 function chronevo_register_ajax_handlers() {
-    // Example AJAX handler structure
-    // Add specific handlers as needed
+    add_action('wp_ajax_chronevo_contact', 'chronevo_ajax_contact');
+    add_action('wp_ajax_nopriv_chronevo_contact', 'chronevo_ajax_contact');
 }
 add_action('init', 'chronevo_register_ajax_handlers');
+
+/**
+ * Build HTML body for contact enquiry notification (admin).
+ *
+ * @param string $name     Sanitized name.
+ * @param string $email    Sanitized email.
+ * @param string $subject  Sanitized subject (may be empty).
+ * @param string $message  Sanitized message.
+ * @param string $submitted_gmt Submitted datetime string (UTC).
+ * @param string $ip       Sanitized IP or empty.
+ * @return string
+ */
+function chronevo_contact_enquiry_html($name, $email, $subject, $message, $submitted_gmt, $ip) {
+    $subject_line = $subject !== '' ? $subject : __('(No subject line)', 'chronevo');
+    $rows = array(
+        array(__('Name', 'chronevo'), $name),
+        array(__('Email', 'chronevo'), $email),
+        array(__('Subject', 'chronevo'), $subject_line),
+    );
+    $row_html = '';
+    foreach ($rows as $row) {
+        $row_html .= '<tr><td style="padding:10px 16px;border-bottom:1px solid #E1E2E4;color:#7A7C80;font-size:13px;width:140px;vertical-align:top;font-family:Inter,Helvetica Neue,Arial,sans-serif;">'
+            . esc_html($row[0]) . '</td><td style="padding:10px 16px;border-bottom:1px solid #E1E2E4;color:#4F5053;font-size:15px;vertical-align:top;font-family:Inter,Helvetica Neue,Arial,sans-serif;">'
+            . esc_html($row[1]) . '</td></tr>';
+    }
+    $message_block = nl2br(esc_html($message), false);
+    $meta_parts = array(__('Submitted (UTC)', 'chronevo') . ': ' . $submitted_gmt);
+    if ($ip !== '') {
+        $meta_parts[] = __('IP', 'chronevo') . ': ' . $ip;
+    }
+    $meta = esc_html(implode(' · ', $meta_parts));
+
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>'
+        . esc_html__('Website enquiry', 'chronevo')
+        . '</title></head><body style="margin:0;padding:0;background-color:#F6F7F8;">'
+        . '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F6F7F8;padding:24px 16px;">'
+        . '<tr><td align="center">'
+        . '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:560px;background-color:#ffffff;border:1px solid #E1E2E4;border-radius:2px;overflow:hidden;">'
+        . '<tr><td style="height:4px;background-color:#DCAF47;line-height:4px;font-size:0;">&nbsp;</td></tr>'
+        . '<tr><td style="padding:24px 24px 8px;font-family:Inter,Helvetica Neue,Arial,sans-serif;">'
+        . '<p style="margin:0 0 4px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A7C80;">' . esc_html__('Chronevo', 'chronevo') . '</p>'
+        . '<h1 style="margin:0;font-size:22px;font-weight:600;color:#4F5053;line-height:1.3;">' . esc_html__('New website enquiry', 'chronevo') . '</h1>'
+        . '</td></tr>'
+        . '<tr><td style="padding:0 8px 8px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">'
+        . $row_html
+        . '</table></td></tr>'
+        . '<tr><td style="padding:8px 24px 24px;font-family:Inter,Helvetica Neue,Arial,sans-serif;">'
+        . '<p style="margin:0 0 8px;font-size:13px;font-weight:600;color:#4F5053;">' . esc_html__('Message', 'chronevo') . '</p>'
+        . '<div style="background-color:#F6F7F8;border:1px solid #E1E2E4;border-radius:2px;padding:16px;font-size:15px;line-height:1.6;color:#4F5053;">' . $message_block . '</div>'
+        . '<p style="margin:16px 0 0;font-size:12px;line-height:1.5;color:#7A7C80;">' . $meta . '</p>'
+        . '</td></tr></table></td></tr></table></body></html>';
+}
+
+/**
+ * Contact form: validate input and email enquiry to site admin.
+ */
+function chronevo_ajax_contact() {
+    check_ajax_referer('chronevo_nonce', 'nonce');
+
+    $ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
+    $ip_hash = md5($ip !== '' ? $ip : 'unknown');
+    $hammer_key = 'chronevo_contact_hammer_' . $ip_hash;
+    $hammer = (int) get_transient($hammer_key);
+    if ($hammer >= 30) {
+        wp_send_json_error(
+            array('message' => __('Too many requests. Please try again later.', 'chronevo')),
+            429
+        );
+    }
+    set_transient($hammer_key, $hammer + 1, 10 * MINUTE_IN_SECONDS);
+
+    $name = isset($_POST['contact_name']) ? sanitize_text_field(wp_unslash($_POST['contact_name'])) : '';
+    $email_raw = isset($_POST['contact_email']) ? wp_unslash($_POST['contact_email']) : '';
+    $email = sanitize_email($email_raw);
+    $subject = isset($_POST['contact_subject']) ? sanitize_text_field(wp_unslash($_POST['contact_subject'])) : '';
+    $message = isset($_POST['contact_message']) ? sanitize_textarea_field(wp_unslash($_POST['contact_message'])) : '';
+
+    if ($name === '' || mb_strlen($name) > 200) {
+        wp_send_json_error(array('message' => __('Please enter your name (max 200 characters).', 'chronevo')));
+    }
+    if ($email === '' || ! is_email($email)) {
+        wp_send_json_error(array('message' => __('Please enter a valid email address.', 'chronevo')));
+    }
+    if (mb_strlen($subject) > 300) {
+        wp_send_json_error(array('message' => __('Subject is too long.', 'chronevo')));
+    }
+    if ($message === '' || mb_strlen($message) > 10000) {
+        wp_send_json_error(array('message' => __('Please enter a message (max 10,000 characters).', 'chronevo')));
+    }
+
+    $sent_key = 'chronevo_contact_sent_' . $ip_hash;
+    $sent_count = (int) get_transient($sent_key);
+    if ($sent_count >= 5) {
+        wp_send_json_error(
+            array('message' => __('Too many messages sent. Please try again later.', 'chronevo')),
+            429
+        );
+    }
+
+    $recipient = apply_filters('chronevo_contact_enquiry_recipient', 'james@chronevo.com');
+    if (! is_string($recipient) || ! is_email($recipient)) {
+        $recipient = 'james@chronevo.com';
+    }
+
+    $site_name = wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES);
+    $email_subject = '[' . $site_name . '] ';
+    $email_subject .= $subject !== '' ? $subject : __('Website enquiry', 'chronevo');
+    $email_subject = wp_strip_all_tags($email_subject);
+    if (function_exists('mb_substr')) {
+        $email_subject = mb_substr($email_subject, 0, 200);
+    } else {
+        $email_subject = substr($email_subject, 0, 200);
+    }
+
+    $submitted_gmt = gmdate('Y-m-d H:i:s') . ' UTC';
+    $body = chronevo_contact_enquiry_html($name, $email, $subject, $message, $submitted_gmt, $ip);
+
+    $from = apply_filters('chronevo_contact_mail_from', 'Chronevo <james@chronevo.com>');
+    if (! is_string($from) || '' === trim($from)) {
+        $from = 'Chronevo <james@chronevo.com>';
+    }
+
+    $headers = array(
+        'Content-Type: text/html; charset=UTF-8',
+        'From: ' . $from,
+        'Reply-To: ' . $email,
+    );
+
+    $sent = wp_mail($recipient, $email_subject, $body, $headers);
+
+    if (! $sent) {
+        wp_send_json_error(array('message' => __('Could not send your message. Please try again later.', 'chronevo')));
+    }
+
+    set_transient($sent_key, $sent_count + 1, HOUR_IN_SECONDS);
+
+    wp_send_json_success(array('message' => __('Thank you. Your message has been sent.', 'chronevo')));
+}
 
 /**
  * Generate a random base62 string (0-9, a-z, A-Z).

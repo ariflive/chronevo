@@ -4575,6 +4575,92 @@ button:focus-visible:hover {
     min-height: 8rem;
 }
 
+.div-contact-form-feedback {
+    min-height: 0;
+}
+
+.div-contact-form-feedback-panel {
+    display: none;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.35rem;
+    border-radius: 2px;
+    border-width: 2px;
+    border-style: solid;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.div-contact-form-feedback-visible .div-contact-form-feedback-panel {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.div-contact-form-feedback-icon {
+    flex-shrink: 0;
+    font-size: 1.75rem;
+    line-height: 1;
+    margin-top: 0.125rem;
+}
+
+.div-contact-form-feedback-success .div-contact-form-feedback-icon {
+    color: #B89438;
+}
+
+.div-contact-form-feedback-error .div-contact-form-feedback-icon {
+    color: #b91c1c;
+}
+
+.div-contact-form-feedback-copy {
+    flex: 1;
+    min-width: 0;
+}
+
+.p-contact-form-feedback-heading {
+    margin: 0 0 0.35rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+}
+
+.p-contact-form-feedback-body {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.div-contact-form-feedback-success.div-contact-form-feedback-visible .div-contact-form-feedback-panel {
+    background-color: #F6EFD7;
+    border-color: #DCAF47;
+    box-shadow: 0 1px 0 rgba(79, 80, 83, 0.06);
+}
+
+.div-contact-form-feedback-success .p-contact-form-feedback-heading {
+    color: #4F5053;
+}
+
+.div-contact-form-feedback-success .p-contact-form-feedback-body {
+    color: #4F5053;
+}
+
+.div-contact-form-feedback-error.div-contact-form-feedback-visible .div-contact-form-feedback-panel {
+    background-color: #fef2f2;
+    border-color: #f87171;
+    box-shadow: 0 1px 0 rgba(79, 80, 83, 0.06);
+}
+
+.div-contact-form-feedback-error .p-contact-form-feedback-heading {
+    color: #991b1b;
+}
+
+.div-contact-form-feedback-error .p-contact-form-feedback-body {
+    color: #7f1d1d;
+}
+
 .button-contact-submit {
     padding: 1rem 3rem;
     background-color: #0a0a0a;
@@ -4605,6 +4691,11 @@ button:focus-visible:hover {
     box-shadow:
         0 0 0 2px #ffffff,
         0 0 0 4px rgba(220, 175, 71, 0.45);
+}
+
+.button-contact-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
 }
 
 /* Contact submit (ref-contact-submit): mobile — avoid left/right clip from letter-spacing + nowrap on narrow width */

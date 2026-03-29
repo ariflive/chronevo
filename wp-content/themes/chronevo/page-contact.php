@@ -49,7 +49,16 @@ get_header();
             <?php endif; ?>
             
             <!-- Contact Form -->
-            <form class="ref-contact-form form-contact div-contact-form-card bg-white border border-[#E1E2E4] p-8" method="post" action="#">
+            <form class="ref-contact-form form-contact div-contact-form-card bg-white border border-[#E1E2E4] p-8" method="post" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>" novalidate>
+                <div class="ref-contact-form-feedback div-contact-form-feedback mb-6" role="status" aria-live="polite" aria-atomic="true">
+                    <div class="div-contact-form-feedback-panel">
+                        <i class="ph div-contact-form-feedback-icon" aria-hidden="true"></i>
+                        <div class="div-contact-form-feedback-copy">
+                            <p class="p-contact-form-feedback-heading"></p>
+                            <p class="p-contact-form-feedback-body"></p>
+                        </div>
+                    </div>
+                </div>
                 <div class="ref-contact-form-row div-contact-form-row mb-6">
                     <label for="contact-name" class="ref-contact-label label-contact-name block text-[#4F5053] font-medium text-sm mb-2"><?php echo esc_html('Your Name'); ?></label>
                     <input type="text" id="contact-name" name="contact_name" class="ref-contact-input input-contact-name w-full px-4 py-3 border border-[#E1E2E4] bg-white text-[#4F5053] text-base" placeholder="<?php echo esc_attr('Your Name'); ?>" required>
