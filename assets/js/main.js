@@ -723,7 +723,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Single article featured image: hover to show video slideshow (continues after mouse out)
+// Single post featured: portfolio autoplays video on load (with preload); other posts use hover
 document.addEventListener('DOMContentLoaded', function() {
     const wrapper = document.querySelector('.ref-single-post-featured-image-wrapper');
     if (!wrapper) return;
@@ -736,6 +736,9 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
     if (videos.length === 0) return;
+    const isPortfolioSingle =
+        wrapper.getAttribute('data-portfolio-featured-autoplay') === '1' ||
+        (document.body && document.body.classList.contains('category-portfolio'));
     const overlay = wrapper.querySelector('.ref-single-post-featured-video-overlay');
     const videoEl = wrapper.querySelector('.ref-single-post-featured-video');
     const dotsContainer = wrapper.querySelector('.ref-single-post-featured-dots');
@@ -755,6 +758,7 @@ document.addEventListener('DOMContentLoaded', function() {
         videoEl.classList.remove('is-playing');
         videoEl.src = videos[currentIndex];
         videoEl.load();
+        videoEl.muted = true;
         videoEl.play().catch(function() {});
         updateDotsActive();
     }
@@ -792,9 +796,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    wrapper.addEventListener('mouseenter', function() {
+    if (isPortfolioSingle) {
+        videoEl.preload = 'auto';
+        videoEl.muted = true;
+        videoEl.setAttribute('playsinline', '');
         startSlideshow();
-    });
+    } else {
+        wrapper.addEventListener('mouseenter', function() {
+            startSlideshow();
+        });
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {

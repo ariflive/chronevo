@@ -65,20 +65,30 @@ $next_post = get_next_post();
             if (empty($featured_img_url)) {
                 $featured_img_url = $assets_url . '/images/hero-1.jpg';
             }
-            $portfolio_video_url = get_field('portfolio_video', $single_post_id);
+            $portfolio_video_raw = get_field('portfolio_video', $single_post_id);
             $featured_videos = array();
-            if (!empty($portfolio_video_url) && is_string($portfolio_video_url)) {
-                $featured_videos[] = esc_url($portfolio_video_url);
+            if (!empty($portfolio_video_raw)) {
+                if (is_string($portfolio_video_raw)) {
+                    $featured_videos[] = esc_url($portfolio_video_raw);
+                } elseif (is_numeric($portfolio_video_raw)) {
+                    $attachment_url = wp_get_attachment_url((int) $portfolio_video_raw);
+                    if ($attachment_url) {
+                        $featured_videos[] = esc_url($attachment_url);
+                    }
+                } elseif (is_array($portfolio_video_raw) && !empty($portfolio_video_raw['url'])) {
+                    $featured_videos[] = esc_url($portfolio_video_raw['url']);
+                }
             }
+            $portfolio_featured_autoplay = !empty($featured_videos) && in_category('portfolio', $single_post_id);
             ?>
-            <div class="ref-single-post-featured-image-wrapper div-single-post-featured-image-wrapper mb-8 relative overflow-hidden aspect-[1/1]" data-videos="<?php echo esc_attr(wp_json_encode($featured_videos)); ?>">
+            <div class="ref-single-post-featured-image-wrapper div-single-post-featured-image-wrapper mb-8 relative overflow-hidden aspect-[1/1]" data-videos="<?php echo esc_attr(wp_json_encode($featured_videos)); ?>"<?php echo $portfolio_featured_autoplay ? ' data-portfolio-featured-autoplay="1"' : ''; ?>>
                 <img
                     src="<?php echo esc_url($featured_img_url); ?>"
                     alt="<?php echo esc_attr(get_the_title()); ?>"
                     class="ref-single-post-featured-image img-single-post-featured w-full h-full object-cover"
                 >
                 <div class="ref-single-post-featured-video-overlay div-single-post-featured-video-overlay absolute inset-0 w-full h-full opacity-0 pointer-events-none" aria-hidden="true">
-                    <video class="ref-single-post-featured-video img-single-post-featured-video w-full h-full object-cover" muted playsinline></video>
+                    <video class="ref-single-post-featured-video img-single-post-featured-video w-full h-full object-cover" muted playsinline<?php echo !empty($featured_videos) ? ' preload="auto"' : ''; ?>></video>
                     <div class="ref-single-post-featured-dots div-single-post-featured-dots absolute bottom-0 left-0 right-0 flex justify-center gap-2 pb-4" aria-label="Slideshow navigation"></div>
                 </div>
             </div>
